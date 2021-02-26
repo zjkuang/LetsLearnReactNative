@@ -5,17 +5,26 @@ const styles = StyleSheet.create({
   baseView: {
     ...commonStyles.fullSize,
   },
-  flatListItem0: {
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingBottom: 2,
+    fontSize: 18,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(247,247,247,1.0)',
+  },
+  listItem0: {
     paddingTop: 12,
-    paddingLeft: 12,
+    paddingLeft: 16,
     paddingRight: 8,
     fontSize: 16,
     height: 40,
     backgroundColor: 'rgba(240,240,240,1.0)',
   },
-  flatListItem1: {
+  listItem1: {
     paddingTop: 12,
-    paddingLeft: 12,
+    paddingLeft: 16,
     paddingRight: 8,
     fontSize: 16,
     height: 40,
