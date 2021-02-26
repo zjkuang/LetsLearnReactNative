@@ -98,7 +98,7 @@ const hooksDemoList: SectionListSection<
         title: 'useLayoutEffect',
         extra: {
           navigationTargetName: 'UseLayoutEffectDemo', // HooksDemoScreenName
-          ready: false,
+          ready: true,
         },
       },
       {
