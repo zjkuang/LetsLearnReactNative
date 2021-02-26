@@ -4,11 +4,7 @@ import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export type DemoUseStateViewProp = {
-  test?: string;
-};
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const DemoUseStateView = (props: DemoUseStateViewProp) => {
+export const DemoUseStateView = () => {
   type State = 'Welcome' | 'Order Placed' | 'Food Consumed' | 'Bill Paid';
   const [state, setState] = React.useState<State>('Welcome');
 

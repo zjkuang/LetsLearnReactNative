@@ -3,11 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {View, Text} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
-import {
-  MainTabChildSiblingName,
-  MainTabNavigateToSiblingFunc,
-} from '../navigation-index';
 import {useNavigation} from '@react-navigation/native';
+import {HooksDemoListView, HooksDemoScreenName} from '../demo/hooks/table-of-contents/index';
 import {DemoUseStateView} from '../demo/hooks/useState/index';
 
 //
@@ -18,51 +15,37 @@ import {DemoUseStateView} from '../demo/hooks/useState/index';
 //  EEEEE  LLLLL  SSSS   A   A
 //
 
-type ElsaStackParamList = {
+// ElsaStackParamList
+export type ElsaStackScreenName =
+  'Elsa' | // root
+  'HooksDemoList' | // immediate children
+  HooksDemoScreenName; // grand children
+
+type ElsaStackParamList = { // ElsaStackScreenName
   Elsa: {}; // navigation root
-  DemoUseState: {};
+  HooksDemoList: {};
+  UseStateDemo: {}; // one of HooksDemoScreenName
   // more navigation children can be added here
 };
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
-type ElsaNavigationViewProps = {
-  navigateToSibling?: MainTabNavigateToSiblingFunc;
-};
-export const ElsaNavigationView = (props: ElsaNavigationViewProps) => {
+export const ElsaNavigationView = () => {
   const navigation = useNavigation();
-
-  const navigateToSibling: MainTabNavigateToSiblingFunc = (
-    name: MainTabChildSiblingName,
-  ) => {
-    navigation.navigate(name);
-  };
-  let navigationPerformer:
-    | MainTabNavigateToSiblingFunc
-    | undefined = navigateToSibling;
-  navigationPerformer = props.navigateToSibling; // comment/uncomment this line to perform by self/parent
-
-  const passNavigationPerformer = true;
 
   return (
     <ElsaStack.Navigator>
-      {passNavigationPerformer ? (
-        <ElsaStack.Screen
-          name="Elsa"
-          children={() => [
-            <ElsaView key={0} navigateToSibling={navigationPerformer} />,
-          ]}
-        />
-      ) : (
-        <ElsaStack.Screen name="Elsa" component={ElsaView} />
-      )}
+      <ElsaStack.Screen name="Elsa" component={ElsaView} />
 
-      <ElsaStack.Screen name="DemoUseState" component={DemoUseStateView} />
+      <ElsaStack.Screen name="HooksDemoList" component={HooksDemoListView} />
+
+      <ElsaStack.Screen name="UseStateDemo" component={DemoUseStateView} />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: MainTabChildSiblingName | 'DemoUseState';
+  id: 'HooksDemo';
+  navigationTargetName?: 'HooksDemoList'; // subset of ElsaStackScreenName
   title: string;
   subtitle?: string;
 };
@@ -70,35 +53,13 @@ type ElsaListItem = {
 const elsaList: ElsaListItem[] = [
   {
     index: 0,
-    id: 'Anna',
-    title: 'Anna',
-  },
-  {
-    index: 1,
-    id: 'Kristoff',
-    title: 'Kristoff',
-  },
-  {
-    index: 2,
-    id: 'Sven',
-    title: 'Sven',
-  },
-  {
-    index: 3,
-    id: 'Olaf',
-    title: 'Olaf',
-  },
-  {
-    index: 4,
-    id: 'DemoUseState',
-    title: 'DemoUseState',
+    id: 'HooksDemo',
+    navigationTargetName: 'HooksDemoList',
+    title: 'Hooks',
   },
 ];
 
-type ElsaViewProps = {
-  navigateToSibling?: MainTabNavigateToSiblingFunc;
-};
-const ElsaView = (props: ElsaViewProps) => {
+const ElsaView = () => {
   const navigation = useNavigation();
 
   React.useLayoutEffect(() => {
@@ -110,8 +71,6 @@ const ElsaView = (props: ElsaViewProps) => {
     });
   }, [navigation]);
 
-  const navigationPerformer: 'parent' | 'self' = 'self'; // toggle between 'parent' and 'self' to perform navigation by MainTab and Elsa alternatively
-
   return (
     <View style={styles.baseView}>
       <FlatList
@@ -122,17 +81,8 @@ const ElsaView = (props: ElsaViewProps) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                if (item.id === 'DemoUseState') {
-                  navigation.navigate(item.id);
-                } else if (navigationPerformer === 'self') {
-                  console.log(
-                    `[Elsa] Navigating to sibling ${item.id} with local navigation...`,
-                  );
-                  navigation.navigate(item.id);
-                } else {
-                  if (props.navigateToSibling) {
-                    props.navigateToSibling(item.id);
-                  }
+                if (item.id === 'HooksDemo' && item.navigationTargetName != undefined) {
+                  navigation.navigate(item.navigationTargetName);
                 }
               }}>
               <Text style={itemStyle}>{item.title}</Text>
