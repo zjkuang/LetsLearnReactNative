@@ -6,8 +6,16 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
 
-type ViewProps = StackScreenProps<ElsaStackParamList, 'UseStateDemo'>;
-export const DemoUseStateView = ({navigation, route}: ViewProps) => {
+// https://daveceddia.com/useeffect-vs-uselayouteffect/
+// https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
+// useEffect - this runs after react renders your component and ensures that your effect callback does not block browser painting
+// useLayoutEffect - if your effect is mutating the DOM (via a DOM node ref) and the DOM mutation will change the appearance of
+//   the DOM node between the time that it is rendered and your effect mutates it, then you don't want to use useEffect. You'll
+//   want to use useLayoutEffect. Otherwise the user could see a flicker when your DOM mutations take effect. This is pretty much
+//   the only time you want to avoid useEffect and use useLayoutEffect instead.
+
+type ViewProps = StackScreenProps<ElsaStackParamList, 'UseEffectDemo'>;
+export const DemoUseEffectView = ({navigation, route}: ViewProps) => {
   type State = 'Welcome' | 'Order Placed' | 'Food Consumed' | 'Bill Paid';
   const [state, setState] = React.useState<State>('Welcome');
 

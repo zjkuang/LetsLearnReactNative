@@ -4,21 +4,59 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {ListItem, SectionListSection} from '../../../common/types';
+import {
+  ElsaStackNavigationScreenName,
+  HookDemoScreenNavigationProp,
+} from '../../../elsa/index';
 
 // https://reactjs.org/docs/hooks-reference.html
 
 export type HooksDemoScreenName =
-  'UseStateDemo' | 'UseEffectDemo' | 'UseContextDemo' |
-  'UseLayoutEffectDemo' | 'UseCallbackDemo' | 'UseRefDemo' | 'UseMemoDemo' | 'UseReducerDemo' | 'UseImperativeHandleDemo' | 'UseDebugValueDemo';
+  | 'UseStateDemo'
+  | 'UseEffectDemo'
+  | 'UseContextDemo'
+  | 'UseLayoutEffectDemo'
+  | 'UseCallbackDemo'
+  | 'UseRefDemo'
+  | 'UseMemoDemo'
+  | 'UseReducerDemo'
+  | 'UseImperativeHandleDemo'
+  | 'UseDebugValueDemo';
 type HooksDemoItem =
-  'useState' | 'useEffect' | 'useContext' |
-  'useLayoutEffect' | 'useCallback' | 'useRef' | 'useMemo' | 'useReducer' | 'useImperativeHandle' | 'useDebugValue';
+  | 'useState'
+  | 'useEffect'
+  | 'useContext'
+  | 'useLayoutEffect'
+  | 'useCallback'
+  | 'useRef'
+  | 'useMemo'
+  | 'useReducer'
+  | 'useImperativeHandle'
+  | 'useDebugValue';
 type HooksDemoItemExtra = {
   navigationTargetName: HooksDemoScreenName;
   ready: boolean;
 };
 
-const hooksDemoList: SectionListSection<ListItem<HooksDemoItem, HooksDemoItemExtra>>[] = [
+// To push a UseSomethingDemo screen and pass {name: '<name>', title: '<title>'} to its component DemoUseSomethingView,
+// (1) define
+//       type HookDemoScreenParamList = {name: HooksDemoScreenName; title: string;}
+// (2) in each DemoUseSomethingView,
+//       type ViewProps = StackScreenProps<ElsaStackParamList, 'UseSomethingDemo'>;
+//       export const DemoUseSomethingView = ({navigation, route}: ViewProps) => {
+//         route.params.name and route.params.title will be accessible
+//       };
+// (3) when pushing,
+//       const hooksDemoNavigation = useNavigation<HookDemoScreenNavigationProp>();
+//       hooksDemoNavigation.push(navigationTargetName, {name: '<name>', title: '<title>'});
+export type HookDemoScreenParamList = {
+  name: HooksDemoScreenName;
+  title: string;
+};
+
+const hooksDemoList: SectionListSection<
+  ListItem<HooksDemoItem, HooksDemoItemExtra>
+>[] = [
   {
     title: 'Basic',
     data: [
@@ -37,7 +75,7 @@ const hooksDemoList: SectionListSection<ListItem<HooksDemoItem, HooksDemoItemExt
         title: 'useEffect',
         extra: {
           navigationTargetName: 'UseEffectDemo', // HooksDemoScreenName
-          ready: false,
+          ready: true,
         },
       },
       {
@@ -123,6 +161,7 @@ const hooksDemoList: SectionListSection<ListItem<HooksDemoItem, HooksDemoItemExt
 
 export const HooksDemoListView = () => {
   const navigation = useNavigation();
+  const hooksDemoNavigation = useNavigation<HookDemoScreenNavigationProp>();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -138,20 +177,27 @@ export const HooksDemoListView = () => {
       <SectionList
         sections={hooksDemoList}
         renderItem={({item}) => {
-          const itemStyle = item.index % 2 ? styles.listItem1 : styles.listItem0;
+          const itemStyle =
+            item.index % 2 ? styles.listItem1 : styles.listItem0;
           return (
             <TouchableOpacity
               onPress={() => {
-                if (item.extra?.navigationTargetName && item.extra?.ready) {
-                  navigation.navigate(item.extra.navigationTargetName);
+                let navigationTargetName = item.extra
+                  ?.navigationTargetName as ElsaStackNavigationScreenName;
+                if (!navigationTargetName || !item.extra?.ready) {
+                  return;
                 }
+                hooksDemoNavigation.push(navigationTargetName, {
+                  name: navigationTargetName,
+                  title: item.title,
+                });
               }}>
               <Text style={itemStyle}>{item.title}</Text>
             </TouchableOpacity>
           );
         }}
         renderSectionHeader={({section}) => {
-          return (<Text style={styles.sectionHeader}>{section.title}</Text>);
+          return <Text style={styles.sectionHeader}>{section.title}</Text>;
         }}
         keyExtractor={(item, index) => {
           return `${index}`;

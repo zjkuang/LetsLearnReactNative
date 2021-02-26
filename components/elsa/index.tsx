@@ -1,11 +1,19 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import {View, Text} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {HooksDemoListView, HooksDemoScreenName} from '../demo/hooks/table-of-contents/index';
+import {
+  HooksDemoListView,
+  HooksDemoScreenName,
+  HookDemoScreenParamList,
+} from '../demo/hooks/table-of-contents/index';
 import {DemoUseStateView} from '../demo/hooks/useState/index';
+import {DemoUseEffectView} from '../demo/hooks/useEffect/index';
 
 //
 //  EEEEE  L       SSSS    A
@@ -17,20 +25,27 @@ import {DemoUseStateView} from '../demo/hooks/useState/index';
 
 // ElsaStackParamList
 export type ElsaStackScreenName =
-  'Elsa' | // root
-  'HooksDemoList' | // immediate children
-  HooksDemoScreenName; // grand children
+  | 'Elsa' // root
+  | 'HooksDemoList' // immediate children
+  | HooksDemoScreenName; // grand children
+// Before all screens listed by HooksDemoScreenName are provided, use the shortened version ElsaStackNavigationScreenName for a while
+export type ElsaStackNavigationScreenName =
+  | 'Elsa'
+  | 'HooksDemoList'
+  | 'UseStateDemo'
+  | 'UseEffectDemo';
 
-type ElsaStackParamList = { // ElsaStackScreenName
+export type ElsaStackParamList = {
+  // ElsaStackScreenName
   Elsa: {}; // navigation root
   HooksDemoList: {};
-  UseStateDemo: {}; // one of HooksDemoScreenName
+  UseStateDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  UseEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   // more navigation children can be added here
 };
+export type HookDemoScreenNavigationProp = StackNavigationProp<ElsaStackParamList>;
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
 export const ElsaNavigationView = () => {
-  const navigation = useNavigation();
-
   return (
     <ElsaStack.Navigator>
       <ElsaStack.Screen name="Elsa" component={ElsaView} />
@@ -38,6 +53,7 @@ export const ElsaNavigationView = () => {
       <ElsaStack.Screen name="HooksDemoList" component={HooksDemoListView} />
 
       <ElsaStack.Screen name="UseStateDemo" component={DemoUseStateView} />
+      <ElsaStack.Screen name="UseEffectDemo" component={DemoUseEffectView} />
     </ElsaStack.Navigator>
   );
 };
@@ -81,7 +97,10 @@ const ElsaView = () => {
           return (
             <TouchableOpacity
               onPress={() => {
-                if (item.id === 'HooksDemo' && item.navigationTargetName != undefined) {
+                if (
+                  item.id === 'HooksDemo' &&
+                  item.navigationTargetName != undefined
+                ) {
                   navigation.navigate(item.navigationTargetName);
                 }
               }}>

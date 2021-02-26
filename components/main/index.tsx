@@ -1,6 +1,5 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useNavigation} from '@react-navigation/native';
 import {AnnaNavigationView} from '../anna';
 import {KristoffNavigationView} from '../kristoff';
 import {SvenNavigationView} from '../sven';
@@ -9,7 +8,6 @@ import {ElsaNavigationView} from '../elsa';
 import Feather from 'react-native-vector-icons/Feather';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {MainTabChildSiblingName} from '../navigation-index';
 
 type MainTabParamList = {
   Anna: {};
@@ -20,13 +18,11 @@ type MainTabParamList = {
 };
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 export const MainTabView = () => {
-  const navigation = useNavigation();
   //
   // If we need to pass props to a screen component, instead of
-  //   <Xxx.Screen name='...' component={...} />
+  //   <SomeNavigator.Screen name='...' component={SomeView} />
   // we can
-  //   <Xxx.Screen name='...' key={...} children={() => [<Yyy key={...} propname={...}>]} />
-  // (e.g. Screen 'Elsa')
+  //   <SomeNavigator.Screen name='...' children={() => [<SomeView key={...} propname={...}>]} />
   //
   return (
     <BottomTab.Navigator
@@ -72,18 +68,7 @@ export const MainTabView = () => {
       <BottomTab.Screen name="Kristoff" component={KristoffNavigationView} />
       <BottomTab.Screen name="Sven" component={SvenNavigationView} />
       <BottomTab.Screen name="Olaf" component={OlafNavigationView} />
-      <BottomTab.Screen
-        name={'Elsa'}
-        children={() => [
-          <ElsaNavigationView
-            key={0}
-            navigateToSibling={(name: MainTabChildSiblingName) => {
-              console.log(`[MainTab] Navigating to Elsa's sibling ${name}...`);
-              navigation.navigate(name, {});
-            }}
-          />,
-        ]}
-      />
+      <BottomTab.Screen name="Elsa" component={ElsaNavigationView} />
     </BottomTab.Navigator>
   );
 };
