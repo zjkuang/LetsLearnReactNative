@@ -14,6 +14,7 @@ import {
 } from '../demo/hooks/table-of-contents/index';
 import {DemoUseStateView} from '../demo/hooks/useState/index';
 import {DemoUseEffectView} from '../demo/hooks/useEffect/index';
+import {DemoUseContextView} from '../demo/hooks/useContext/index';
 import {DemoUseLayoutEffectView} from '../demo/hooks/useLayoutEffect/index';
 
 //
@@ -35,6 +36,7 @@ export type ElsaStackNavigationScreenName =
   | 'HooksDemoList'
   | 'UseStateDemo'
   | 'UseEffectDemo'
+  | 'UseContextDemo'
   | 'UseLayoutEffectDemo';
 
 export type ElsaStackParamList = {
@@ -43,6 +45,7 @@ export type ElsaStackParamList = {
   HooksDemoList: {};
   UseStateDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  UseContextDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseLayoutEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   // more navigation children can be added here
 };
@@ -57,6 +60,7 @@ export const ElsaNavigationView = () => {
 
       <ElsaStack.Screen name="UseStateDemo" component={DemoUseStateView} />
       <ElsaStack.Screen name="UseEffectDemo" component={DemoUseEffectView} />
+      <ElsaStack.Screen name="UseContextDemo" component={DemoUseContextView} />
       <ElsaStack.Screen
         name="UseLayoutEffectDemo"
         component={DemoUseLayoutEffectView}

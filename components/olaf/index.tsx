@@ -63,7 +63,9 @@ const OlafView = (props: OlafViewProp) => {
         onPress={() => {
           navigation.push('OlafDetails');
         }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>
+          Show Details
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity

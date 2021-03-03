@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useAppContext} from '../../../../model/app-context';
 
 export type AnnaDetailsViewProp = {
   test?: string;
@@ -10,6 +11,8 @@ export type AnnaDetailsViewProp = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const AnnaDetailsView = (props: AnnaDetailsViewProp) => {
   const navigation = useNavigation();
+
+  const appContext = useAppContext();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -22,6 +25,8 @@ export const AnnaDetailsView = (props: AnnaDetailsViewProp) => {
 
   return (
     <View style={styles.baseView}>
+      <Text>{`timer: ${appContext.mockTimer.day}(d) ${appContext.mockTimer.hour}:${appContext.mockTimer.minute}:${appContext.mockTimer.second}`}</Text>
+
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Olaf');

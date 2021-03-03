@@ -84,7 +84,7 @@ const hooksDemoList: SectionListSection<
         title: 'useContext',
         extra: {
           navigationTargetName: 'UseContextDemo', // HooksDemoScreenName
-          ready: false,
+          ready: true,
         },
       },
     ],

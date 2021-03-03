@@ -61,7 +61,9 @@ const SvenView = (props: SvenViewProp) => {
         onPress={() => {
           navigation.push('SvenDetails');
         }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>
+          Show Details
+        </Text>
       </TouchableOpacity>
     </View>
   );

@@ -31,6 +31,10 @@ export const DemoUseLayoutEffectView = ({navigation, route}: ViewProps) => {
         },
       });
     }
+
+    return () => {
+      console.log(`${route.params.name} useLayoutEffect cleaning up...`);
+    };
   }, [navigation]);
 
   React.useEffect(() => {

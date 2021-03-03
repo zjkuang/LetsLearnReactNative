@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AnnaDetailsView} from '../demo/anna-stack/anna-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackNavigationProp} from '../root/index';
+import {useAppContext} from '../../model/app-context';
 
 type AnnaStackParamList = {
   Anna?: {}; // navigation root
@@ -42,6 +43,8 @@ const AnnaView = (props: AnnaViewProp) => {
   const navigation = useNavigation<AnnaStackNavitationProp>();
   const rootNavigation = useNavigation<RootStackNavigationProp>();
 
+  const appContext = useAppContext();
+
   const title = 'Anna';
 
   React.useLayoutEffect(() => {
@@ -59,11 +62,15 @@ const AnnaView = (props: AnnaViewProp) => {
 
   return (
     <View style={styles.baseView}>
+      <Text>{`timer: ${appContext.mockTimer.day}(d) ${appContext.mockTimer.hour}:${appContext.mockTimer.minute}:${appContext.mockTimer.second}`}</Text>
+
       <TouchableOpacity
         onPress={() => {
           navigation.push('AnnaDetails');
         }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>
+          Show Details
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity

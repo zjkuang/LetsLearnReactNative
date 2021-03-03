@@ -64,7 +64,9 @@ const KristoffView = (props: KristoffViewProp) => {
         onPress={() => {
           navigation.push('KristoffDetails');
         }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Show Detail</Text>
+        <Text style={{color: color.iOSButtonColorLightTheme}}>
+          Show Details
+        </Text>
       </TouchableOpacity>
     </View>
   );
