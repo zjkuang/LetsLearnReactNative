@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useAppContext} from '../../../../model/app-context';
+import {ExampleContext} from '../../../../model/example-context';
 
 export type AnnaDetailsViewProp = {
   test?: string;
@@ -12,7 +12,7 @@ export type AnnaDetailsViewProp = {
 export const AnnaDetailsView = (props: AnnaDetailsViewProp) => {
   const navigation = useNavigation();
 
-  const appContext = useAppContext();
+  const {exampleContextValue} = React.useContext(ExampleContext);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -25,7 +25,7 @@ export const AnnaDetailsView = (props: AnnaDetailsViewProp) => {
 
   return (
     <View style={styles.baseView}>
-      <Text>{`timer: ${appContext.mockTimer.day}(d) ${appContext.mockTimer.hour}:${appContext.mockTimer.minute}:${appContext.mockTimer.second}`}</Text>
+      <Text>{`Example Context: ${JSON.stringify(exampleContextValue)}`}</Text>
 
       <TouchableOpacity
         onPress={() => {

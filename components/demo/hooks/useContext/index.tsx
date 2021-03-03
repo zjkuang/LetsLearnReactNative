@@ -4,11 +4,14 @@ import {View} from 'react-native';
 import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
-import {useAppContext} from '../../../../model/app-context';
+import {
+  ExampleContext,
+  ExampleContextValueType,
+} from '../../../../model/example-context';
 
 type ViewProps = StackScreenProps<ElsaStackParamList, 'UseContextDemo'>;
 export const DemoUseContextView = ({navigation, route}: ViewProps) => {
-  const appContext = useAppContext();
+  const {setExampleContextValue} = React.useContext(ExampleContext);
 
   React.useLayoutEffect(() => {
     console.log(`${route.params.name} useLayoutEffect`);
@@ -26,7 +29,12 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       `${route.params.name} componentDidMount -- this is true only when the dependencies is []`,
     );
 
-    appContext.mockTimer.day = 5;
+    const exampleContextValue: ExampleContextValueType = {
+      flag: true,
+      count: 1,
+      text: 'hello',
+    };
+    setExampleContextValue(exampleContextValue);
 
     return () => {
       console.log(`${route.params.name} componentWillUnmount`);

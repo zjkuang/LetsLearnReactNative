@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AnnaDetailsView} from '../demo/anna-stack/anna-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackNavigationProp} from '../root/index';
-import {useAppContext} from '../../model/app-context';
+import {ExampleContext} from '../../model/example-context';
 
 type AnnaStackParamList = {
   Anna?: {}; // navigation root
@@ -43,7 +43,7 @@ const AnnaView = (props: AnnaViewProp) => {
   const navigation = useNavigation<AnnaStackNavitationProp>();
   const rootNavigation = useNavigation<RootStackNavigationProp>();
 
-  const appContext = useAppContext();
+  const {exampleContextValue} = React.useContext(ExampleContext);
 
   const title = 'Anna';
 
@@ -62,7 +62,7 @@ const AnnaView = (props: AnnaViewProp) => {
 
   return (
     <View style={styles.baseView}>
-      <Text>{`timer: ${appContext.mockTimer.day}(d) ${appContext.mockTimer.hour}:${appContext.mockTimer.minute}:${appContext.mockTimer.second}`}</Text>
+      <Text>{`Example Context: ${JSON.stringify(exampleContextValue)}`}</Text>
 
       <TouchableOpacity
         onPress={() => {

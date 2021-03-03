@@ -9,15 +9,10 @@
  */
 
 import React from 'react';
-import {AppContextProvider} from './model/app-context';
 import {RootView} from './components/root/index';
 
 const App = () => {
-  return (
-    <AppContextProvider>
-      <RootView />
-    </AppContextProvider>
-  );
+  return <RootView />;
 };
 
 export default App;
