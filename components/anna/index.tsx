@@ -6,17 +6,20 @@ import {
 import {Text, View} from 'react-native';
 import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {AnnaDetailsView} from '../demo/anna-stack/anna-details';
+import {
+  AnnaDetailsView,
+  AnnaDetailsViewParamList,
+} from '../demo/anna-stack/anna-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackNavigationProp} from '../root/index';
 import {ExampleContext} from '../../model/example-context';
 
-type AnnaStackParamList = {
-  Anna?: {}; // navigation root
-  AnnaDetails?: {};
+export type AnnaStackParamList = {
+  Anna: {}; // navigation root
+  AnnaDetails: AnnaDetailsViewParamList;
   // more navigation children can be added here
 };
-type AnnaStackNavitationProp = StackNavigationProp<AnnaStackParamList>;
+export type AnnaStackNavitationProp = StackNavigationProp<AnnaStackParamList>;
 const AnnaStack = createStackNavigator<AnnaStackParamList>();
 export const AnnaNavigationView = () => {
   const test = true;
@@ -42,6 +45,7 @@ type AnnaViewProp = {
 const AnnaView = (props: AnnaViewProp) => {
   const navigation = useNavigation<AnnaStackNavitationProp>();
   const rootNavigation = useNavigation<RootStackNavigationProp>();
+  const localStackNavigation = useNavigation<AnnaStackNavitationProp>();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
 
@@ -66,7 +70,7 @@ const AnnaView = (props: AnnaViewProp) => {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.push('AnnaDetails');
+          localStackNavigation.push('AnnaDetails', {generation: 1});
         }}>
         <Text style={{color: color.iOSButtonColorLightTheme}}>
           Show Details
