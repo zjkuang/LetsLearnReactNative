@@ -4,11 +4,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const preferencesKeys = {
-  myLabPreferences: 'myLabPreferences',
-  imageViewerPreferences: 'imageViewerPreferences',
+  pkExampleContextValue: 'pkExampleContextValue',
 };
 
-export const savePreferenceString = async (key: string, value: string) => {
+export const savePreferenceString = async (
+  key: string,
+  value: string,
+): Promise<boolean> => {
   try {
     await AsyncStorage.setItem(key, value);
     return true;
@@ -18,7 +20,9 @@ export const savePreferenceString = async (key: string, value: string) => {
   }
 };
 
-export const getPreferenceString = async (key: string) => {
+export const getPreferenceString = async (
+  key: string,
+): Promise<string | null> => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value;
@@ -28,7 +32,10 @@ export const getPreferenceString = async (key: string) => {
   }
 };
 
-export const savePreferenceInt = async (key: string, value: number) => {
+export const savePreferenceInt = async (
+  key: string,
+  value: number,
+): Promise<boolean> => {
   try {
     await AsyncStorage.setItem(key, `${value}`);
     return true;
@@ -38,17 +45,24 @@ export const savePreferenceInt = async (key: string, value: number) => {
   }
 };
 
-export const getPreferenceInt = async (key: string) => {
+export const getPreferenceInt = async (
+  key: string,
+  defaultValue: number | null = null,
+  radix?: number | undefined,
+): Promise<number | null> => {
   try {
     const value: string | null = await AsyncStorage.getItem(key);
-    return value != null ? parseInt(value) : null;
+    return value === null ? defaultValue : parseInt(value, radix);
   } catch (e) {
     console.log(e);
-    return null;
+    return defaultValue;
   }
 };
 
-export const savePreferenceObject = async (key: string, value: object) => {
+export const savePreferenceObject = async (
+  key: string,
+  value: object,
+): Promise<boolean> => {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(value));
     return true;
@@ -58,17 +72,22 @@ export const savePreferenceObject = async (key: string, value: object) => {
   }
 };
 
-export const getPreferenceObject = async (key: string) => {
+export const getPreferenceObject = async (
+  key: string,
+): Promise<object | null> => {
   try {
     const value = await AsyncStorage.getItem(key);
-    return value != null ? JSON.parse(value) : null;
+    return value === null ? value : JSON.parse(value);
   } catch (e) {
     console.log(e);
-    return 0;
+    return null;
   }
 };
 
-export const savePreferenceBool = async (key: string, value: boolean) => {
+export const savePreferenceBool = async (
+  key: string,
+  value: boolean,
+): Promise<boolean> => {
   try {
     await AsyncStorage.setItem(key, `${value}`);
     return true;
@@ -78,12 +97,15 @@ export const savePreferenceBool = async (key: string, value: boolean) => {
   }
 };
 
-export const getPreferenceBool = async (key: string) => {
+export const getPreferenceBool = async (
+  key: string,
+  defaultValue: false | null = null,
+): Promise<boolean | null> => {
   try {
     const value: string | null = await AsyncStorage.getItem(key);
-    return value != null ? value == 'true' : false;
+    return value === 'true' ? true : defaultValue;
   } catch (e) {
     console.log(e);
-    return false;
+    return defaultValue;
   }
 };
