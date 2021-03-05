@@ -28,14 +28,12 @@ export const ExampleContext = React.createContext<ExampleContextType>(
   defaultExampleContext,
 );
 
-export const saveExampleContextValue = (
+const saveExampleContextValue = (
   value: ExampleContextValueType,
 ): Promise<boolean> => {
   return savePreferenceObject(preferencesKeys.pkExampleContextValue, value);
 };
 
-export const retrieveExampleContextValue = (
-  key: string,
-): Promise<object | null> => {
-  return getPreferenceObject(key);
+const retrieveExampleContextValue = (): Promise<object | null> => {
+  return getPreferenceObject(preferencesKeys.pkExampleContextValue);
 };
