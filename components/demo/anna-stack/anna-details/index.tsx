@@ -1,8 +1,7 @@
 import React from 'react';
-import {Alert, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {styles, color} from './style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {ExampleContext} from '../../../../model/example-context';
 import {AnnaStackParamList} from '../../../anna/index';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
@@ -13,7 +12,6 @@ export type AnnaDetailsViewParamList = {
 type AnnaDetailsViewProps = StackScreenProps<AnnaStackParamList, 'AnnaDetails'>; // import {StackScreenProps} from '@react-navigation/stack';
 export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
   const navigationGeneral = useNavigation();
-  const {exampleContextValue} = React.useContext(ExampleContext);
 
   let title = 'Details';
   if (route.params.generation !== undefined) {
@@ -34,14 +32,11 @@ export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
 
     return () => {
       console.log(`${title} unmounted`);
-      Alert.alert(`${title}`, 'Unmounted');
     };
   }, [title]);
 
   return (
     <View style={styles.baseView}>
-      <Text>{`Example Context: ${JSON.stringify(exampleContextValue)}`}</Text>
-
       <TouchableOpacity
         onPress={() => {
           navigationGeneral.navigate('Olaf');

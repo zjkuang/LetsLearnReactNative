@@ -8,6 +8,7 @@ import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {SvenDetailsView} from '../demo/sven-stack/sven-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ExampleContext} from '../../context/example-context';
 
 type SvenStackParamList = {
   Sven?: {}; // navigation root
@@ -40,6 +41,8 @@ type SvenViewProp = {
 const SvenView = (props: SvenViewProp) => {
   const navigation = useNavigation<SvenStackNavitationProp>();
 
+  const {exampleContextValue} = React.useContext(ExampleContext);
+
   const title = 'Sven';
 
   React.useLayoutEffect(() => {
@@ -57,6 +60,8 @@ const SvenView = (props: SvenViewProp) => {
 
   return (
     <View style={styles.baseView}>
+      <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
+
       <TouchableOpacity
         onPress={() => {
           navigation.push('SvenDetails');

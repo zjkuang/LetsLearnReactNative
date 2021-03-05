@@ -8,6 +8,7 @@ import {styles, color} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {KristoffDetailsView} from '../demo/kristoff-stack/kristoff-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ExampleContext} from '../../context/example-context';
 
 type KristoffStackParamList = {
   Kristoff?: {}; // navigation root
@@ -43,6 +44,8 @@ type KristoffViewProp = {
 const KristoffView = (props: KristoffViewProp) => {
   const navigation = useNavigation<KristoffStackNavitationProp>();
 
+  const {exampleContextValue} = React.useContext(ExampleContext);
+
   const title = 'Kristoff';
 
   React.useLayoutEffect(() => {
@@ -60,6 +63,8 @@ const KristoffView = (props: KristoffViewProp) => {
 
   return (
     <View style={styles.baseView}>
+      <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
+
       <TouchableOpacity
         onPress={() => {
           navigation.push('KristoffDetails');

@@ -12,7 +12,7 @@ import {
 } from '../demo/anna-stack/anna-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackNavigationProp} from '../root/index';
-import {ExampleContext} from '../../model/example-context';
+import {ExampleContext} from '../../context/example-context';
 
 export type AnnaStackParamList = {
   Anna: {}; // navigation root
@@ -66,7 +66,7 @@ const AnnaView = (props: AnnaViewProp) => {
 
   return (
     <View style={styles.baseView}>
-      <Text>{`Example Context: ${JSON.stringify(exampleContextValue)}`}</Text>
+      <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
 
       <TouchableOpacity
         onPress={() => {

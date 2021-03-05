@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {OlafDetailsView} from '../demo/olaf-stack/olaf-details';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootStackNavigationProp} from '../root/index';
+import {ExampleContext} from '../../context/example-context';
 
 type OlafStackParamList = {
   Olaf?: {}; // navigation root
@@ -42,6 +43,8 @@ const OlafView = (props: OlafViewProp) => {
   const navigation = useNavigation<OlafStackNavitationProp>();
   const rootNavigation = useNavigation<RootStackNavigationProp>();
 
+  const {exampleContextValue} = React.useContext(ExampleContext);
+
   const title = 'Olaf';
 
   React.useLayoutEffect(() => {
@@ -59,6 +62,8 @@ const OlafView = (props: OlafViewProp) => {
 
   return (
     <View style={styles.baseView}>
+      <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
+
       <TouchableOpacity
         onPress={() => {
           navigation.push('OlafDetails');
