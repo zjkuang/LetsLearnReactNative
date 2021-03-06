@@ -7,6 +7,7 @@ import {ElsaStackParamList} from '../../../elsa/index';
 import {
   ExampleContext,
   ExampleContextValueType,
+  saveExampleContextValue,
 } from '../../../../context/example-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -42,7 +43,9 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       ...exampleContextValue,
     };
     newExampleContextValue.count += 1;
-    setExampleContextValue(newExampleContextValue);
+    saveExampleContextValue(newExampleContextValue).then(() => {
+      setExampleContextValue(newExampleContextValue);
+    });
   };
 
   const onPressMinus = () => {
@@ -52,7 +55,9 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     if (newExampleContextValue.count > 0) {
       newExampleContextValue.count -= 1;
     }
-    setExampleContextValue(newExampleContextValue);
+    saveExampleContextValue(newExampleContextValue).then(() => {
+      setExampleContextValue(newExampleContextValue);
+    });
   };
 
   const onPressReset = () => {
@@ -60,7 +65,9 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       ...exampleContextValue,
     };
     newExampleContextValue.count = 0;
-    setExampleContextValue(newExampleContextValue);
+    saveExampleContextValue(newExampleContextValue).then(() => {
+      setExampleContextValue(newExampleContextValue);
+    });
   };
 
   return (
