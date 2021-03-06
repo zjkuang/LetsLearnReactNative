@@ -4,11 +4,7 @@ import {Text, View} from 'react-native';
 import {styles, color} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
-import {
-  ExampleContext,
-  ExampleContextValueType,
-  saveExampleContextValue,
-} from '../../../../context/example-context';
+import {ExampleContext} from '../../../../context/example-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type ViewProps = StackScreenProps<ElsaStackParamList, 'UseContextDemo'>;
@@ -39,35 +35,37 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
   }, []);
 
   const onPressPlus = () => {
-    const newExampleContextValue: ExampleContextValueType = {
+    const newExampleContextValue = {
       ...exampleContextValue,
     };
     newExampleContextValue.count += 1;
-    saveExampleContextValue(newExampleContextValue).then(() => {
-      setExampleContextValue(newExampleContextValue);
-    });
+    setExampleContextValue(newExampleContextValue);
   };
 
   const onPressMinus = () => {
-    const newExampleContextValue: ExampleContextValueType = {
+    const newExampleContextValue = {
       ...exampleContextValue,
     };
     if (newExampleContextValue.count > 0) {
       newExampleContextValue.count -= 1;
     }
-    saveExampleContextValue(newExampleContextValue).then(() => {
-      setExampleContextValue(newExampleContextValue);
-    });
+    setExampleContextValue(newExampleContextValue);
   };
 
   const onPressReset = () => {
-    const newExampleContextValue: ExampleContextValueType = {
+    const newExampleContextValue = {
       ...exampleContextValue,
     };
     newExampleContextValue.count = 0;
-    saveExampleContextValue(newExampleContextValue).then(() => {
-      setExampleContextValue(newExampleContextValue);
-    });
+    setExampleContextValue(newExampleContextValue);
+  };
+
+  const onPressSaveSwitch = () => {
+    const newExampleContextValue = {
+      ...exampleContextValue,
+    };
+    newExampleContextValue.persisted = !newExampleContextValue.persisted;
+    setExampleContextValue(newExampleContextValue);
   };
 
   return (
@@ -87,6 +85,18 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       <TouchableOpacity onPress={onPressReset}>
         <Text style={{color: color.iOSButtonColorLightTheme}}>Reset</Text>
       </TouchableOpacity>
+
+      <View style={styles.horizontalContainer}>
+        <Text style={styles.horizontalChild}>Save</Text>
+
+        <TouchableOpacity
+          style={styles.horizontalChild}
+          onPress={onPressSaveSwitch}>
+          <Text style={{color: color.iOSButtonColorLightTheme}}>
+            {exampleContextValue.persisted ? 'ON' : 'OFF'}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

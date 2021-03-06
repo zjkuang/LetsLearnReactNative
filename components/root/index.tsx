@@ -10,12 +10,6 @@ import {SafeAreaView} from 'react-native';
 import {MainTabView} from '../main/index';
 import {ModalView, ModalViewParamList} from '../modal/index';
 import {modalControl} from './style';
-import {
-  ExampleContext,
-  ExampleContextValueType,
-  defaultExampleContext,
-  retrieveExampleContextValue,
-} from '../../context/example-context';
 
 export type RootStackParamList = {
   MainTab?: {};
@@ -46,23 +40,6 @@ const RootStackView = () => {
 };
 
 export const RootView = () => {
-  const {setExampleContextValue} = React.useContext(ExampleContext);
-
-  React.useEffect(() => {
-    retrieveExampleContextValue().then((value) => {
-      if (value === null) {
-        setExampleContextValue(defaultExampleContext.exampleContextValue);
-      } else {
-        let verifiedValue = value as ExampleContextValueType;
-        if (verifiedValue === undefined || verifiedValue === null) {
-          setExampleContextValue(defaultExampleContext.exampleContextValue);
-        } else {
-          setExampleContextValue(verifiedValue);
-        }
-      }
-    });
-  }, [setExampleContextValue]);
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <RootStackView />

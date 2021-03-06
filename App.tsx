@@ -10,29 +10,13 @@
 
 import React from 'react';
 import {RootView} from './components/root/index';
-import {
-  ExampleContextType,
-  ExampleContext,
-  ExampleContextValueType,
-  defaultExampleContext,
-} from './context/example-context';
+import {ExampleContextProvider} from './context/example-context';
 
 const App = () => {
-  const [
-    exampleContextValue,
-    setExampleContextValue,
-  ] = React.useState<ExampleContextValueType>(
-    defaultExampleContext.exampleContextValue,
-  );
-  const initialExampleContext: ExampleContextType = {
-    exampleContextValue: exampleContextValue,
-    setExampleContextValue: setExampleContextValue,
-  };
-
   return (
-    <ExampleContext.Provider value={initialExampleContext}>
+    <ExampleContextProvider>
       <RootView />
-    </ExampleContext.Provider>
+    </ExampleContextProvider>
   );
 };
 
