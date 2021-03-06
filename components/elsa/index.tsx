@@ -16,6 +16,7 @@ import {DemoUseStateView} from '../demo/hooks/useState/index';
 import {DemoUseEffectView} from '../demo/hooks/useEffect/index';
 import {DemoUseContextView} from '../demo/hooks/useContext/index';
 import {DemoUseLayoutEffectView} from '../demo/hooks/useLayoutEffect/index';
+import {DemoUseMemoView} from '../demo/hooks/useMemo/index';
 
 //
 //  EEEEE  L       SSSS    A
@@ -37,7 +38,8 @@ export type ElsaStackNavigationScreenName =
   | 'UseStateDemo'
   | 'UseEffectDemo'
   | 'UseContextDemo'
-  | 'UseLayoutEffectDemo';
+  | 'UseLayoutEffectDemo'
+  | 'UseMemoDemo';
 
 export type ElsaStackParamList = {
   // ElsaStackScreenName
@@ -47,6 +49,7 @@ export type ElsaStackParamList = {
   UseEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseContextDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseLayoutEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  UseMemoDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   // more navigation children can be added here
 };
 export type HookDemoScreenNavigationProp = StackNavigationProp<ElsaStackParamList>;
@@ -65,6 +68,7 @@ export const ElsaNavigationView = () => {
         name="UseLayoutEffectDemo"
         component={DemoUseLayoutEffectView}
       />
+      <ElsaStack.Screen name="UseMemoDemo" component={DemoUseMemoView} />
     </ElsaStack.Navigator>
   );
 };

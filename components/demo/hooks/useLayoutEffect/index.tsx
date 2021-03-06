@@ -21,8 +21,6 @@ export const DemoUseLayoutEffectView = ({navigation, route}: ViewProps) => {
   let setNavigationTitleIn: 'useLayoutEffect' | 'useEffect' = 'useLayoutEffect';
 
   React.useLayoutEffect(() => {
-    console.log(`${route.params.name} useLayoutEffect`);
-
     if (setNavigationTitleIn === 'useLayoutEffect') {
       navigation.setOptions({
         headerTitle: () => <NavigationHeaderTitleImage />,

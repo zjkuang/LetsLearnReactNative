@@ -20,8 +20,6 @@ export const DemoUseEffectView = ({navigation, route}: ViewProps) => {
   const [state, setState] = React.useState<State>('Welcome');
 
   React.useLayoutEffect(() => {
-    console.log(`${route.params.name} useLayoutEffect`);
-
     navigation.setOptions({
       title: `${route.params.title}`,
       headerTitleStyle: {

@@ -14,8 +14,6 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
   );
 
   React.useLayoutEffect(() => {
-    console.log(`${route.params.name} useLayoutEffect`);
-
     navigation.setOptions({
       title: `${route.params.title}`,
       headerTitleStyle: {

@@ -125,7 +125,7 @@ const hooksDemoList: SectionListSection<
         title: 'useMemo',
         extra: {
           navigationTargetName: 'UseMemoDemo', // HooksDemoScreenName
-          ready: false,
+          ready: true,
         },
       },
       {
