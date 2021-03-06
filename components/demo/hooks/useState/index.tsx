@@ -11,6 +11,11 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
   type State = 'Welcome' | 'Order Placed' | 'Food Consumed' | 'Bill Paid';
   const [state, setState] = React.useState<State>('Welcome');
 
+  // substates show that changing several states at a time will not cause multiple re-rendering
+  const [substate1, setSubstate1] = React.useState(0);
+  const [substate2, setSubstate2] = React.useState(0);
+  const [substate3, setSubstate3] = React.useState(0);
+
   React.useLayoutEffect(() => {
     console.log(`${route.params.name} useLayoutEffect`);
 
@@ -31,6 +36,10 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
       console.log(`${route.params.name} componentWillUnmount`);
     };
   }, []);
+
+  React.useEffect(() => {
+    console.log('one or more substates changed');
+  }, [substate1, substate2, substate3]);
 
   React.useEffect(() => {
     console.log(`${route.params.name} componentDidUpdate`);
@@ -58,6 +67,11 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
         <TouchableOpacity
           onPress={() => {
             setState('Order Placed');
+
+            // changing all the substates won't cause multiple re-rendering
+            setSubstate1(substate1 + 1);
+            setSubstate2(substate2 + 1);
+            setSubstate3(substate3 + 1);
           }}>
           <Text style={{color: color.iOSButtonColorLightTheme}}>
             Order Food
@@ -69,6 +83,11 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
         <TouchableOpacity
           onPress={() => {
             setState('Food Consumed');
+
+            // changing all the substates won't cause multiple re-rendering
+            setSubstate1(substate1 + 1);
+            setSubstate2(substate2 + 1);
+            setSubstate3(substate3 + 1);
           }}>
           <Text style={{color: color.iOSButtonColorLightTheme}}>
             Eat The Meal
@@ -80,6 +99,11 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
         <TouchableOpacity
           onPress={() => {
             setState('Bill Paid');
+
+            // changing all the substates won't cause multiple re-rendering
+            setSubstate1(substate1 + 1);
+            setSubstate2(substate2 + 1);
+            setSubstate3(substate3 + 1);
           }}>
           <Text style={{color: color.iOSButtonColorLightTheme}}>
             Pay The Bill
