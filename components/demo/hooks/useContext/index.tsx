@@ -91,7 +91,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
           style={styles.horizontalChild}
           onPress={onPressSaveSwitch}>
           <Text style={{color: color.iOSButtonColorLightTheme}}>
-            {exampleContextValue.persisted ? 'ON' : 'OFF'}
+            {exampleContextValue.persisted === true ? 'ON' : 'OFF'}
           </Text>
         </TouchableOpacity>
       </View>

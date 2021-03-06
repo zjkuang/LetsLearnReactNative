@@ -12,7 +12,7 @@ import {
 export type Language = 'English' | 'French';
 
 type ExampleContextValueType = {
-  persisted: boolean;
+  persisted: boolean | undefined;
   count: number;
   text: string;
   language: Language;
@@ -25,7 +25,7 @@ type ExampleContextType = {
 
 const defaultExampleContext: ExampleContextType = {
   exampleContextValue: {
-    persisted: false,
+    persisted: undefined,
     count: 0,
     text: '',
     language: 'English',
@@ -61,10 +61,12 @@ export const ExampleContextProvider = ({children}: Props) => {
   }, []);
 
   React.useEffect(() => {
-    if (exampleContextValue.persisted) {
+    if (exampleContextValue.persisted === true) {
+      let persistedExampleContextValue = {...exampleContextValue};
+      persistedExampleContextValue.persisted = undefined;
       savePreferenceObject(
         preferencesKeys.pkExampleContextValue,
-        exampleContextValue,
+        persistedExampleContextValue,
       ).then(() => {
         //
       });
