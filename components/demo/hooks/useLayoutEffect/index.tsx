@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import {View} from 'react-native';
+import {Image, View} from 'react-native';
 import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
@@ -25,10 +25,7 @@ export const DemoUseLayoutEffectView = ({navigation, route}: ViewProps) => {
 
     if (setNavigationTitleIn === 'useLayoutEffect') {
       navigation.setOptions({
-        title: `${route.params.title}`,
-        headerTitleStyle: {
-          alignSelf: 'center',
-        },
+        headerTitle: () => <NavigationHeaderTitleImage />,
       });
     }
 
@@ -44,10 +41,7 @@ export const DemoUseLayoutEffectView = ({navigation, route}: ViewProps) => {
 
     if (setNavigationTitleIn === 'useEffect') {
       navigation.setOptions({
-        title: `${route.params.title}`,
-        headerTitleStyle: {
-          alignSelf: 'center',
-        },
+        headerTitle: () => <NavigationHeaderTitleImage />,
       });
     }
 
@@ -57,4 +51,9 @@ export const DemoUseLayoutEffectView = ({navigation, route}: ViewProps) => {
   }, []);
 
   return <View style={styles.baseView} />;
+};
+
+const NavigationHeaderTitleImage = () => {
+  const imageURI = 'https://reactnative.dev/img/tiny_logo.png';
+  return <Image source={{uri: imageURI}} style={styles.navigationHeaderIcon} />;
 };

@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  navigationHeaderIcon: {
+    width: 30,
+    height: 30,
+  },
 });
 
 export {styles, commonStyles, positioning, color};
