@@ -68,7 +68,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     setExampleContextValue(newExampleContextValue);
   };
 
-  const magicNumber = 2013303608;
+  const magicNumber = 2021;
 
   return (
     <View style={styles.baseView}>

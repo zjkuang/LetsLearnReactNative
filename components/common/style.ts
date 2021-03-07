@@ -25,6 +25,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
+  quickHorizontalContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  quickHorizontalChild: {
+    marginHorizontal: 4,
+  },
 });
 
 const positioning = {
