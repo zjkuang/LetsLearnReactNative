@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {Text, View} from 'react-native';
-import {styles, color} from './style';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles, commonStyles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
 import {ExampleContext} from '../../../../context/example-context';
@@ -12,6 +13,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
   const {exampleContextValue, setExampleContextValue} = React.useContext(
     ExampleContext,
   );
+  const [refresh, setRefresh] = React.useState(0);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -66,23 +68,27 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     setExampleContextValue(newExampleContextValue);
   };
 
+  const magicNumber = 2013303608;
+
   return (
     <View style={styles.baseView}>
       <Text>ExampleContext.count</Text>
 
-      <TouchableOpacity onPress={onPressPlus}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>+</Text>
-      </TouchableOpacity>
+      <QuickTestButton title={'+'} onPress={onPressPlus} />
 
       <Text>{exampleContextValue.count}</Text>
 
-      <TouchableOpacity onPress={onPressMinus}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>-</Text>
-      </TouchableOpacity>
+      <QuickTestButton title={'-'} onPress={onPressMinus} />
 
-      <TouchableOpacity onPress={onPressReset}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Reset</Text>
-      </TouchableOpacity>
+      <QuickTestButton title={'Reset'} onPress={onPressReset} />
+
+      <QuickTestButton
+        title={`Override ExampleContext.count with ${magicNumber}`}
+        onPress={() => {
+          exampleContextValue.count = magicNumber;
+          setRefresh(refresh + 1);
+        }}
+      />
 
       <View style={styles.horizontalContainer}>
         <Text style={styles.horizontalChild}>Save</Text>
@@ -90,7 +96,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
         <TouchableOpacity
           style={styles.horizontalChild}
           onPress={onPressSaveSwitch}>
-          <Text style={{color: color.iOSButtonColorLightTheme}}>
+          <Text style={commonStyles.textAs_iOS_Button}>
             {exampleContextValue.persisted === true ? 'ON' : 'OFF'}
           </Text>
         </TouchableOpacity>

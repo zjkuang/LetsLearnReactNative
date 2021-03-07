@@ -1,6 +1,11 @@
 import {StyleSheet, Platform} from 'react-native';
 import {TransitionPresets} from '@react-navigation/stack';
 
+const color = {
+  iOSButtonColorLightTheme: '#007AFF',
+  iOSButtonColorDarkTheme: '#0A84FF',
+};
+
 const styles = StyleSheet.create({
   fullSize: {
     width: '100%',
@@ -10,12 +15,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textAs_iOS_Button: {
+    color: color.iOSButtonColorLightTheme,
+    marginHorizontal: 4,
+    marginVertical: 4,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
 });
-
-const color = {
-  iOSButtonColorLightTheme: '#007AFF',
-  iOSButtonColorDarkTheme: '#0A84FF',
-};
 
 const positioning = {
   left: (inset: number) => {

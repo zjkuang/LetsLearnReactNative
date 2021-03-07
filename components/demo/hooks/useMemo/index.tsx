@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import {Alert, Text, View} from 'react-native';
-import {styles, color} from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Alert, View} from 'react-native';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
 
@@ -53,31 +53,27 @@ export const DemoUseMemoView = ({navigation, route}: ViewProps) => {
 
   return (
     <View style={styles.baseView}>
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Add 2 to 3'}
         onPress={() => {
           if (method === 'Memoized Add') {
             memoAdd(2, 3);
           } else {
             add(2, 3);
           }
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          {'Add 2 to 3'}
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Add 7 to 11'}
         onPress={() => {
           if (method === 'Memoized Add') {
             memoAdd(7, 11);
           } else {
             add(7, 11);
           }
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          {'Add 7 to 11'}
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

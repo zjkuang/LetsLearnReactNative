@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {styles, color} from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {styles} from './style';
+import {QuickTestButton} from '../../../common/widgets';
 import {useNavigation} from '@react-navigation/native';
 
 export const AnnaModalView = () => {
@@ -11,14 +11,12 @@ export const AnnaModalView = () => {
     <View style={styles.baseView}>
       <Text>Anna Modal</Text>
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Dismiss Modal'}
         onPress={() => {
           navigation.goBack();
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Dismiss Modal
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

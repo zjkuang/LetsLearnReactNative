@@ -4,10 +4,10 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {styles, color} from './style';
+import {QuickTestButton} from '../common/widgets';
+import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {KristoffDetailsView} from '../demo/kristoff-stack/kristoff-details';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ExampleContext} from '../../context/example-context';
 
 type KristoffStackParamList = {
@@ -45,6 +45,7 @@ const KristoffView = (props: KristoffViewProp) => {
   const navigation = useNavigation<KristoffStackNavitationProp>();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
+  const [refresh, setRefresh] = React.useState(0);
 
   const title = 'Kristoff';
 
@@ -65,14 +66,19 @@ const KristoffView = (props: KristoffViewProp) => {
     <View style={styles.baseView}>
       <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Refresh'}
+        onPress={() => {
+          setRefresh(refresh + 1);
+        }}
+      />
+
+      <QuickTestButton
+        title={'Show Details'}
         onPress={() => {
           navigation.push('KristoffDetails');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Show Details
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

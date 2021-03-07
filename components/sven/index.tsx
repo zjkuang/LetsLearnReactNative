@@ -4,10 +4,10 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {styles, color} from './style';
+import {QuickTestButton} from '../common/widgets';
+import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {SvenDetailsView} from '../demo/sven-stack/sven-details';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ExampleContext} from '../../context/example-context';
 
 type SvenStackParamList = {
@@ -42,6 +42,7 @@ const SvenView = (props: SvenViewProp) => {
   const navigation = useNavigation<SvenStackNavitationProp>();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
+  const [refresh, setRefresh] = React.useState(0);
 
   const title = 'Sven';
 
@@ -62,14 +63,19 @@ const SvenView = (props: SvenViewProp) => {
     <View style={styles.baseView}>
       <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Refresh'}
+        onPress={() => {
+          setRefresh(refresh + 1);
+        }}
+      />
+
+      <QuickTestButton
+        title={'Show Details'}
         onPress={() => {
           navigation.push('SvenDetails');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Show Details
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {styles, color} from './style';
+import {View} from 'react-native';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export type KristoffDetailsViewProp = {
   test?: string;
@@ -22,26 +22,26 @@ export const KristoffDetailsView = (props: KristoffDetailsViewProp) => {
 
   return (
     <View style={styles.baseView}>
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Anna'}
         onPress={() => {
           navigation.navigate('Anna');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go To Anna</Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go Back'}
         onPress={() => {
           navigation.goBack();
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go Back</Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Sven'}
         onPress={() => {
           navigation.navigate('Sven');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go To Sven</Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

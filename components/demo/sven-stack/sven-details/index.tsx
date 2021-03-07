@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {styles, color} from './style';
+import {View} from 'react-native';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export type SvenDetailsViewProp = {
   test?: string;
@@ -22,28 +22,26 @@ export const SvenDetailsView = (props: SvenDetailsViewProp) => {
 
   return (
     <View style={styles.baseView}>
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Kristoff'}
         onPress={() => {
           navigation.navigate('Kristoff');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Go To Kristoff
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go Back'}
         onPress={() => {
           navigation.goBack();
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go Back</Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Olaf'}
         onPress={() => {
           navigation.navigate('Olaf');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go To Olaf</Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

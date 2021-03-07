@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {styles, color} from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {View} from 'react-native';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles} from './style';
 import {AnnaStackParamList} from '../../../anna/index';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
@@ -37,42 +37,39 @@ export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
 
   return (
     <View style={styles.baseView}>
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Olaf'}
         onPress={() => {
           navigationGeneral.navigate('Olaf');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go To Olaf</Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go Back'}
         onPress={() => {
           navigation.goBack();
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>Go Back</Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Go To Kristoff'}
         onPress={() => {
           navigationGeneral.navigate('Kristoff');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Go To Kristoff
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
 
       {
         /* Depending on whether KristoffDetails is rendered, this may be safe or may cause a crash */
-        <TouchableOpacity
+        <QuickTestButton
+          title={'Go To Kristoff Details (May or may not crash)'}
           onPress={() => {
             navigationGeneral.navigate('KristoffDetails');
-          }}>
-          <Text style={{color: color.iOSButtonColorLightTheme}}>
-            Go To Kristoff Details (May or may not crash)
-          </Text>
-        </TouchableOpacity>
+          }}
+        />
       }
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Clone myself'}
         onPress={() => {
           if (route.params.generation !== undefined) {
             navigation.push('AnnaDetails', {
@@ -81,20 +78,15 @@ export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
           } else {
             navigation.push('AnnaDetails', {});
           }
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Clone myself
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
 
-      <TouchableOpacity
+      <QuickTestButton
+        title={'Back to Anna immediately'}
         onPress={() => {
           navigationGeneral.navigate('Anna');
-        }}>
-        <Text style={{color: color.iOSButtonColorLightTheme}}>
-          Back to Anna immediately
-        </Text>
-      </TouchableOpacity>
+        }}
+      />
     </View>
   );
 };

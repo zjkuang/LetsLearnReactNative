@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {Alert, Text, View} from 'react-native';
-import {styles, color} from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {QuickTestButton} from '../../../common/widgets';
+import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
 
@@ -64,7 +64,8 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
       <Text>{state}</Text>
 
       {state === 'Welcome' && (
-        <TouchableOpacity
+        <QuickTestButton
+          title={'Order Food'}
           onPress={() => {
             setState('Order Placed');
 
@@ -72,15 +73,13 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
             setSubstate1(substate1 + 1);
             setSubstate2(substate2 + 1);
             setSubstate3(substate3 + 1);
-          }}>
-          <Text style={{color: color.iOSButtonColorLightTheme}}>
-            Order Food
-          </Text>
-        </TouchableOpacity>
+          }}
+        />
       )}
 
       {state === 'Order Placed' && (
-        <TouchableOpacity
+        <QuickTestButton
+          title={'Eat The Meal'}
           onPress={() => {
             setState('Food Consumed');
 
@@ -88,15 +87,13 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
             setSubstate1(substate1 + 1);
             setSubstate2(substate2 + 1);
             setSubstate3(substate3 + 1);
-          }}>
-          <Text style={{color: color.iOSButtonColorLightTheme}}>
-            Eat The Meal
-          </Text>
-        </TouchableOpacity>
+          }}
+        />
       )}
 
       {state === 'Food Consumed' && (
-        <TouchableOpacity
+        <QuickTestButton
+          title={'Pay The Bill'}
           onPress={() => {
             setState('Bill Paid');
 
@@ -104,11 +101,8 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
             setSubstate1(substate1 + 1);
             setSubstate2(substate2 + 1);
             setSubstate3(substate3 + 1);
-          }}>
-          <Text style={{color: color.iOSButtonColorLightTheme}}>
-            Pay The Bill
-          </Text>
-        </TouchableOpacity>
+          }}
+        />
       )}
     </View>
   );
