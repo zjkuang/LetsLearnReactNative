@@ -72,13 +72,11 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
 
   return (
     <View style={styles.baseView}>
-      <Text>ExampleContext.count</Text>
-
-      <QuickTestButton title={'+'} onPress={onPressPlus} />
-
-      <Text>{exampleContextValue.count}</Text>
-
-      <QuickTestButton title={'-'} onPress={onPressMinus} />
+      <View style={styles.horizontalContainer}>
+        <QuickTestButton title={'-'} onPress={onPressMinus} />
+        <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
+        <QuickTestButton title={'+'} onPress={onPressPlus} />
+      </View>
 
       <QuickTestButton title={'Reset'} onPress={onPressReset} />
 
