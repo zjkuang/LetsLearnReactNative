@@ -17,6 +17,12 @@ import {DemoUseEffectView} from '../demo/hooks/useEffect/index';
 import {DemoUseContextView} from '../demo/hooks/useContext/index';
 import {DemoUseLayoutEffectView} from '../demo/hooks/useLayoutEffect/index';
 import {DemoUseMemoView} from '../demo/hooks/useMemo/index';
+import {
+  LayoutDemoListView,
+  LayoutDemoScreenName,
+  LayoutDemoScreenParamList,
+} from '../demo/layout/table-of-contents/index';
+import {DemoAutoLayoutView} from '../demo/layout/auto-layout';
 
 //
 //  EEEEE  L       SSSS    A
@@ -29,30 +35,38 @@ import {DemoUseMemoView} from '../demo/hooks/useMemo/index';
 // ElsaStackParamList
 export type ElsaStackScreenName =
   | 'Elsa' // root
-  | 'HooksDemoList' // immediate children
-  | HooksDemoScreenName; // grand children
+  | 'HooksDemoList' // immediate child
+  | HooksDemoScreenName // grand child
+  | 'LayoutDemoList' // immediate child
+  | LayoutDemoScreenName; // grand child
 // Before all screens listed by HooksDemoScreenName are provided, use the shortened version ElsaStackNavigationScreenName for a while
 export type ElsaStackNavigationScreenName =
   | 'Elsa'
-  | 'HooksDemoList'
+  | 'HooksDemoList' // table-of-contents
   | 'UseStateDemo'
   | 'UseEffectDemo'
   | 'UseContextDemo'
   | 'UseLayoutEffectDemo'
-  | 'UseMemoDemo';
+  | 'UseMemoDemo'
+  | 'LayoutDemoList' // table-of-contents
+  | 'AutoLayoutDemo';
 
 export type ElsaStackParamList = {
   // ElsaStackScreenName
   Elsa: {}; // navigation root
+  // Hooks demo
   HooksDemoList: {};
   UseStateDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseContextDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseLayoutEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseMemoDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  // Layout demo
+  LayoutDemoList: {};
+  AutoLayoutDemo: LayoutDemoScreenParamList;
   // more navigation children can be added here
 };
-export type HookDemoScreenNavigationProp = StackNavigationProp<ElsaStackParamList>;
+export type ElsaStackNavigationProp = StackNavigationProp<ElsaStackParamList>;
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
 export const ElsaNavigationView = () => {
   return (
@@ -69,14 +83,18 @@ export const ElsaNavigationView = () => {
         component={DemoUseLayoutEffectView}
       />
       <ElsaStack.Screen name="UseMemoDemo" component={DemoUseMemoView} />
+
+      <ElsaStack.Screen name="LayoutDemoList" component={LayoutDemoListView} />
+
+      <ElsaStack.Screen name="AutoLayoutDemo" component={DemoAutoLayoutView} />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: 'HooksDemo';
-  navigationTargetName?: 'HooksDemoList'; // subset of ElsaStackScreenName
+  id: 'HooksDemo' | 'LayoutDemo';
+  navigationTargetName?: 'HooksDemoList' | 'LayoutDemoList'; // subset of ElsaStackScreenName
   title: string;
   subtitle?: string;
 };
@@ -87,6 +105,12 @@ const elsaList: ElsaListItem[] = [
     id: 'HooksDemo',
     navigationTargetName: 'HooksDemoList',
     title: 'Hooks',
+  },
+  {
+    index: 1,
+    id: 'LayoutDemo',
+    navigationTargetName: 'LayoutDemoList',
+    title: 'Layout',
   },
 ];
 
@@ -113,8 +137,8 @@ const ElsaView = () => {
             <TouchableOpacity
               onPress={() => {
                 if (
-                  item.id === 'HooksDemo' &&
-                  item.navigationTargetName != undefined
+                  ['HooksDemo', 'LayoutDemo'].includes(item.id) &&
+                  item.navigationTargetName !== undefined
                 ) {
                   navigation.navigate(item.navigationTargetName);
                 }

@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ListItem, SectionListSection} from '../../../common/types';
 import {
   ElsaStackNavigationScreenName,
-  HookDemoScreenNavigationProp,
+  ElsaStackNavigationProp,
 } from '../../../elsa/index';
 
 // https://reactjs.org/docs/hooks-reference.html
@@ -161,7 +161,7 @@ const hooksDemoList: SectionListSection<
 
 export const HooksDemoListView = () => {
   const navigation = useNavigation();
-  const hooksDemoNavigation = useNavigation<HookDemoScreenNavigationProp>();
+  const hooksDemoNavigation = useNavigation<ElsaStackNavigationProp>();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
