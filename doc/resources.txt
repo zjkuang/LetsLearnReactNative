@@ -1,0 +1,4 @@
+Cheat-sheets
+  TypeScript/React
+    https://www.saltycrane.com/cheat-sheets/typescript/latest/
+    https://www.saltycrane.com/cheat-sheets/typescript/react/latest/
