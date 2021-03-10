@@ -5,7 +5,10 @@ import {QuickTestButton} from '../../../common/widgets';
 import {styles, commonStyles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
-import {ExampleContext} from '../../../../context/example-context';
+import {
+  ExampleContext,
+  switchExampleContextBackgroundColor,
+} from '../../../../context/example-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type ViewProps = StackScreenProps<ElsaStackParamList, 'UseContextDemo'>;
@@ -60,6 +63,16 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     setExampleContextValue(newExampleContextValue);
   };
 
+  const onPressSwitchBackgroundColor = () => {
+    const newExampleContextValue = {
+      ...exampleContextValue,
+    };
+    newExampleContextValue.backgroundColor = switchExampleContextBackgroundColor(
+      exampleContextValue.backgroundColor,
+    );
+    setExampleContextValue(newExampleContextValue);
+  };
+
   const onPressSaveSwitch = () => {
     const newExampleContextValue = {
       ...exampleContextValue,
@@ -71,7 +84,11 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
   const magicNumber = 2021;
 
   return (
-    <View style={styles.baseView}>
+    <View
+      style={[
+        styles.baseView,
+        {backgroundColor: exampleContextValue.backgroundColor},
+      ]}>
       <View style={styles.horizontalContainer}>
         <QuickTestButton title={'-'} onPress={onPressMinus} />
         <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
@@ -84,6 +101,26 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
         title={`Override ExampleContext.count with ${magicNumber}`}
         onPress={() => {
           exampleContextValue.count = magicNumber;
+          setRefresh(refresh + 1);
+        }}
+      />
+
+      <View style={styles.horizontalContainer}>
+        <Text style={styles.horizontalChild}>
+          {`Background Color: ${exampleContextValue.backgroundColor}`}
+        </Text>
+
+        <TouchableOpacity
+          style={styles.horizontalChild}
+          onPress={onPressSwitchBackgroundColor}>
+          <Text style={commonStyles.textAs_iOS_Button}>Switch</Text>
+        </TouchableOpacity>
+      </View>
+
+      <QuickTestButton
+        title={'Override ExampleContext.backgroundColor with pink'}
+        onPress={() => {
+          exampleContextValue.backgroundColor = 'pink';
           setRefresh(refresh + 1);
         }}
       />

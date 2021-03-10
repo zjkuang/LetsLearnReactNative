@@ -14,12 +14,28 @@ import {
 //   https://www.carlrippon.com/react-context-with-typescript-p2/
 
 export type Language = 'English' | 'French';
+export type ExampleContextBackgroundColor = 'transparent' | 'cyan' | 'pink';
+export const switchExampleContextBackgroundColor = (
+  current: ExampleContextBackgroundColor,
+): ExampleContextBackgroundColor => {
+  if (current === 'transparent') {
+    return 'cyan';
+  }
+  if (current === 'cyan') {
+    return 'pink';
+  }
+  if (current === 'pink') {
+    return 'transparent';
+  }
+  return 'transparent';
+};
 
 type ExampleContextValueType = {
   persisted: boolean | undefined;
   count: number;
   text: string;
   language: Language;
+  backgroundColor: ExampleContextBackgroundColor;
 };
 
 type ExampleContextType = {
@@ -33,6 +49,7 @@ const defaultExampleContext: ExampleContextType = {
     count: 0,
     text: '',
     language: 'English',
+    backgroundColor: 'cyan',
   },
   setExampleContextValue: () => {},
 };

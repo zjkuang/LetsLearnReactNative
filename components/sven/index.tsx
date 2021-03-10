@@ -60,7 +60,11 @@ const SvenView = (props: SvenViewProp) => {
   }, [props]);
 
   return (
-    <View style={styles.baseView}>
+    <View
+      style={[
+        styles.baseView,
+        {backgroundColor: exampleContextValue.backgroundColor},
+      ]}>
       <Text>{`ExampleContext.count: ${exampleContextValue.count}`}</Text>
 
       <QuickTestButton
