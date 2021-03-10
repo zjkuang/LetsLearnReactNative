@@ -151,14 +151,14 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
 
       <View style={styles.groupContainter}>
         <View style={styles.horizontalContainer}>
-          <Text style={styles.horizontalChild}>Save</Text>
+          <Text style={styles.horizontalChild}>{`Save: ${
+            exampleContextValue.persisted === true ? 'ON' : 'OFF'
+          }`}</Text>
 
           <TouchableOpacity
             style={styles.horizontalChild}
             onPress={onPressSaveSwitch}>
-            <Text style={commonStyles.textAs_iOS_Button}>
-              {exampleContextValue.persisted === true ? 'ON' : 'OFF'}
-            </Text>
+            <Text style={commonStyles.textAs_iOS_Button}>Switch</Text>
           </TouchableOpacity>
         </View>
       </View>
