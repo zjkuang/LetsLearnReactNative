@@ -7,7 +7,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../elsa/index';
 import {
   ExampleContext,
-  switchExampleContextBackgroundColor,
+  exampleContextGetNextColorForBackground,
 } from '../../../../context/example-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -67,7 +67,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     const newExampleContextValue = {
       ...exampleContextValue,
     };
-    newExampleContextValue.backgroundColor = switchExampleContextBackgroundColor(
+    newExampleContextValue.backgroundColor = exampleContextGetNextColorForBackground(
       exampleContextValue.backgroundColor,
     );
     setExampleContextValue(newExampleContextValue);
@@ -98,7 +98,7 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       <QuickTestButton title={'Reset'} onPress={onPressReset} />
 
       <QuickTestButton
-        title={`Override ExampleContext.count with ${magicNumber}`}
+        title={`ExampleContext.count = ${magicNumber}`}
         onPress={() => {
           exampleContextValue.count = magicNumber;
           setRefresh(refresh + 1);
@@ -118,9 +118,29 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
       </View>
 
       <QuickTestButton
-        title={'Override ExampleContext.backgroundColor with pink'}
+        title={"ExampleContext.backgroundColor = 'transparent'"}
+        onPress={() => {
+          exampleContextValue.backgroundColor = 'transparent';
+        }}
+      />
+
+      <QuickTestButton
+        title={"ExampleContext.backgroundColor = 'cyan'"}
+        onPress={() => {
+          exampleContextValue.backgroundColor = 'cyan';
+        }}
+      />
+
+      <QuickTestButton
+        title={"ExampleContext.backgroundColor = 'pink'"}
         onPress={() => {
           exampleContextValue.backgroundColor = 'pink';
+        }}
+      />
+
+      <QuickTestButton
+        title={'Refresh'}
+        onPress={() => {
           setRefresh(refresh + 1);
         }}
       />
