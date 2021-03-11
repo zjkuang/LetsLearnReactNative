@@ -6,6 +6,12 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  groupContainter: {
+    width: '100%',
+    margin: 16,
+    padding: 8,
+    ...commonStyles.contentAlignmentCenter,
+  },
   horizontalContainer: {
     flexDirection: 'row',
     width: '100%',

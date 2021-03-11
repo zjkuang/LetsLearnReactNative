@@ -15,7 +15,7 @@ import {
 
 export type Language = 'English' | 'French';
 export type ExampleContextBackgroundColor = 'transparent' | 'cyan' | 'pink';
-export const switchExampleContextBackgroundColor = (
+export const exampleContextGetNextColorForBackground = (
   current: ExampleContextBackgroundColor,
 ): ExampleContextBackgroundColor => {
   if (current === 'transparent') {
