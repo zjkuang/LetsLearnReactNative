@@ -9,7 +9,7 @@ export const AnnaModalView = () => {
 
   return (
     <View style={styles.baseView}>
-      <Text>Anna Modal</Text>
+      <Text>Anna RootStack Modal (react-navigation)</Text>
 
       <QuickTestButton
         title={'Dismiss Modal'}

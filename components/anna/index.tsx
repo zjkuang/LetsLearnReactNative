@@ -13,6 +13,7 @@ import {
 import {RootStackNavigationProp} from '../root/index';
 import {ExampleContext} from '../../context/example-context';
 import {QuickTestButton} from '../common/widgets';
+import {AnnaLocalModalView} from './local-modal/index';
 
 export type AnnaStackParamList = {
   Anna: {}; // navigation root
@@ -50,6 +51,8 @@ const AnnaView = (props: AnnaViewProp) => {
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
 
+  const [localModalVisible, setLocalModalVisible] = React.useState(false);
+
   const title = 'Anna';
 
   React.useLayoutEffect(() => {
@@ -64,6 +67,19 @@ const AnnaView = (props: AnnaViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
+
+  const onShowModalReactNavigation = React.useCallback(() => {
+    rootNavigation.navigate('Modal', {context: 'anna'}); // components/demo/modal-views/anna-modal
+  }, [rootNavigation]);
+
+  const onShowModalReactNative = React.useCallback(() => {
+    setLocalModalVisible(true); // components/anna/local-modal
+  }, []);
+
+  const onLocalModalClose = React.useCallback(() => {
+    console.log(`${title} setLocalModalVisible(false)`);
+    setLocalModalVisible(false); // components/anna/local-modal
+  }, []);
 
   return (
     <View
@@ -88,11 +104,21 @@ const AnnaView = (props: AnnaViewProp) => {
       />
 
       <QuickTestButton
-        title={'Show Modal'}
-        onPress={() => {
-          rootNavigation.navigate('Modal', {context: 'anna'});
-        }}
+        title={'Show RootStack Modal (react-navigation)'}
+        onPress={onShowModalReactNavigation}
       />
+
+      <QuickTestButton
+        title={'Show Local Modal (React Native)'}
+        onPress={onShowModalReactNative}
+      />
+
+      {localModalVisible && (
+        <AnnaLocalModalView
+          visible={localModalVisible}
+          onClose={onLocalModalClose}
+        />
+      )}
     </View>
   );
 };
