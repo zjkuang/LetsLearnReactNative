@@ -1,2 +1,5 @@
 (1) Pass props to Navigator Screen's component
     Check out tag 'pass-props-to-elsa' and find ElsaNavigationViewProps
+
+(2) Translucent/transparent overlay
+    Anna/Details "Show Translucent Overlay" button
