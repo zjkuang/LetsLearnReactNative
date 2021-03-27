@@ -1,7 +1,11 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {View, Text} from 'react-native';
 import {commonStyles} from './style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+
+export const FlatListItemSeparator = () => {
+  return <View style={commonStyles.horizontalSeparator} />;
+};
 
 export type QuickTestButtonProps = {
   title: string;

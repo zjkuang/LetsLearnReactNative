@@ -7,13 +7,13 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native';
-import {MainTabView} from '../main/index';
+import {DrawerView} from '../drawer/index';
 import {ModalView, ModalViewParamList} from '../modal/index';
 import {modalControl} from './style';
 import {ExampleContextProvider} from '../context/example-context';
 
 export type RootStackParamList = {
-  MainTab?: {};
+  Drawer?: {};
   Modal?: ModalViewParamList; // This defines route.params for Modal component
 };
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -33,7 +33,7 @@ const RootStackView = () => {
         headerMode={headerMode}
         mode={mode}
         screenOptions={screenOptions}>
-        <RootStack.Screen name="MainTab" component={MainTabView} />
+        <RootStack.Screen name="Drawer" component={DrawerView} />
         <RootStack.Screen name="Modal" component={ModalView} />
       </RootStack.Navigator>
     </NavigationContainer>

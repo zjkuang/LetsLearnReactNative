@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/stack';
 import {Text, View} from 'react-native';
 import {styles} from './style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 import {
   AnnaDetailsView,
   AnnaDetailsViewParamList,
@@ -14,6 +14,8 @@ import {RootStackNavigationProp} from '../../../root/index';
 import {ExampleContext} from '../../../context/example-context';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {AnnaLocalModalView} from './local-modal/index';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {IconTableOfContents} from '../../../../../common/components/icons';
 
 export type AnnaStackParamList = {
   Anna: {}; // navigation root
@@ -55,15 +57,6 @@ const AnnaView = (props: AnnaViewProp) => {
 
   const title = 'Anna';
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      title: title,
-      headerTitleStyle: {
-        alignSelf: 'center',
-      },
-    });
-  }, [navigation]);
-
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
@@ -80,6 +73,28 @@ const AnnaView = (props: AnnaViewProp) => {
     console.log(`${title} setLocalModalVisible(false)`);
     setLocalModalVisible(false); // components/anna/local-modal
   }, []);
+
+  const onOpenDrawer = React.useCallback(() => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  }, [navigation]);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity
+          style={styles.navigationHeaderLeft}
+          onPress={() => {
+            onOpenDrawer();
+          }}>
+          <IconTableOfContents />
+        </TouchableOpacity>
+      ),
+      title: title,
+      headerTitleStyle: {
+        alignSelf: 'center',
+      },
+    });
+  }, [navigation, onOpenDrawer]);
 
   return (
     <View

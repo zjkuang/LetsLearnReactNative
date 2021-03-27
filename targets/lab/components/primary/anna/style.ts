@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  navigationHeaderLeft: {
+    left: 8,
+  },
 });
 
 export {styles, commonStyles, positioning, color};

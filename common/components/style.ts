@@ -15,6 +15,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
   textAs_iOS_Button: {
     color: color.iOSButtonColorLightTheme,
     marginHorizontal: 4,
@@ -25,15 +36,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
-  quickHorizontalContainer: {
-    flexDirection: 'row',
+  horizontalSeparator: {
+    height: 1,
     width: '100%',
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  quickHorizontalChild: {
-    marginHorizontal: 4,
+    backgroundColor: '#E0E0E0',
   },
 });
 
