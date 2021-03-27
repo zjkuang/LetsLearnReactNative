@@ -5,12 +5,13 @@ import {
   createDrawerNavigator,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 import {MainTabView} from '../main/index';
 import {styles} from './style';
-import {DrawerActions} from '@react-navigation/routers';
 import {FlatListItemSeparator} from '../../../common/components/widgets';
 import {IconClose} from '../../../common/components/icons';
 import {ListItem} from '../../../common/components/types';
+import {RootStackNavigationProp} from '../root/index';
 
 const drawerList: ListItem<string, undefined>[] = [
   {
@@ -25,6 +26,7 @@ const drawerList: ListItem<string, undefined>[] = [
   },
 ];
 const DrawerContent = (props: DrawerContentComponentProps) => {
+  const rootNavigation = useNavigation<RootStackNavigationProp>();
   return (
     <View style={styles.baseView}>
       <View style={styles.rightContainer}>
@@ -44,7 +46,10 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                console.log(`${item.navigationTargetName} tapped.`);
+                if (item.id === 'about') {
+                  props.navigation.dispatch(DrawerActions.closeDrawer());
+                  rootNavigation.navigate('Modal', {context: 'about'});
+                }
               }}>
               <Text style={styles.flatListItem}>{item.title}</Text>
             </TouchableOpacity>
