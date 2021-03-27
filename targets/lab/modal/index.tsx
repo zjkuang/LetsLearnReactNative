@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import {RootStackParamList} from '../root/index';
 import {StackScreenProps} from '@react-navigation/stack';
-import {AnnaModalView} from '../demo/modal-views/anna-modal';
-import {OlafModalView} from '../demo/modal-views/olaf-modal';
+import {AnnaModalView} from '../components/children/modal-views/anna-modal';
+import {OlafModalView} from '../components/children/modal-views/olaf-modal';
 
 export type ModalViewParamList = {
   context?: 'anna' | 'olaf';
