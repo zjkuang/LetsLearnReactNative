@@ -12,9 +12,6 @@ export type AnnaDetailsViewParamList = {
 type AnnaDetailsViewProps = StackScreenProps<AnnaStackParamList, 'AnnaDetails'>; // import {StackScreenProps} from '@react-navigation/stack';
 export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
   const navigationGeneral = useNavigation();
-  const [showTranslucentOverlay, setShowTranslucentOverlay] = React.useState(
-    false,
-  );
 
   let title = 'Details';
   if (route.params.generation !== undefined) {
@@ -90,18 +87,6 @@ export const AnnaDetailsView = ({navigation, route}: AnnaDetailsViewProps) => {
           navigationGeneral.navigate('Anna');
         }}
       />
-
-      <QuickTestButton
-        title={'Show Translucent Overlay'}
-        onPress={() => {
-          setShowTranslucentOverlay(true);
-          setTimeout(() => {
-            setShowTranslucentOverlay(false);
-          }, 1500);
-        }}
-      />
-
-      {showTranslucentOverlay && <View style={styles.translucentOverlay} />}
     </View>
   );
 };
