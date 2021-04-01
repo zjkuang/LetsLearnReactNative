@@ -16,7 +16,14 @@ import {DemoUseStateView} from '../../children/hooks/useState/index';
 import {DemoUseEffectView} from '../../children/hooks/useEffect/index';
 import {DemoUseContextView} from '../../children/hooks/useContext/index';
 import {DemoUseLayoutEffectView} from '../../children/hooks/useLayoutEffect/index';
-import {DemoUseMemoView} from '../../children/hooks/useMemo/index';
+import {
+  ScreensDemoListView,
+  ScreensDemoScreenName,
+  ScreensDemoScreenParamList,
+} from '../../children/screens/table-of-contents/index';
+import {RootStackModalLauncherView} from '../../children/screens/root-stack-modal/index';
+import {LocalReactNativeModalLauncherView} from '../../children/screens/react-native-modal/index';
+import {TranslucentOverlayLauncherView} from '../../children/screens/translucent-overlay/index';
 
 //
 //  EEEEE  L       SSSS    A
@@ -27,19 +34,12 @@ import {DemoUseMemoView} from '../../children/hooks/useMemo/index';
 //
 
 // ElsaStackParamList
-export type ElsaStackScreenName =
-  | 'Elsa' // root
-  | 'HooksDemoList' // immediate children
-  | HooksDemoScreenName; // grand children
-// Before all screens listed by HooksDemoScreenName are provided, use the shortened version ElsaStackNavigationScreenName for a while
 export type ElsaStackNavigationScreenName =
-  | 'Elsa'
-  | 'HooksDemoList'
-  | 'UseStateDemo'
-  | 'UseEffectDemo'
-  | 'UseContextDemo'
-  | 'UseLayoutEffectDemo'
-  | 'UseMemoDemo';
+  | 'Elsa' // root
+  | 'HooksDemoList' // immediate child
+  | HooksDemoScreenName // grand children
+  | 'ScreensDemoList' // immediate child
+  | ScreensDemoScreenName; // grand children
 
 export type ElsaStackParamList = {
   // ElsaStackScreenName
@@ -49,10 +49,14 @@ export type ElsaStackParamList = {
   UseEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseContextDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseLayoutEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
-  UseMemoDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  UseCallbackDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
+  ScreensDemoList: {};
+  RootStackModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
+  LocalReactNativeModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
+  TranslucentOverlayDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   // more navigation children can be added here
 };
-export type HookDemoScreenNavigationProp = StackNavigationProp<ElsaStackParamList>;
+export type ElsaStackNavigationProp = StackNavigationProp<ElsaStackParamList>;
 const ElsaStack = createStackNavigator<ElsaStackParamList>();
 export const ElsaNavigationView = () => {
   return (
@@ -68,15 +72,31 @@ export const ElsaNavigationView = () => {
         name="UseLayoutEffectDemo"
         component={DemoUseLayoutEffectView}
       />
-      <ElsaStack.Screen name="UseMemoDemo" component={DemoUseMemoView} />
+
+      <ElsaStack.Screen
+        name="ScreensDemoList"
+        component={ScreensDemoListView}
+      />
+      <ElsaStack.Screen
+        name="RootStackModalDemo"
+        component={RootStackModalLauncherView}
+      />
+      <ElsaStack.Screen
+        name="LocalReactNativeModalDemo"
+        component={LocalReactNativeModalLauncherView}
+      />
+      <ElsaStack.Screen
+        name="TranslucentOverlayDemo"
+        component={TranslucentOverlayLauncherView}
+      />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: 'HooksDemo';
-  navigationTargetName?: 'HooksDemoList'; // subset of ElsaStackScreenName
+  id: 'HooksDemo' | 'ScreensDemo';
+  navigationTargetName?: 'HooksDemoList' | 'ScreensDemoList'; // subset of ElsaStackScreenName
   title: string;
   subtitle?: string;
 };
@@ -87,6 +107,12 @@ const elsaList: ElsaListItem[] = [
     id: 'HooksDemo',
     navigationTargetName: 'HooksDemoList',
     title: 'Hooks',
+  },
+  {
+    index: 1,
+    id: 'ScreensDemo',
+    navigationTargetName: 'ScreensDemoList',
+    title: 'Screens',
   },
 ];
 
@@ -114,7 +140,12 @@ const ElsaView = () => {
               onPress={() => {
                 if (
                   item.id === 'HooksDemo' &&
-                  item.navigationTargetName != undefined
+                  item.navigationTargetName !== undefined
+                ) {
+                  navigation.navigate(item.navigationTargetName);
+                } else if (
+                  item.id === 'ScreensDemo' &&
+                  item.navigationTargetName !== undefined
                 ) {
                   navigation.navigate(item.navigationTargetName);
                 }

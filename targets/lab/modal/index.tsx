@@ -2,12 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {RootStackParamList} from '../root/index';
 import {StackScreenProps} from '@react-navigation/stack';
-import {AboutView} from '../components/children/about/index';
-import {AnnaModalView} from '../components/children/modal-views/anna-modal';
-import {OlafModalView} from '../components/children/modal-views/olaf-modal';
+import {AboutView} from '../components/children/navigation/drawer/about/index';
+import {RootStackModalView} from '../components/children/screens/root-stack-modal/modal/index';
 
 export type ModalViewParamList = {
-  context?: 'about' | 'anna' | 'olaf';
+  context?: 'about' | 'rootStackModalDemo';
 };
 
 // 2 alternative ways to provide navigation and route props:
@@ -32,10 +31,8 @@ export const ModalView = ({navigation, route}: ModalViewProps) => {
 
   if (route.params?.context === 'about') {
     return <AboutView />;
-  } else if (route.params?.context === 'anna') {
-    return <AnnaModalView />;
-  } else if (route.params?.context === 'olaf') {
-    return <OlafModalView />;
+  } else if (route.params?.context === 'rootStackModalDemo') {
+    return <RootStackModalView />;
   } else {
     return <View />;
   }

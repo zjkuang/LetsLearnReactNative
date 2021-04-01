@@ -7,7 +7,7 @@ import {Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {KristoffDetailsView} from '../../children/kristoff-stack/kristoff-details';
+import {KristoffDetailsView} from '../../children/navigation/stack/details/kristoff-details';
 import {ExampleContext} from '../../../context/example-context';
 
 type KristoffStackParamList = {

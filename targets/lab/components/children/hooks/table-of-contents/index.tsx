@@ -9,7 +9,7 @@ import {
 } from '../../../../../../common/components/types';
 import {
   ElsaStackNavigationScreenName,
-  HookDemoScreenNavigationProp,
+  ElsaStackNavigationProp,
 } from '../../../primary/elsa/index';
 
 // https://reactjs.org/docs/hooks-reference.html
@@ -18,24 +18,12 @@ export type HooksDemoScreenName =
   | 'UseStateDemo'
   | 'UseEffectDemo'
   | 'UseContextDemo'
-  | 'UseLayoutEffectDemo'
-  | 'UseCallbackDemo'
-  | 'UseRefDemo'
-  | 'UseMemoDemo'
-  | 'UseReducerDemo'
-  | 'UseImperativeHandleDemo'
-  | 'UseDebugValueDemo';
+  | 'UseLayoutEffectDemo';
 type HooksDemoItem =
   | 'useState'
   | 'useEffect'
   | 'useContext'
-  | 'useLayoutEffect'
-  | 'useCallback'
-  | 'useRef'
-  | 'useMemo'
-  | 'useReducer'
-  | 'useImperativeHandle'
-  | 'useDebugValue';
+  | 'useLayoutEffect';
 type HooksDemoItemExtra = {
   navigationTargetName: HooksDemoScreenName;
   ready: boolean;
@@ -104,67 +92,67 @@ const hooksDemoList: SectionListSection<
           ready: true,
         },
       },
-      {
-        index: 1,
-        id: 'useCallback', // HooksDemoItem
-        title: 'useCallback',
-        extra: {
-          navigationTargetName: 'UseCallbackDemo', // HooksDemoScreenName
-          ready: false,
-        },
-      },
-      {
-        index: 2,
-        id: 'useRef', // HooksDemoItem
-        title: 'useRef',
-        extra: {
-          navigationTargetName: 'UseRefDemo', // HooksDemoScreenName
-          ready: false,
-        },
-      },
-      {
-        index: 3,
-        id: 'useMemo', // HooksDemoItem
-        title: 'useMemo',
-        extra: {
-          navigationTargetName: 'UseMemoDemo', // HooksDemoScreenName
-          ready: true,
-        },
-      },
-      {
-        index: 4,
-        id: 'useReducer', // HooksDemoItem
-        title: 'useReducer',
-        extra: {
-          navigationTargetName: 'UseReducerDemo', // HooksDemoScreenName
-          ready: false,
-        },
-      },
-      {
-        index: 5,
-        id: 'useImperativeHandle', // HooksDemoItem
-        title: 'useImperativeHandle',
-        extra: {
-          navigationTargetName: 'UseImperativeHandleDemo', // HooksDemoScreenName
-          ready: false,
-        },
-      },
-      {
-        index: 6,
-        id: 'useDebugValue', // HooksDemoItem
-        title: 'useDebugValue',
-        extra: {
-          navigationTargetName: 'UseDebugValueDemo', // HooksDemoScreenName
-          ready: false,
-        },
-      },
+      // {
+      //   index: 1,
+      //   id: 'useCallback', // HooksDemoItem
+      //   title: 'useCallback',
+      //   extra: {
+      //     navigationTargetName: 'UseCallbackDemo', // HooksDemoScreenName
+      //     ready: false,
+      //   },
+      // },
+      // {
+      //   index: 2,
+      //   id: 'useRef', // HooksDemoItem
+      //   title: 'useRef',
+      //   extra: {
+      //     navigationTargetName: 'UseRefDemo', // HooksDemoScreenName
+      //     ready: false,
+      //   },
+      // },
+      // {
+      //   index: 3,
+      //   id: 'useMemo', // HooksDemoItem
+      //   title: 'useMemo',
+      //   extra: {
+      //     navigationTargetName: 'UseMemoDemo', // HooksDemoScreenName
+      //     ready: true,
+      //   },
+      // },
+      // {
+      //   index: 4,
+      //   id: 'useReducer', // HooksDemoItem
+      //   title: 'useReducer',
+      //   extra: {
+      //     navigationTargetName: 'UseReducerDemo', // HooksDemoScreenName
+      //     ready: false,
+      //   },
+      // },
+      // {
+      //   index: 5,
+      //   id: 'useImperativeHandle', // HooksDemoItem
+      //   title: 'useImperativeHandle',
+      //   extra: {
+      //     navigationTargetName: 'UseImperativeHandleDemo', // HooksDemoScreenName
+      //     ready: false,
+      //   },
+      // },
+      // {
+      //   index: 6,
+      //   id: 'useDebugValue', // HooksDemoItem
+      //   title: 'useDebugValue',
+      //   extra: {
+      //     navigationTargetName: 'UseDebugValueDemo', // HooksDemoScreenName
+      //     ready: false,
+      //   },
+      // },
     ],
   },
 ];
 
 export const HooksDemoListView = () => {
   const navigation = useNavigation();
-  const hooksDemoNavigation = useNavigation<HookDemoScreenNavigationProp>();
+  const elsaNavigation = useNavigation<ElsaStackNavigationProp>();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -190,7 +178,7 @@ export const HooksDemoListView = () => {
                 if (!navigationTargetName || !item.extra?.ready) {
                   return;
                 }
-                hooksDemoNavigation.push(navigationTargetName, {
+                elsaNavigation.push(navigationTargetName, {
                   name: navigationTargetName,
                   title: item.title,
                 });

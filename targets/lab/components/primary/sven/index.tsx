@@ -7,7 +7,7 @@ import {Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {SvenDetailsView} from '../../children/sven-stack/sven-details';
+import {SvenDetailsView} from '../../children/navigation/stack/details/sven-details';
 import {ExampleContext} from '../../../context/example-context';
 
 type SvenStackParamList = {

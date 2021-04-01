@@ -7,8 +7,7 @@ import {Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {OlafDetailsView} from '../../children/olaf-stack/olaf-details';
-import {RootStackNavigationProp} from '../../../root/index';
+import {OlafDetailsView} from '../../children/navigation/stack/details/olaf-details';
 import {ExampleContext} from '../../../context/example-context';
 
 type OlafStackParamList = {
@@ -41,7 +40,6 @@ type OlafViewProp = {
 };
 const OlafView = (props: OlafViewProp) => {
   const navigation = useNavigation<OlafStackNavitationProp>();
-  const rootNavigation = useNavigation<RootStackNavigationProp>();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
@@ -80,13 +78,6 @@ const OlafView = (props: OlafViewProp) => {
         title={'Show Details'}
         onPress={() => {
           navigation.push('OlafDetails');
-        }}
-      />
-
-      <QuickTestButton
-        title={'Show Modal'}
-        onPress={() => {
-          rootNavigation.navigate('Modal', {context: 'olaf'});
         }}
       />
     </View>
