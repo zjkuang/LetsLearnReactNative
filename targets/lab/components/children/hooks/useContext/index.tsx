@@ -73,6 +73,32 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     setExampleContextValue(newExampleContextValue);
   };
 
+  const onPressToggleBottomMask = () => {
+    if (
+      (exampleContextValue.bottomMask?.duration ?? 0 > 0) &&
+      (exampleContextValue.bottomMask?.show ?? false)
+    ) {
+      return;
+    }
+    const newExampleContextValue = {
+      ...exampleContextValue,
+    };
+    let bottomMask = exampleContextValue.bottomMask ?? {
+      show: false,
+    };
+    let durationInSec = 0;
+    bottomMask.text =
+      durationInSec > 0
+        ? `It will disappear in ${durationInSec} seconds`
+        : 'Toggle off from Elsa/Hooks/useContext';
+    bottomMask.backgroundColor = 'rgba(255, 255, 0, 0.5)';
+    bottomMask.textColor = 'red';
+    bottomMask.duration = durationInSec * 1000;
+    bottomMask.show = !bottomMask.show;
+    newExampleContextValue.bottomMask = bottomMask;
+    setExampleContextValue(newExampleContextValue);
+  };
+
   const onPressSaveSwitch = () => {
     const newExampleContextValue = {
       ...exampleContextValue,
@@ -145,6 +171,15 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
           title={'Refresh'}
           onPress={() => {
             setRefresh(refresh + 1);
+          }}
+        />
+      </View>
+
+      <View style={styles.groupContainter}>
+        <QuickTestButton
+          title={'Toggle Bottom Mask'}
+          onPress={() => {
+            onPressToggleBottomMask();
           }}
         />
       </View>
