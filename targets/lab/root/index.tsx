@@ -16,21 +16,7 @@ import {
 } from '../context/example-context';
 
 const BottomMaskView = () => {
-  const {exampleContextValue, setExampleContextValue} = React.useContext(
-    ExampleContext,
-  );
-  if (
-    exampleContextValue.bottomMask?.duration &&
-    exampleContextValue.bottomMask.duration > 0
-  ) {
-    setTimeout(() => {
-      let newExampleContextValue = {...exampleContextValue};
-      if (newExampleContextValue.bottomMask) {
-        newExampleContextValue.bottomMask.show = false;
-        setExampleContextValue(newExampleContextValue);
-      }
-    }, exampleContextValue.bottomMask.duration);
-  }
+  const {exampleContextValue} = React.useContext(ExampleContext);
   const getBottomMaskCustomStyles = React.useCallback(() => {
     let customStyles = {
       view: {},

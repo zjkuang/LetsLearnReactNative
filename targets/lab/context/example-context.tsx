@@ -42,7 +42,6 @@ type ExampleContextValueType = {
         text?: string;
         backgroundColor?: string;
         textColor?: string;
-        duration?: number;
       }
     | undefined;
 };
