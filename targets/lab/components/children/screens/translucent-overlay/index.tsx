@@ -3,10 +3,12 @@ import {View} from 'react-native';
 import {styles} from './style';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {useNavigation} from '@react-navigation/native';
-import {TranslucentOverlay} from './overlay/index';
+import {TranslucentOverlay} from '../../../overlay/index';
+import {RootStackNavigationProp} from '../../../../root/';
 
 export const TranslucentOverlayLauncherView = () => {
   const navigation = useNavigation();
+  const rootNavigation = useNavigation<RootStackNavigationProp>();
   const [showTranslucentOverlay, setShowTranslucentOverlay] = React.useState(
     false,
   );
@@ -20,23 +22,36 @@ export const TranslucentOverlayLauncherView = () => {
     });
   }, [navigation]);
 
-  const onShowTranslucentOverlay = React.useCallback(() => {
+  const onShowFullScreenTranslucentOverlay = React.useCallback(() => {
+    rootNavigation.navigate('Modal', {context: 'translucentOverlay'});
+  }, [rootNavigation]);
+
+  const onShowInViewTranslucentOverlay = React.useCallback(() => {
     setShowTranslucentOverlay(true);
   }, []);
 
-  const onCloseTranslucentOverlay = React.useCallback(() => {
+  const onCloseInViewTranslucentOverlay = React.useCallback(() => {
     setShowTranslucentOverlay(false);
   }, []);
 
+  // To make the in-view overlay (TranslucentOverlay) work properly, besides the translucentOverlay style definition, it must be the last one of the immediate child components of the base view in JSX
   return (
     <View style={styles.baseView}>
-      <QuickTestButton
-        title={'Show Translucent Overlay'}
-        onPress={onShowTranslucentOverlay}
-      />
+      <View style={styles.groupContainter}>
+        <QuickTestButton
+          title={'Show Full-screen Translucent Overlay'}
+          onPress={onShowFullScreenTranslucentOverlay}
+        />
+      </View>
 
+      <View style={styles.groupContainter}>
+        <QuickTestButton
+          title={'Show In-view Translucent Overlay'}
+          onPress={onShowInViewTranslucentOverlay}
+        />
+      </View>
       {showTranslucentOverlay && (
-        <TranslucentOverlay onClose={onCloseTranslucentOverlay} />
+        <TranslucentOverlay onClose={onCloseInViewTranslucentOverlay} />
       )}
     </View>
   );

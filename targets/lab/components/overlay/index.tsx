@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {IconClose} from '../../../../../../../common/components/icons';
+import {IconClose} from '../../../../common/components/icons';
 import {styles} from './style';
 
 type TranslucentOverlayProps = {

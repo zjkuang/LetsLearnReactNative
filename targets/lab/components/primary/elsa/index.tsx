@@ -11,19 +11,20 @@ import {
   HooksDemoListView,
   HooksDemoScreenName,
   HookDemoScreenParamList,
-} from '../../children/hooks/table-of-contents/index';
-import {DemoUseStateView} from '../../children/hooks/useState/index';
-import {DemoUseEffectView} from '../../children/hooks/useEffect/index';
-import {DemoUseContextView} from '../../children/hooks/useContext/index';
-import {DemoUseLayoutEffectView} from '../../children/hooks/useLayoutEffect/index';
+} from '../../children/hooks/table-of-contents';
+import {DemoUseStateView} from '../../children/hooks/useState';
+import {DemoUseEffectView} from '../../children/hooks/useEffect';
+import {DemoUseContextView} from '../../children/hooks/useContext';
+import {DemoUseLayoutEffectView} from '../../children/hooks/useLayoutEffect';
 import {
   ScreensDemoListView,
   ScreensDemoScreenName,
   ScreensDemoScreenParamList,
-} from '../../children/screens/table-of-contents/index';
-import {RootStackModalLauncherView} from '../../children/screens/root-stack-modal/index';
-import {LocalReactNativeModalLauncherView} from '../../children/screens/react-native-modal/index';
-import {TranslucentOverlayLauncherView} from '../../children/screens/translucent-overlay/index';
+} from '../../children/screens/table-of-contents';
+import {RootStackModalLauncherView} from '../../children/screens/root-stack-modal';
+import {LocalReactNativeModalLauncherView} from '../../children/screens/react-native-modal';
+import {TranslucentOverlayLauncherView} from '../../children/screens/translucent-overlay';
+import {BannerMaskLauncherView} from '../../children/screens/banner-mask';
 
 //
 //  EEEEE  L       SSSS    A
@@ -54,6 +55,7 @@ export type ElsaStackParamList = {
   RootStackModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   LocalReactNativeModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   TranslucentOverlayDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
+  BannerMaskDemo: {};
   // more navigation children can be added here
 };
 export type ElsaStackNavigationProp = StackNavigationProp<ElsaStackParamList>;
@@ -88,6 +90,10 @@ export const ElsaNavigationView = () => {
       <ElsaStack.Screen
         name="TranslucentOverlayDemo"
         component={TranslucentOverlayLauncherView}
+      />
+      <ElsaStack.Screen
+        name="BannerMaskDemo"
+        component={BannerMaskLauncherView}
       />
     </ElsaStack.Navigator>
   );

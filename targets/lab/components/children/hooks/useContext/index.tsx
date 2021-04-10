@@ -77,14 +77,14 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     const newExampleContextValue = {
       ...exampleContextValue,
     };
-    let bottomMask = exampleContextValue.bottomMask ?? {
+    let bottomMask = exampleContextValue.bannerMask ?? {
       show: false,
     };
     bottomMask.text = 'Toggle off from Elsa/Hooks/useContext';
     bottomMask.backgroundColor = 'rgba(255, 255, 0, 0.5)';
     bottomMask.textColor = 'red';
     bottomMask.show = !bottomMask.show;
-    newExampleContextValue.bottomMask = bottomMask;
+    newExampleContextValue.bannerMask = bottomMask;
     setExampleContextValue(newExampleContextValue);
   };
 

@@ -15,11 +15,13 @@ import {
 export type ScreensDemoScreenName =
   | 'RootStackModalDemo'
   | 'LocalReactNativeModalDemo'
-  | 'TranslucentOverlayDemo';
+  | 'TranslucentOverlayDemo'
+  | 'BannerMaskDemo';
 type ScreensDemoItem =
   | 'rootStackModal'
   | 'localReactNativeModal'
-  | 'translucentOverlay';
+  | 'translucentOverlay'
+  | 'bannerMask';
 type ScreensDemoItemExtra = {
   navigationTargetName: ScreensDemoScreenName;
   ready: boolean;
@@ -65,6 +67,15 @@ const screensDemoList: SectionListSection<
         title: 'Translucent Overlay',
         extra: {
           navigationTargetName: 'TranslucentOverlayDemo', // ScreensDemoScreenName
+          ready: true,
+        },
+      },
+      {
+        index: 1,
+        id: 'bannerMask', // ScreensDemoItem
+        title: 'Banner Mask',
+        extra: {
+          navigationTargetName: 'BannerMaskDemo', // ScreensDemoScreenName
           ready: true,
         },
       },

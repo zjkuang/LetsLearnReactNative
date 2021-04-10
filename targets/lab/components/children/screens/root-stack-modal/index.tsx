@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {styles} from './style';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {useNavigation} from '@react-navigation/native';
-import {RootStackNavigationProp} from '../../../../root/index';
+import {RootStackNavigationProp} from '../../../../root/';
 
 export const RootStackModalLauncherView = () => {
   const navigation = useNavigation();

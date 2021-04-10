@@ -3,7 +3,9 @@ import {
   commonStyles,
   positioning,
   color,
-} from '../../../../../../../common/components/style';
+} from '../../../../common/components/style';
+
+// To make the in-view overlay work properly, besides the translucentOverlay style definition, it must be the last one of the immediate child components of the base view in JSX
 
 const styles = StyleSheet.create({
   translucentOverlay: {
