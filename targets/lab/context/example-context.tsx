@@ -36,15 +36,6 @@ type ExampleContextValueType = {
   text: string;
   language: Language;
   backgroundColor: ExampleContextBackgroundColor;
-  bannerMask:
-    | {
-        show: boolean;
-        text?: string;
-        backgroundColor?: string;
-        textColor?: string;
-        position?: 'bottom' | 'top';
-      }
-    | undefined;
 };
 
 type ExampleContextType = {
@@ -59,7 +50,6 @@ const defaultExampleContext: ExampleContextType = {
     text: '',
     language: 'English',
     backgroundColor: 'cyan',
-    bannerMask: undefined,
   },
   setExampleContextValue: () => {},
 };
@@ -95,7 +85,6 @@ export const ExampleContextProvider = ({children}: Props) => {
     if (exampleContextValue.persisted === true) {
       let persistedExampleContextValue = {...exampleContextValue};
       persistedExampleContextValue.persisted = undefined;
-      persistedExampleContextValue.bannerMask = undefined;
       savePreferenceObject(
         preferencesKeys.pkExampleContextValue,
         persistedExampleContextValue,

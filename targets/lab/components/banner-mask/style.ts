@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   bottomMaskView: {
     position: 'absolute',
-    height: 60,
+    height: 80,
     left: 0,
     right: 0,
     bottom: 0,

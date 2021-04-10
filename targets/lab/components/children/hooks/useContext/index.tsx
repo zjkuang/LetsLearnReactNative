@@ -73,21 +73,6 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
     setExampleContextValue(newExampleContextValue);
   };
 
-  const onPressToggleBottomMask = () => {
-    const newExampleContextValue = {
-      ...exampleContextValue,
-    };
-    let bottomMask = exampleContextValue.bannerMask ?? {
-      show: false,
-    };
-    bottomMask.text = 'Toggle off from Elsa/Hooks/useContext';
-    bottomMask.backgroundColor = 'rgba(255, 255, 0, 0.5)';
-    bottomMask.textColor = 'red';
-    bottomMask.show = !bottomMask.show;
-    newExampleContextValue.bannerMask = bottomMask;
-    setExampleContextValue(newExampleContextValue);
-  };
-
   const onPressSaveSwitch = () => {
     const newExampleContextValue = {
       ...exampleContextValue,
@@ -160,15 +145,6 @@ export const DemoUseContextView = ({navigation, route}: ViewProps) => {
           title={'Refresh'}
           onPress={() => {
             setRefresh(refresh + 1);
-          }}
-        />
-      </View>
-
-      <View style={styles.groupContainter}>
-        <QuickTestButton
-          title={'Toggle Bottom Mask'}
-          onPress={() => {
-            onPressToggleBottomMask();
           }}
         />
       </View>
