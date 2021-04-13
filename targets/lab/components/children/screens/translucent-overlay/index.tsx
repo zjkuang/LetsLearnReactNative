@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {styles} from './style';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {useNavigation} from '@react-navigation/native';
-import {TranslucentOverlay} from '../../../overlay/index';
+import {TranslucentOverlay} from '../../../overlay';
 import {RootStackNavigationProp} from '../../../../root/';
 
 export const TranslucentOverlayLauncherView = () => {
@@ -39,14 +39,14 @@ export const TranslucentOverlayLauncherView = () => {
     <View style={styles.baseView}>
       <View style={styles.groupContainter}>
         <QuickTestButton
-          title={'Show Full-screen Translucent Overlay'}
+          title={'Full-safe-area'}
           onPress={onShowFullScreenTranslucentOverlay}
         />
       </View>
 
       <View style={styles.groupContainter}>
         <QuickTestButton
-          title={'Show In-view Translucent Overlay'}
+          title={'In-view'}
           onPress={onShowInViewTranslucentOverlay}
         />
       </View>

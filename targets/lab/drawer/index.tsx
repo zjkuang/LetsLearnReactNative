@@ -6,12 +6,12 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import {MainTabView} from '../main/index';
+import {MainTabView} from '../main';
 import {styles} from './style';
 import {FlatListItemSeparator} from '../../../common/components/widgets';
 import {IconClose} from '../../../common/components/icons';
 import {ListItem} from '../../../common/components/types';
-import {RootStackNavigationProp} from '../root/index';
+import {RootStackNavigationProp} from '../root';
 
 const drawerList: ListItem<string, undefined>[] = [
   {

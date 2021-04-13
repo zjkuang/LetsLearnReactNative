@@ -24,7 +24,8 @@ import {
 import {RootStackModalLauncherView} from '../../children/screens/root-stack-modal';
 import {LocalReactNativeModalLauncherView} from '../../children/screens/react-native-modal';
 import {TranslucentOverlayLauncherView} from '../../children/screens/translucent-overlay';
-import {BannerMaskLauncherView} from '../../children/screens/banner-mask';
+import {BannerMaskLauncherView} from '../../children/screens/banner-mask-demo';
+import {TopTabDemoView} from '../../children/screens/top-tab-demo';
 
 //
 //  EEEEE  L       SSSS    A
@@ -56,6 +57,7 @@ export type ElsaStackParamList = {
   LocalReactNativeModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   TranslucentOverlayDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   BannerMaskDemo: {};
+  TopTabDemo: {};
   // more navigation children can be added here
 };
 export type ElsaStackNavigationProp = StackNavigationProp<ElsaStackParamList>;
@@ -95,6 +97,7 @@ export const ElsaNavigationView = () => {
         name="BannerMaskDemo"
         component={BannerMaskLauncherView}
       />
+      <ElsaStack.Screen name="TopTabDemo" component={TopTabDemoView} />
     </ElsaStack.Navigator>
   );
 };

@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {styles, commonStyles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
-import {ElsaStackParamList} from '../../../primary/elsa/index';
+import {ElsaStackParamList} from '../../../primary/elsa';
 import {
   ExampleContext,
   exampleContextGetNextColorForBackground,

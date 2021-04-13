@@ -3,7 +3,7 @@ import React from 'react';
 import {Image, View} from 'react-native';
 import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
-import {ElsaStackParamList} from '../../../primary/elsa/index';
+import {ElsaStackParamList} from '../../../primary/elsa';
 
 // https://daveceddia.com/useeffect-vs-uselayouteffect/
 // https://kentcdodds.com/blog/useeffect-vs-uselayouteffect

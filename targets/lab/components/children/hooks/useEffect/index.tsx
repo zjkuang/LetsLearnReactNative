@@ -4,7 +4,7 @@ import {Alert, Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
-import {ElsaStackParamList} from '../../../primary/elsa/index';
+import {ElsaStackParamList} from '../../../primary/elsa';
 
 // https://daveceddia.com/useeffect-vs-uselayouteffect/
 // https://kentcdodds.com/blog/useeffect-vs-uselayouteffect

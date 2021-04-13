@@ -10,7 +10,7 @@ import {
 import {
   ElsaStackNavigationScreenName,
   ElsaStackNavigationProp,
-} from '../../../primary/elsa/index';
+} from '../../../primary/elsa';
 
 // https://reactjs.org/docs/hooks-reference.html
 

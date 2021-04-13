@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {QuickTestButton} from '../../../../../../../../common/components/widgets';
 import {styles} from './style';
-import {AnnaStackParamList} from '../../../../../primary/anna/index';
+import {AnnaStackParamList} from '../../../../../primary/anna';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 

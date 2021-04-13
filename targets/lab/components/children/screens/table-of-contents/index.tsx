@@ -10,18 +10,20 @@ import {
 import {
   ElsaStackNavigationScreenName,
   ElsaStackNavigationProp,
-} from '../../../primary/elsa/index';
+} from '../../../primary/elsa';
 
 export type ScreensDemoScreenName =
   | 'RootStackModalDemo'
   | 'LocalReactNativeModalDemo'
   | 'TranslucentOverlayDemo'
-  | 'BannerMaskDemo';
+  | 'BannerMaskDemo'
+  | 'TopTabDemo';
 type ScreensDemoItem =
   | 'rootStackModal'
   | 'localReactNativeModal'
   | 'translucentOverlay'
-  | 'bannerMask';
+  | 'bannerMask'
+  | 'topTab';
 type ScreensDemoItemExtra = {
   navigationTargetName: ScreensDemoScreenName;
   ready: boolean;
@@ -76,6 +78,20 @@ const screensDemoList: SectionListSection<
         title: 'Banner Mask',
         extra: {
           navigationTargetName: 'BannerMaskDemo', // ScreensDemoScreenName
+          ready: true,
+        },
+      },
+    ],
+  },
+  {
+    title: 'TopTab',
+    data: [
+      {
+        index: 0,
+        id: 'topTab', // ScreensDemoItem
+        title: 'Top Tab',
+        extra: {
+          navigationTargetName: 'TopTabDemo', // ScreensDemoScreenName
           ready: true,
         },
       },

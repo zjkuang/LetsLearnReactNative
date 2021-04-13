@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {styles} from './style';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {useNavigation} from '@react-navigation/native';
-import {ReactNativeModalView} from './modal/index';
+import {ReactNativeModalView} from './modal';
 
 export const LocalReactNativeModalLauncherView = () => {
   const navigation = useNavigation();
