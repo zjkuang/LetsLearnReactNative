@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  flexContainer: {
+    ...commonStyles.flexContainer,
+  },
 });
 
 export {styles, commonStyles, positioning, color};

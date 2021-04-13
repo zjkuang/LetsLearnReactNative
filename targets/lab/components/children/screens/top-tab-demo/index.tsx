@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import {styles} from './style';
 import {SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -21,10 +20,11 @@ export const TopTabDemoView = () => {
     });
   }, [navigation]);
 
-  // To make the in-view overlay (TranslucentOverlay) work properly, besides the translucentOverlay style definition, it must be the last one of the immediate child components of the base view in JSX
+  // Make style={{flex: 1}} for SafeAreaView otherwise the TopTabView will not show
+  //   <SafeAreaView style={{flex: 1}}><TopTab.Navigator>...</TopTab.Navigator></SafeAreaView>
   return (
-    <SafeAreaView>
-      {/* <TopTab.Navigator initialRouteName="One">
+    <SafeAreaView style={styles.flexContainer}>
+      <TopTab.Navigator initialRouteName="One">
         <TopTab.Screen
           name="One"
           component={TopTabOneView}
@@ -40,7 +40,7 @@ export const TopTabDemoView = () => {
           component={TopTabThreeView}
           options={{tabBarLabel: 'Three'}}
         />
-      </TopTab.Navigator> */}
+      </TopTab.Navigator>
     </SafeAreaView>
   );
 };

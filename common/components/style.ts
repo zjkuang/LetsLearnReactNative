@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  flexContainer: {
+    flex: 1,
+  },
   contentAlignmentCenter: {
     justifyContent: 'center',
     alignItems: 'center',
