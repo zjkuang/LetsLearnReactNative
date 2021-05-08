@@ -1,4 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {RootView as Lab} from './lab/root';
-// import {RootView as Bible} from '...';
 
 export const TargetRoot = Lab;
