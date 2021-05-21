@@ -5,6 +5,7 @@ https://reactnavigation.org
 (3) yarn add @react-navigation/stack
 (4) yarn add @react-navigation/bottom-tabs
 (5) yarn add @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view
+(6) yarn add @react-navigation/drawer
 (*) cd ios && pod install && cd ..
 
 TypeScript
