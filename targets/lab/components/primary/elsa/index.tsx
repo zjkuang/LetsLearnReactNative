@@ -26,6 +26,7 @@ import {LocalReactNativeModalLauncherView} from '../../children/screens/react-na
 import {TranslucentOverlayLauncherView} from '../../children/screens/translucent-overlay';
 import {BannerMaskLauncherView} from '../../children/screens/banner-mask-demo';
 import {TopTabDemoView} from '../../children/screens/top-tab-demo';
+import {NativeModuleDemoView} from '../../children/screens/native-module-demo';
 
 //
 //  EEEEE  L       SSSS    A
@@ -58,6 +59,7 @@ export type ElsaStackParamList = {
   TranslucentOverlayDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   BannerMaskDemo: {};
   TopTabDemo: {};
+  NativeModuleDemo: {};
   // more navigation children can be added here
 };
 export type ElsaStackNavigationProp = StackNavigationProp<ElsaStackParamList>;
@@ -98,14 +100,22 @@ export const ElsaNavigationView = () => {
         component={BannerMaskLauncherView}
       />
       <ElsaStack.Screen name="TopTabDemo" component={TopTabDemoView} />
+
+      <ElsaStack.Screen
+        name="NativeModuleDemo"
+        component={NativeModuleDemoView}
+      />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: 'HooksDemo' | 'ScreensDemo';
-  navigationTargetName?: 'HooksDemoList' | 'ScreensDemoList'; // subset of ElsaStackScreenName
+  id: 'HooksDemo' | 'ScreensDemo' | 'NativeModuleDemo';
+  navigationTargetName?:
+    | 'HooksDemoList'
+    | 'ScreensDemoList'
+    | 'NativeModuleDemo'; // subset of ElsaStackScreenName
   title: string;
   subtitle?: string;
 };
@@ -122,6 +132,12 @@ const elsaList: ElsaListItem[] = [
     id: 'ScreensDemo',
     navigationTargetName: 'ScreensDemoList',
     title: 'Screens',
+  },
+  {
+    index: 2,
+    id: 'NativeModuleDemo',
+    navigationTargetName: 'NativeModuleDemo',
+    title: 'Native Module',
   },
 ];
 
@@ -157,13 +173,18 @@ const ElsaView = () => {
                   item.navigationTargetName !== undefined
                 ) {
                   navigation.navigate(item.navigationTargetName);
+                } else if (
+                  item.id === 'NativeModuleDemo' &&
+                  item.navigationTargetName !== undefined
+                ) {
+                  navigation.navigate(item.navigationTargetName);
                 }
               }}>
               <Text style={itemStyle}>{item.title}</Text>
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item) => `${item.id}`}
+        keyExtractor={item => `${item.id}`}
       />
     </View>
   );

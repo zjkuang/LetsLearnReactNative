@@ -42,7 +42,7 @@ export const DemoUseEffectView = ({navigation, route}: ViewProps) => {
     console.log(`${route.params.name} componentDidUpdate`);
 
     navigation.removeListener('beforeRemove', () => {});
-    navigation.addListener('beforeRemove', (e) => {
+    navigation.addListener('beforeRemove', e => {
       if (state === 'Welcome' || state === 'Bill Paid') {
         return;
       }

@@ -17,6 +17,8 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* LetsLearnReactNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LetsLearnReactNativeTests.m */; };
 		6EA8019F25E72CC1007F66E7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 6EA8019E25E72CC1007F66E7 /* Fonts */; };
+		6EB26307266C5F33001305EF /* NativeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB26306266C5F33001305EF /* NativeDemo.m */; };
+		6EB2630A266C5F50001305EF /* NativeDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB26309266C5F50001305EF /* NativeDemo.swift */; };
 		77964D98695488C9D8389532 /* libPods-LetsLearnReactNative-LetsLearnReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9B057E6578C6E0401B5DCF /* libPods-LetsLearnReactNative-LetsLearnReactNativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D39350F7A64EB1A68818D042 /* libPods-LetsLearnReactNative-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA34ECDD8EEAB2E64B3F6AC /* libPods-LetsLearnReactNative-tvOSTests.a */; };
@@ -41,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* LetsLearnReactNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LetsLearnReactNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* LetsLearnReactNativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LetsLearnReactNativeTests.m; sourceTree = "<group>"; };
@@ -56,6 +57,9 @@
 		4D2DA4F3B8D7DDA8ADC9F4F6 /* Pods-LetsLearnReactNative-LetsLearnReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsLearnReactNative-LetsLearnReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-LetsLearnReactNative-LetsLearnReactNativeTests/Pods-LetsLearnReactNative-LetsLearnReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		69B92DFE30485D446EA8268A /* Pods-LetsLearnReactNative-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsLearnReactNative-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-LetsLearnReactNative-tvOSTests/Pods-LetsLearnReactNative-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6EA8019E25E72CC1007F66E7 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
+		6EB26306266C5F33001305EF /* NativeDemo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeDemo.m; sourceTree = "<group>"; };
+		6EB26308266C5F4F001305EF /* LetsLearnReactNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LetsLearnReactNative-Bridging-Header.h"; sourceTree = "<group>"; };
+		6EB26309266C5F50001305EF /* NativeDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDemo.swift; sourceTree = "<group>"; };
 		6F58DA1711139186980E2288 /* Pods-LetsLearnReactNative-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsLearnReactNative-tvOS.release.xcconfig"; path = "Target Support Files/Pods-LetsLearnReactNative-tvOS/Pods-LetsLearnReactNative-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		794CF7FEEA5C3F93F4CC18E0 /* Pods-LetsLearnReactNative-LetsLearnReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsLearnReactNative-LetsLearnReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-LetsLearnReactNative-LetsLearnReactNativeTests/Pods-LetsLearnReactNative-LetsLearnReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		79E16218289EABE39E9106C6 /* Pods-LetsLearnReactNative-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsLearnReactNative-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-LetsLearnReactNative-tvOS/Pods-LetsLearnReactNative-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,8 +131,8 @@
 		13B07FAE1A68108700A75B9A /* LetsLearnReactNative */ = {
 			isa = PBXGroup;
 			children = (
+				6EB26303266C5E89001305EF /* Native */,
 				6EA8019E25E72CC1007F66E7 /* Fonts */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -150,6 +154,24 @@
 				BFA34ECDD8EEAB2E64B3F6AC /* libPods-LetsLearnReactNative-tvOSTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EB26303266C5E89001305EF /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				6EB26305266C5ED4001305EF /* Demo */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+		6EB26305266C5ED4001305EF /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6EB26306266C5F33001305EF /* NativeDemo.m */,
+				6EB26309266C5F50001305EF /* NativeDemo.swift */,
+				6EB26308266C5F4F001305EF /* LetsLearnReactNative-Bridging-Header.h */,
+			);
+			name = Demo;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -298,7 +320,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -674,7 +696,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				6EB26307266C5F33001305EF /* NativeDemo.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				6EB2630A266C5F50001305EF /* NativeDemo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +739,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D2DA4F3B8D7DDA8ADC9F4F6 /* Pods-LetsLearnReactNative-LetsLearnReactNativeTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -738,6 +763,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 794CF7FEEA5C3F93F4CC18E0 /* Pods-LetsLearnReactNative-LetsLearnReactNativeTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = LetsLearnReactNativeTests/Info.plist;
@@ -771,6 +797,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LetsLearnReactNative;
+				SWIFT_OBJC_BRIDGING_HEADER = "Native/LetsLearnReactNative-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -793,6 +820,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LetsLearnReactNative;
+				SWIFT_OBJC_BRIDGING_HEADER = "Native/LetsLearnReactNative-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
