@@ -48,7 +48,7 @@ class NativeDemo: RCTEventEmitter {
       return
     }
     
-    resolve("response to \(input)");
+    resolve("Response from native iOS to JavaScript app's input '\(input)'");
   }
   
   @objc(setTimer:async:resolve:reject:)
@@ -66,6 +66,8 @@ class NativeDemo: RCTEventEmitter {
       return
     }
     
-    self.sendEvent(withName: NativeDemoEvent.timeOut.rawValue, body: milliSeconds)
+    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(milliSeconds)) {
+      self.sendEvent(withName: NativeDemoEvent.timeOut.rawValue, body: milliSeconds)
+    }
   }
 }
