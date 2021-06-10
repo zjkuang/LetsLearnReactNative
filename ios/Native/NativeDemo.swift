@@ -59,15 +59,18 @@ class NativeDemo: RCTEventEmitter {
       return
     }
     
+    let result = NSMutableDictionary()
+    result["timeOut"] = "\(milliSeconds)";
+    
     if (async) {
       DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(milliSeconds)) {
-        resolve(milliSeconds);
+        resolve(result);
       }
       return
     }
     
     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(milliSeconds)) {
-      self.sendEvent(withName: NativeDemoEvent.timeOut.rawValue, body: milliSeconds)
+      self.sendEvent(withName: NativeDemoEvent.timeOut.rawValue, body: result)
     }
   }
 }

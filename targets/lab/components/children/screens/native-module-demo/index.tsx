@@ -58,7 +58,7 @@ export const NativeModuleDemoView = ({navigation}: ViewProps) => {
 
   const onPromiseTimerPress = React.useCallback(async () => {
     let result = await NativeModuleDemo.setTimer(1200, true);
-    Alert.alert('TIME OUT (Promise)', `${result} milliseconds`);
+    Alert.alert('TIME OUT (Promise)', `${JSON.stringify(result)}`);
   }, []);
 
   const onEventTimerPress = React.useCallback(async () => {
