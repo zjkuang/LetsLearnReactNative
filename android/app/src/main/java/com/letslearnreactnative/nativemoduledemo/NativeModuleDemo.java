@@ -108,7 +108,7 @@ public class NativeModuleDemo extends ReactContextBaseJavaModule {
 
         NativeModuleDemoEvent event = new NativeModuleDemoEvent(NativeModuleDemoEvent.EVENT.timeOut);
         WritableMap params = Arguments.createMap();
-        params.putString("milliseconds", String.format("%d", milliSeconds));
+        params.putString("timeOut", String.format("%d", milliSeconds));
 
         if (async) {
             new Timer().schedule(new TimerTask() {

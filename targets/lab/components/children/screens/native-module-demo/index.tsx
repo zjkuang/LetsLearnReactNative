@@ -4,7 +4,10 @@ import {styles} from './style';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaStackParamList} from '../../../primary/elsa';
-import {NativeModuleDemo} from '../../../../native-modules/native-module-demo';
+import {
+  NativeModuleDemo,
+  TimeOutResult,
+} from '../../../../native-modules/native-module-demo';
 
 // https://daveceddia.com/useeffect-vs-uselayouteffect/
 // https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
@@ -30,9 +33,12 @@ export const NativeModuleDemoView = ({navigation}: ViewProps) => {
   }, [navigation]);
 
   React.useEffect(() => {
-    let listener = nativeEventEmitter.addListener('timeOut', event => {
-      Alert.alert('TIME OUT (Event)', `${JSON.stringify(event)}`);
-    });
+    let listener = nativeEventEmitter.addListener(
+      'timeOut',
+      (event: TimeOutResult) => {
+        Alert.alert('TIME OUT (Event)', `timeOut: ${event.timeOut}`);
+      },
+    );
 
     return () => {
       listener.remove();
@@ -58,7 +64,7 @@ export const NativeModuleDemoView = ({navigation}: ViewProps) => {
 
   const onPromiseTimerPress = React.useCallback(async () => {
     let result = await NativeModuleDemo.setTimer(1200, true);
-    Alert.alert('TIME OUT (Promise)', `${JSON.stringify(result)}`);
+    Alert.alert('TIME OUT (Promise)', `timeOut: ${result.timeOut}`);
   }, []);
 
   const onEventTimerPress = React.useCallback(async () => {

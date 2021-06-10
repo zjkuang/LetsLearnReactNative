@@ -1,6 +1,6 @@
 import {NativeModules} from 'react-native';
 
-interface TimeOutResult {
+export interface TimeOutResult {
   timeOut: string;
 }
 
