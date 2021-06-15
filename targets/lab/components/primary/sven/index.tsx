@@ -40,6 +40,7 @@ type SvenViewProp = {
 };
 const SvenView = (props: SvenViewProp) => {
   const navigation = useNavigation<SvenStackNavitationProp>();
+  const generalNavigation = useNavigation();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
@@ -58,6 +59,22 @@ const SvenView = (props: SvenViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('focus', () => {
+      console.log('Sven focus');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('blur', () => {
+      console.log('Sven blur');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
 
   return (
     <View

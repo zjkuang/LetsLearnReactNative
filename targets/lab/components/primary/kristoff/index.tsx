@@ -43,6 +43,7 @@ type KristoffViewProp = {
 };
 const KristoffView = (props: KristoffViewProp) => {
   const navigation = useNavigation<KristoffStackNavitationProp>();
+  const generalNavigation = useNavigation();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
@@ -61,6 +62,22 @@ const KristoffView = (props: KristoffViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('focus', () => {
+      console.log('Kristoff focus');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('blur', () => {
+      console.log('Kristoff blur');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
 
   return (
     <View

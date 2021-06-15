@@ -46,6 +46,7 @@ type AnnaViewProp = {
 const AnnaView = (props: AnnaViewProp) => {
   const navigation = useNavigation<AnnaStackNavitationProp>();
   const localStackNavigation = useNavigation<AnnaStackNavitationProp>();
+  const generalNavigation = useNavigation();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
@@ -55,6 +56,22 @@ const AnnaView = (props: AnnaViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('focus', () => {
+      console.log('Anna focus');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('blur', () => {
+      console.log('Anna blur');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
 
   const onOpenDrawer = React.useCallback(() => {
     navigation.dispatch(DrawerActions.toggleDrawer());

@@ -40,6 +40,7 @@ type OlafViewProp = {
 };
 const OlafView = (props: OlafViewProp) => {
   const navigation = useNavigation<OlafStackNavitationProp>();
+  const generalNavigation = useNavigation();
 
   const {exampleContextValue} = React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
@@ -58,6 +59,22 @@ const OlafView = (props: OlafViewProp) => {
   React.useEffect(() => {
     console.log(`${title} props.test=${props.test}`);
   }, [props]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('focus', () => {
+      console.log('Olaf focus');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
+
+  React.useEffect(() => {
+    const unsubscribe = generalNavigation.addListener('blur', () => {
+      console.log('Olaf blur');
+    });
+
+    return unsubscribe;
+  }, [generalNavigation]);
 
   return (
     <View
