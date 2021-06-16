@@ -61,19 +61,17 @@ const SvenView = (props: SvenViewProp) => {
   }, [props]);
 
   React.useEffect(() => {
-    const unsubscribe = generalNavigation.addListener('focus', () => {
+    const unsubscribeFocus = generalNavigation.addListener('focus', () => {
       console.log('Sven focus');
     });
-
-    return unsubscribe;
-  }, [generalNavigation]);
-
-  React.useEffect(() => {
-    const unsubscribe = generalNavigation.addListener('blur', () => {
+    const unsubscribeBlur = generalNavigation.addListener('blur', () => {
       console.log('Sven blur');
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribeFocus();
+      unsubscribeBlur();
+    };
   }, [generalNavigation]);
 
   return (
