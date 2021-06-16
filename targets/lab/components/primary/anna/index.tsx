@@ -58,19 +58,17 @@ const AnnaView = (props: AnnaViewProp) => {
   }, [props]);
 
   React.useEffect(() => {
-    const unsubscribe = generalNavigation.addListener('focus', () => {
+    const unsubscribeFocus = generalNavigation.addListener('focus', () => {
       console.log('Anna focus');
     });
-
-    return unsubscribe;
-  }, [generalNavigation]);
-
-  React.useEffect(() => {
-    const unsubscribe = generalNavigation.addListener('blur', () => {
+    const unsubscribeBlur = generalNavigation.addListener('blur', () => {
       console.log('Anna blur');
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribeFocus();
+      unsubscribeBlur();
+    };
   }, [generalNavigation]);
 
   const onOpenDrawer = React.useCallback(() => {
