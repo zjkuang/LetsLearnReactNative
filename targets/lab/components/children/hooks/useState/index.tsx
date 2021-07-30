@@ -12,6 +12,7 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
   const [state, setState] = React.useState<State>('Welcome');
 
   // substates show that changing several states at a time will not cause multiple re-rendering
+  const [substate0, setSubstate0] = React.useState(0);
   const [substate1, setSubstate1] = React.useState(0);
   const [substate2, setSubstate2] = React.useState(0);
   const [substate3, setSubstate3] = React.useState(0);
@@ -28,6 +29,10 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
   }, [navigation]);
 
   React.useEffect(() => {
+    console.log(`${route.params.name} created/updated`);
+  }); // no dependencies provided, it will be executed each time the component is rendered/re-rendered.
+
+  React.useEffect(() => {
     console.log(
       `${route.params.name} componentDidMount -- this is true only when the dependencies is []`,
     );
@@ -36,10 +41,6 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
       console.log(`${route.params.name} componentWillUnmount`);
     };
   }, []);
-
-  React.useEffect(() => {
-    console.log('one or more substates changed');
-  }, [substate1, substate2, substate3]);
 
   React.useEffect(() => {
     console.log(`${route.params.name} componentDidUpdate`);
@@ -57,6 +58,10 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
       ]);
     });
   }, [navigation, state]);
+
+  React.useEffect(() => {
+    console.log('one or more substates changed');
+  }, [substate1, substate2, substate3]);
 
   return (
     <View style={styles.baseView}>
@@ -104,6 +109,13 @@ export const DemoUseStateView = ({navigation, route}: ViewProps) => {
           }}
         />
       )}
+
+      <QuickTestButton
+        title={'Do nothing'}
+        onPress={() => {
+          setSubstate0(substate0); // won't trigger the re-rendering
+        }}
+      />
     </View>
   );
 };
