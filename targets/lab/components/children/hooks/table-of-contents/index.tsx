@@ -18,12 +18,14 @@ export type HooksDemoScreenName =
   | 'UseStateDemo'
   | 'UseEffectDemo'
   | 'UseContextDemo'
-  | 'UseLayoutEffectDemo';
+  | 'UseLayoutEffectDemo'
+  | 'CustomHookDemo';
 type HooksDemoItem =
   | 'useState'
   | 'useEffect'
   | 'useContext'
-  | 'useLayoutEffect';
+  | 'useLayoutEffect'
+  | 'CustomHook';
 type HooksDemoItemExtra = {
   navigationTargetName: HooksDemoScreenName;
   ready: boolean;
@@ -146,6 +148,20 @@ const hooksDemoList: SectionListSection<
       //     ready: false,
       //   },
       // },
+    ],
+  },
+  {
+    title: 'Custom',
+    data: [
+      {
+        index: 0,
+        id: 'CustomHook',
+        title: 'customHook',
+        extra: {
+          navigationTargetName: 'CustomHookDemo',
+          ready: true,
+        },
+      },
     ],
   },
 ];
