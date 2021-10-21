@@ -12,6 +12,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+////////////////////////////////////////////////////////////////
+//
+// *** *** *** *** IMPORTANT!!! *** *** *** ***
+//
+// DON'T FORGET TO ADD THIS PACKAGE IN MainApplications.java
+//   packages.add(new NativeModulesPackage());
+//
+////////////////////////////////////////////////////////////////
+
+// We need only one package to add all the native modules
+
 public class NativeModulesPackage implements ReactPackage {
     @NonNull
     @Override
