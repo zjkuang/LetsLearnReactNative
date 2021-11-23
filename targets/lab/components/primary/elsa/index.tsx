@@ -16,7 +16,6 @@ import {DemoUseStateView} from '../../children/hooks/useState';
 import {DemoUseEffectView} from '../../children/hooks/useEffect';
 import {DemoUseContextView} from '../../children/hooks/useContext';
 import {DemoUseLayoutEffectView} from '../../children/hooks/useLayoutEffect';
-import {DemoCustomHookView} from '../../children/hooks/customHook';
 import {
   ScreensDemoListView,
   ScreensDemoScreenName,
@@ -54,7 +53,6 @@ export type ElsaStackParamList = {
   UseContextDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseLayoutEffectDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   UseCallbackDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
-  CustomHookDemo: HookDemoScreenParamList; // one of HooksDemoScreenName
   ScreensDemoList: {};
   RootStackModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
   LocalReactNativeModalDemo: ScreensDemoScreenParamList; // one of ScreensDemoScreenName
@@ -80,7 +78,6 @@ export const ElsaNavigationView = () => {
         name="UseLayoutEffectDemo"
         component={DemoUseLayoutEffectView}
       />
-      <ElsaStack.Screen name="CustomHookDemo" component={DemoCustomHookView} />
 
       <ElsaStack.Screen
         name="ScreensDemoList"
