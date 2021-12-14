@@ -784,7 +784,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9035DBE1A55DB42DDA435EC /* Pods-LetsLearnReactNative.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MyLab;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -808,7 +808,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF915145BC5095762A32E6A8 /* Pods-LetsLearnReactNative.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = MyLab;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = LetsLearnReactNative/Info.plist;
