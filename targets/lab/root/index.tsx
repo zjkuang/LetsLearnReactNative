@@ -7,15 +7,15 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native';
-import {DrawerView} from '../drawer';
-import {ModalView, ModalViewParamList} from '../modal';
+import {DrawerScreen} from '../screens/drawer';
+import {ModalScreen, ModalScreenParamList} from '../screens/modal';
 import {modalControl} from './style';
 import {ExampleContextProvider} from '../context/example-context';
 import {BannerMask} from '../components/banner-mask';
 
 export type RootStackParamList = {
   Drawer?: {};
-  Modal?: ModalViewParamList; // This defines route.params for Modal component
+  Modal?: ModalScreenParamList; // This defines route.params for Modal component
 };
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -36,8 +36,8 @@ const RootStackView = () => {
             headerMode={headerMode}
             mode={mode}
             screenOptions={screenOptions}>
-            <RootStack.Screen name="Drawer" component={DrawerView} />
-            <RootStack.Screen name="Modal" component={ModalView} />
+            <RootStack.Screen name="Drawer" component={DrawerScreen} />
+            <RootStack.Screen name="Modal" component={ModalScreen} />
           </RootStack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
