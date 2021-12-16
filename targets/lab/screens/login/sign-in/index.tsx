@@ -11,7 +11,7 @@ import {
   QuickTestButton,
 } from '../../../../../common/components/widgets';
 import {SignUpScreenParamList, SignUpScreen} from '../sign-up';
-import {styles} from './style';
+import {commonStyles, styles} from './style';
 
 // Use Prop (instead of ParamList) to register SignInNavigator to its parent navigator so that in case it is loaded as the first child screen it can receive props
 export type SignInNavigatorProp = {
@@ -53,22 +53,17 @@ type SignInScreenProp = {
   email?: string;
   onClose: () => void;
 };
-export const SignInScreen = (prop: SignInScreenProp) => {
+const SignInScreen = (prop: SignInScreenProp) => {
   const signInNavigation = useNavigation<SignInNavitationProp>();
-  const rootNavigation = useNavigation<RootStackNavigationProp>();
   React.useEffect(() => {
     signInNavigation.setOptions({
       headerShown: false,
-      title: 'Sign In',
-      headerTitleStyle: {
-        alignSelf: 'center',
-      },
     });
   }, [signInNavigation]);
 
   const onCancel = React.useCallback(() => {
-    rootNavigation.pop();
-  }, [rootNavigation]);
+    prop.onClose();
+  }, [prop]);
 
   const onSignUp = React.useCallback(() => {
     signInNavigation.navigate('SignUp');
@@ -76,7 +71,11 @@ export const SignInScreen = (prop: SignInScreenProp) => {
 
   return (
     <View style={styles.baseView}>
-      <MockNavigationHeader title={'Sign In'} onCancel={onCancel} />
+      <MockNavigationHeader
+        title={'Sign In'}
+        leftItem={<Text style={commonStyles.iOSButton}>Cancel</Text>}
+        onPressLeftItem={onCancel}
+      />
       {prop.greeting && <Text>{prop.greeting}</Text>}
       <View style={styles.signUpEntrance}>
         <Text>No account yet?</Text>

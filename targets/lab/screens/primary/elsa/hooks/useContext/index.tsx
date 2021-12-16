@@ -11,6 +11,8 @@ import {
 } from '../../../../../context/example-context';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
+const allowSwitchOffSave = false;
+
 type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'UseContextDemo'>;
 export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
   const {exampleContextValue, setExampleContextValue} =
@@ -149,19 +151,21 @@ export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
         />
       </View>
 
-      <View style={styles.groupContainter}>
-        <View style={styles.horizontalContainer}>
-          <Text style={styles.horizontalChild}>{`Save: ${
-            exampleContextValue.persisted === true ? 'ON' : 'OFF'
-          }`}</Text>
+      {allowSwitchOffSave && (
+        <View style={styles.groupContainter}>
+          <View style={styles.horizontalContainer}>
+            <Text style={styles.horizontalChild}>{`Save: ${
+              exampleContextValue.persisted === true ? 'ON' : 'OFF'
+            }`}</Text>
 
-          <TouchableOpacity
-            style={styles.horizontalChild}
-            onPress={onPressSaveSwitch}>
-            <Text style={commonStyles.quickTestButton}>Switch</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.horizontalChild}
+              onPress={onPressSaveSwitch}>
+              <Text style={commonStyles.quickTestButton}>Switch</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      )}
     </View>
   );
 };

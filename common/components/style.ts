@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  iOSButton: {
+    color: color.iOSButtonColorLightTheme,
+  },
   quickTestButton: {
     color: color.iOSButtonColorLightTheme,
     marginHorizontal: 4,
@@ -60,9 +63,11 @@ const styles = StyleSheet.create({
     height: 44,
     alignItems: 'center', // secondary axis
   },
-  mockNavigationHeaderCancelButton: {
+  mockNavigationHeaderLeftItem: {
     left: 8,
-    color: color.iOSButtonColorLightTheme,
+  },
+  mockNavigationHeaderRightItem: {
+    right: 8,
   },
   mockNavigationHeaderTitleContainer: {
     position: 'absolute',

@@ -6,37 +6,51 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import {MainTabNavigator} from '../main';
-import {styles} from './style';
 import {FlatListItemSeparator} from '../../../../common/components/widgets';
 import {IconClose} from '../../../../common/components/icons';
 import {ListItem} from '../../../../common/components/types';
+import {ExampleContext} from '../../context/example-context';
 import {RootStackNavigationProp} from '../../root';
+import {MainTabNavigator} from '../main';
+import {styles} from './style';
 
 type DrawerListItemId = 'login' | 'profile' | 'logout' | 'about';
 type DrawerListItem = ListItem<DrawerListItemId, undefined>;
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const rootNavigation = useNavigation<RootStackNavigationProp>();
+  const {exampleContextValue} = React.useContext(ExampleContext);
 
   const drawerList = React.useMemo(() => {
     const list: DrawerListItem[] = [];
+    let index = 0;
+    if ((exampleContextValue.sesssionToken || '') === '') {
+      list.push({
+        index,
+        id: 'login',
+        title: 'Log In',
+      });
+      index++;
+    } else {
+      list.push({
+        index,
+        id: 'profile',
+        title: 'Profile',
+      });
+      index++;
+      list.push({
+        index,
+        id: 'logout',
+        title: 'Log Out',
+      });
+      index++;
+    }
     list.push({
-      index: 0,
-      id: 'login',
-      title: 'Log In',
-    });
-    list.push({
-      index: 1,
-      id: 'logout',
-      title: 'Log Out',
-    });
-    list.push({
-      index: 2,
+      index,
       id: 'about',
       title: 'About',
     });
     return list;
-  }, []);
+  }, [exampleContextValue.sesssionToken]);
 
   const onPress = React.useCallback(
     (item: DrawerListItem) => {

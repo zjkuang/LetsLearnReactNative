@@ -7,45 +7,57 @@ export const FlatListItemSeparator = () => {
   return <View style={commonStyles.horizontalSeparator} />;
 };
 
-export type QuickTestButtonProps = {
+export type QuickTestButtonProp = {
   title: string;
   onPress: () => void;
   borderless?: boolean;
 };
-export const QuickTestButton = (props: QuickTestButtonProps) => {
+export const QuickTestButton = (prop: QuickTestButtonProp) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={prop.onPress}>
       <Text
         style={
-          props.borderless
+          prop.borderless
             ? commonStyles.quickTestButtonBorderless
             : commonStyles.quickTestButton
         }>
-        {props.title}
+        {prop.title}
       </Text>
     </TouchableOpacity>
   );
 };
 
-export type MockNavigationHeaderProps = {
-  onCancel: () => void;
+export type MockNavigationHeaderProp = {
   title?: string;
+  leftItem?: React.ReactNode;
+  rightItem?: React.ReactNode;
+  onPressLeftItem?: () => void;
+  onPressRightItem?: () => void;
 };
-export const MockNavigationHeader = (props: MockNavigationHeaderProps) => {
+export const MockNavigationHeader = (prop: MockNavigationHeaderProp) => {
   return (
     <View style={commonStyles.mockNavigationHeader}>
-      {props.title && (
+      {prop.title && (
         <View style={commonStyles.mockNavigationHeaderTitleContainer}>
-          <Text>{props.title}</Text>
+          <Text>{prop.title}</Text>
         </View>
       )}
       <View style={commonStyles.mockNavigationHeaderBottomLine} />
-      <View style={commonStyles.mockNavigationHeaderCancelButton}>
-        <QuickTestButton
-          title={'Cancel'}
-          onPress={props.onCancel}
-          borderless={true}
-        />
+      <View style={commonStyles.mockNavigationHeaderLeftItem}>
+        <TouchableOpacity
+          onPress={() => {
+            prop.onPressLeftItem?.();
+          }}>
+          {prop.leftItem}
+        </TouchableOpacity>
+      </View>
+      <View style={commonStyles.mockNavigationHeaderRightItem}>
+        <TouchableOpacity
+          onPress={() => {
+            prop.onPressRightItem?.();
+          }}>
+          {prop.rightItem}
+        </TouchableOpacity>
       </View>
     </View>
   );
