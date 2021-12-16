@@ -114,7 +114,7 @@ export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
           <TouchableOpacity
             style={styles.horizontalChild}
             onPress={onPressSwitchBackgroundColor}>
-            <Text style={commonStyles.textAs_iOS_Button}>Switch</Text>
+            <Text style={commonStyles.quickTestButton}>Switch</Text>
           </TouchableOpacity>
         </View>
 
@@ -158,7 +158,7 @@ export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
           <TouchableOpacity
             style={styles.horizontalChild}
             onPress={onPressSaveSwitch}>
-            <Text style={commonStyles.textAs_iOS_Button}>Switch</Text>
+            <Text style={commonStyles.quickTestButton}>Switch</Text>
           </TouchableOpacity>
         </View>
       </View>

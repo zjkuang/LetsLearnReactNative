@@ -4,13 +4,13 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {styles} from './style';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 import {AnnaDetailsScreen, AnnaDetailsScreenParamList} from './anna-details';
 import {ExampleContext} from '../../../context/example-context';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {IconTableOfContents} from '../../../../../common/components/icons';
+import {styles} from './style';
 
 export type AnnaNavigationParamList = {
   Anna: {}; // navigation root

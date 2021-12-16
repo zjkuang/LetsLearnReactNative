@@ -8,13 +8,15 @@ import {
 } from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native';
 import {DrawerScreen} from '../screens/drawer';
+import {SignInNavigator} from '../screens/login/sign-in';
 import {ModalScreen, ModalScreenParamList} from '../screens/modal';
-import {modalControl} from './style';
 import {ExampleContextProvider} from '../context/example-context';
 import {BannerMask} from '../components/banner-mask';
+import {modalControl} from './style';
 
 export type RootStackParamList = {
   Drawer?: {};
+  SignIn?: {};
   Modal?: ModalScreenParamList; // This defines route.params for Modal component
 };
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -37,6 +39,10 @@ const RootStackView = () => {
             mode={mode}
             screenOptions={screenOptions}>
             <RootStack.Screen name="Drawer" component={DrawerScreen} />
+            <RootStack.Screen
+              name="SignIn"
+              children={() => [<SignInNavigator key={0} />]}
+            />
             <RootStack.Screen name="Modal" component={ModalScreen} />
           </RootStack.Navigator>
         </NavigationContainer>

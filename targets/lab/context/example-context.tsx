@@ -67,7 +67,7 @@ export const ExampleContextProvider = ({children}: Props) => {
   );
 
   React.useEffect(() => {
-    getPreferenceObject(preferencesKeys.pkExampleContextValue).then((value) => {
+    getPreferenceObject(preferencesKeys.pkExampleContextValue).then(value => {
       if (value === null) {
         setExampleContextValue(defaultExampleContext.exampleContextValue);
       } else {

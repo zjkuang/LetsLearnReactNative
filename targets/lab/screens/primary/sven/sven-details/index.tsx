@@ -4,11 +4,11 @@ import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 
-export type SvenDetailsViewProp = {
+export type SvenDetailsScreenProp = {
   test?: string;
 };
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const SvenDetailsView = (props: SvenDetailsViewProp) => {
+export const SvenDetailsScreen = (props: SvenDetailsScreenProp) => {
   const navigation = useNavigation();
 
   React.useLayoutEffect(() => {

@@ -9,12 +9,44 @@ export const FlatListItemSeparator = () => {
 
 export type QuickTestButtonProps = {
   title: string;
-  onPress?: () => void;
+  onPress: () => void;
+  borderless?: boolean;
 };
 export const QuickTestButton = (props: QuickTestButtonProps) => {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <Text style={commonStyles.textAs_iOS_Button}>{props.title}</Text>
+      <Text
+        style={
+          props.borderless
+            ? commonStyles.quickTestButtonBorderless
+            : commonStyles.quickTestButton
+        }>
+        {props.title}
+      </Text>
     </TouchableOpacity>
+  );
+};
+
+export type MockNavigationHeaderProps = {
+  onCancel: () => void;
+  title?: string;
+};
+export const MockNavigationHeader = (props: MockNavigationHeaderProps) => {
+  return (
+    <View style={commonStyles.mockNavigationHeader}>
+      {props.title && (
+        <View style={commonStyles.mockNavigationHeaderTitleContainer}>
+          <Text>{props.title}</Text>
+        </View>
+      )}
+      <View style={commonStyles.mockNavigationHeaderBottomLine} />
+      <View style={commonStyles.mockNavigationHeaderCancelButton}>
+        <QuickTestButton
+          title={'Cancel'}
+          onPress={props.onCancel}
+          borderless={true}
+        />
+      </View>
+    </View>
   );
 };

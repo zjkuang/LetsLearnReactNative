@@ -1,10 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
-import {styles} from './style';
 import {AnnaNavigationParamList} from '..';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+import {styles} from './style';
 
 export type AnnaDetailsScreenParamList = {
   generation?: number;

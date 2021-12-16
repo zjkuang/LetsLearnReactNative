@@ -54,7 +54,7 @@ export const BannerMaskLauncherScreen = () => {
         <TouchableOpacity
           style={styles.horizontalChild}
           onPress={onPressTogglePosition}>
-          <Text style={commonStyles.textAs_iOS_Button}>Switch</Text>
+          <Text style={commonStyles.quickTestButton}>Switch</Text>
         </TouchableOpacity>
       </View>
 

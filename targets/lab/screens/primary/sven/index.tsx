@@ -7,7 +7,7 @@ import {Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../common/components/widgets';
 import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
-import {SvenDetailsView} from './sven-details';
+import {SvenDetailsScreen} from './sven-details';
 import {ExampleContext} from '../../../context/example-context';
 
 type SvenNavigationParamList = {
@@ -30,7 +30,7 @@ export const SvenNavigator = () => {
         <SvenStack.Screen name="Sven" component={SvenScreen} />
       )}
 
-      <SvenStack.Screen name="SvenDetails" component={SvenDetailsView} />
+      <SvenStack.Screen name="SvenDetails" component={SvenDetailsScreen} />
     </SvenStack.Navigator>
   );
 };

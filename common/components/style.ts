@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  textAs_iOS_Button: {
+  quickTestButton: {
     color: color.iOSButtonColorLightTheme,
     marginHorizontal: 4,
     marginVertical: 4,
@@ -39,9 +39,43 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
+  quickTestButtonBorderless: {
+    color: color.iOSButtonColorLightTheme,
+    marginHorizontal: 4,
+    marginVertical: 4,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+  },
   horizontalSeparator: {
     height: 1,
     width: '100%',
+    backgroundColor: '#E0E0E0',
+  },
+  mockNavigationHeader: {
+    flexDirection: 'row',
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: 44,
+    alignItems: 'center', // secondary axis
+  },
+  mockNavigationHeaderCancelButton: {
+    left: 8,
+    color: color.iOSButtonColorLightTheme,
+  },
+  mockNavigationHeaderTitleContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mockNavigationHeaderBottomLine: {
+    position: 'absolute',
+    width: '100%',
+    height: 0.5,
+    bottom: 0,
     backgroundColor: '#E0E0E0',
   },
 });

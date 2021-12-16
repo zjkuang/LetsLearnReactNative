@@ -13,20 +13,44 @@ import {IconClose} from '../../../../common/components/icons';
 import {ListItem} from '../../../../common/components/types';
 import {RootStackNavigationProp} from '../../root';
 
-const drawerList: ListItem<string, undefined>[] = [
-  {
-    index: 0,
-    id: 'feedback',
-    title: 'Feedback',
-  },
-  {
-    index: 1,
-    id: 'about',
-    title: 'About',
-  },
-];
+type DrawerListItemId = 'login' | 'profile' | 'logout' | 'about';
+type DrawerListItem = ListItem<DrawerListItemId, undefined>;
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const rootNavigation = useNavigation<RootStackNavigationProp>();
+
+  const drawerList = React.useMemo(() => {
+    const list: DrawerListItem[] = [];
+    list.push({
+      index: 0,
+      id: 'login',
+      title: 'Log In',
+    });
+    list.push({
+      index: 1,
+      id: 'logout',
+      title: 'Log Out',
+    });
+    list.push({
+      index: 2,
+      id: 'about',
+      title: 'About',
+    });
+    return list;
+  }, []);
+
+  const onPress = React.useCallback(
+    (item: DrawerListItem) => {
+      if (item.id === 'login') {
+        rootNavigation.navigate('SignIn');
+      } else if (item.id === 'logout') {
+        //
+      } else if (item.id === 'about') {
+        rootNavigation.navigate('Modal', {context: 'about'});
+      }
+    },
+    [rootNavigation],
+  );
+
   return (
     <View style={styles.baseView}>
       <View style={styles.rightContainer}>
@@ -43,15 +67,14 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
         data={drawerList}
         ListHeaderComponent={FlatListItemSeparator}
         renderItem={({item}) => {
+          const drawerListItem = item as DrawerListItem;
           return (
             <TouchableOpacity
               onPress={() => {
-                if (item.id === 'about') {
-                  props.navigation.dispatch(DrawerActions.closeDrawer());
-                  rootNavigation.navigate('Modal', {context: 'about'});
-                }
+                props.navigation.dispatch(DrawerActions.closeDrawer());
+                onPress(item);
               }}>
-              <Text style={styles.flatListItem}>{item.title}</Text>
+              <Text style={styles.flatListItem}>{drawerListItem.title}</Text>
             </TouchableOpacity>
           );
         }}
