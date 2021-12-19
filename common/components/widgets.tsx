@@ -11,18 +11,20 @@ export type QuickTestButtonProp = {
   title: string;
   onPress: () => void;
   borderless?: boolean;
+  disabled?: boolean;
 };
 export const QuickTestButton = (prop: QuickTestButtonProp) => {
+  let style: object = commonStyles.quickTestButton;
+  if (prop.borderless) {
+    if (prop.disabled) {
+      style = commonStyles.quickTestButtonBorderlessDisabled;
+    } else {
+      style = commonStyles.quickTestButtonBorderless;
+    }
+  }
   return (
-    <TouchableOpacity onPress={prop.onPress}>
-      <Text
-        style={
-          prop.borderless
-            ? commonStyles.quickTestButtonBorderless
-            : commonStyles.quickTestButton
-        }>
-        {prop.title}
-      </Text>
+    <TouchableOpacity disabled={!!prop.disabled} onPress={prop.onPress}>
+      <Text style={style}>{prop.title}</Text>
     </TouchableOpacity>
   );
 };

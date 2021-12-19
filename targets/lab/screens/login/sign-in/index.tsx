@@ -1,15 +1,18 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TextInput, Alert} from 'react-native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
+import validator from 'validator';
 import {RootStackNavigationProp} from '../../../root';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   MockNavigationHeader,
   QuickTestButton,
 } from '../../../../../common/components/widgets';
+import {signIn} from '../../../models';
 import {SignUpScreenParamList, SignUpScreen} from '../sign-up';
 import {commonStyles, styles} from './style';
 
@@ -55,6 +58,11 @@ type SignInScreenProp = {
 };
 const SignInScreen = (prop: SignInScreenProp) => {
   const signInNavigation = useNavigation<SignInNavitationProp>();
+  const [email, setEmail] = React.useState('');
+  const [codeSent, setCodeSent] = React.useState(false);
+  const [signInResult, setSignInResult] = React.useState('');
+  const [code, setCode] = React.useState('');
+
   React.useEffect(() => {
     signInNavigation.setOptions({
       headerShown: false,
@@ -65,18 +73,69 @@ const SignInScreen = (prop: SignInScreenProp) => {
     prop.onClose();
   }, [prop]);
 
+  const onSignIn = React.useCallback(() => {
+    signIn(email)
+      .then(message => {
+        setSignInResult(message);
+        setCodeSent(true);
+      })
+      .catch(reason => {
+        console.log(`*** Sign-in failed. ${JSON.stringify(reason)}`);
+        Alert.alert('Oops!', 'Something went wrong with this email.');
+      });
+  }, [email]);
+
+  const onVerify = React.useCallback(() => {
+    //
+  }, []);
+
   const onSignUp = React.useCallback(() => {
     signInNavigation.navigate('SignUp');
   }, [signInNavigation]);
 
   return (
-    <View style={styles.baseView}>
+    <KeyboardAwareScrollView contentContainerStyle={styles.baseView}>
       <MockNavigationHeader
         title={'Sign In'}
         leftItem={<Text style={commonStyles.iOSButton}>Cancel</Text>}
         onPressLeftItem={onCancel}
       />
-      {prop.greeting && <Text>{prop.greeting}</Text>}
+      {prop.greeting && <Text style={styles.greeting}>{prop.greeting}</Text>}
+      {!codeSent && (
+        <View style={styles.emailContainer}>
+          <Text style={styles.emailInputLabel}>Email</Text>
+          <TextInput
+            style={styles.emailInputBox}
+            autoCapitalize={'none'}
+            autoCorrect={false}
+            onChangeText={setEmail}
+          />
+          <QuickTestButton
+            title={'Sign In'}
+            onPress={onSignIn}
+            borderless={true}
+            disabled={!validator.isEmail(email.trim()) || codeSent}
+          />
+        </View>
+      )}
+      {codeSent && <Text>{signInResult}</Text>}
+      {codeSent && (
+        <View style={styles.codeContainer}>
+          <Text style={styles.codeInputLabel}>Code</Text>
+          <TextInput
+            style={styles.codeInputBox}
+            autoCapitalize={'none'}
+            autoCorrect={false}
+            onChangeText={setCode}
+          />
+          <QuickTestButton
+            title={'Submit'}
+            onPress={onVerify}
+            borderless={true}
+            disabled={code.length === 0}
+          />
+        </View>
+      )}
       <View style={styles.signUpEntrance}>
         <Text>No account yet?</Text>
         <QuickTestButton
@@ -85,6 +144,6 @@ const SignInScreen = (prop: SignInScreenProp) => {
           borderless={true}
         />
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };

@@ -49,6 +49,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     paddingVertical: 2,
   },
+  quickTestButtonBorderlessDisabled: {
+    color: `${color.iOSButtonColorLightTheme}40`,
+    marginHorizontal: 4,
+    marginVertical: 4,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+  },
   horizontalSeparator: {
     height: 1,
     width: '100%',

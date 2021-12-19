@@ -4,7 +4,7 @@ import {
   savePreferenceObject,
   getPreferenceObject,
 } from '../../../services/async-storage';
-import {AccountInfo} from './account';
+import {AccountInfo} from '../models/account';
 
 // https://medium.com/technofunnel/usecontext-in-react-hooks-aa9a60b8a461
 //   “useContext” hook is used to create common data that can be accessed throughout the component hierarchy without passing the props down manually to each level.
