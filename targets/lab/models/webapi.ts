@@ -60,7 +60,10 @@ function _checkResponseStatus(status: number): ResponseStatus {
   return 'failure';
 }
 
-function _get(url: string, extraHeaders?: object): Promise<object> {
+function _get(
+  url: string,
+  extraHeaders?: object,
+): Promise<Record<string, any>> {
   return new Promise((resolve, reject) => {
     const headers = {
       'content-type': 'application/json',
@@ -126,7 +129,7 @@ function _put(
   url: string,
   body?: object,
   extraHeaders?: object,
-): Promise<object> {
+): Promise<Record<string, any>> {
   return new Promise((resolve, reject) => {
     const headers = {
       'content-type': 'application/json',
@@ -155,7 +158,10 @@ function _put(
   });
 }
 
-function _delete(url: string, extraHeaders?: object): Promise<object> {
+function _delete(
+  url: string,
+  extraHeaders?: object,
+): Promise<Record<string, any>> {
   return new Promise((resolve, reject) => {
     const headers = {
       'content-type': 'application/json',
@@ -185,14 +191,18 @@ function _delete(url: string, extraHeaders?: object): Promise<object> {
 }
 
 interface WebAPI {
-  get: (url: string, headers?: object) => Promise<object>;
+  get: (url: string, headers?: object) => Promise<Record<string, any>>;
   post: (
     url: string,
     body?: object,
     headers?: object,
   ) => Promise<Record<string, any>>;
-  put: (url: string, body?: object, headers?: object) => Promise<object>;
-  delete: (url: string, headers?: object) => Promise<object>;
+  put: (
+    url: string,
+    body?: object,
+    headers?: object,
+  ) => Promise<Record<string, any>>;
+  delete: (url: string, headers?: object) => Promise<Record<string, any>>;
 }
 export const webAPI: WebAPI = {
   get: _get,

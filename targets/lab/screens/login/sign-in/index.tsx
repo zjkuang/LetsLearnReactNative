@@ -8,11 +8,13 @@ import {useNavigation} from '@react-navigation/native';
 import validator from 'validator';
 import {RootStackNavigationProp} from '../../../root';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {isValidString} from '../../../facilities';
 import {
   MockNavigationHeader,
   QuickTestButton,
 } from '../../../../../common/components/widgets';
-import {signIn} from '../../../models';
+import {ExampleContext} from '../../../context/example-context';
+import {signIn, SignInResponse, verifySignInCode} from '../../../models';
 import {SignUpScreenParamList, SignUpScreen} from '../sign-up';
 import {commonStyles, styles} from './style';
 
@@ -58,16 +60,21 @@ type SignInScreenProp = {
 };
 const SignInScreen = (prop: SignInScreenProp) => {
   const signInNavigation = useNavigation<SignInNavitationProp>();
+  const rootNavigation = useNavigation<RootStackNavigationProp>();
   const [email, setEmail] = React.useState('');
+  const [signInResult, setSignInResult] = React.useState<SignInResponse>();
   const [codeSent, setCodeSent] = React.useState(false);
-  const [signInResult, setSignInResult] = React.useState('');
   const [code, setCode] = React.useState('');
+  const {exampleContextValue, setExampleContextValue} =
+    React.useContext(ExampleContext);
 
   React.useEffect(() => {
     signInNavigation.setOptions({
       headerShown: false,
     });
   }, [signInNavigation]);
+
+  const sessionPropsed = isValidString(signInResult?.sessionId);
 
   const onCancel = React.useCallback(() => {
     prop.onClose();
@@ -79,15 +86,35 @@ const SignInScreen = (prop: SignInScreenProp) => {
         setSignInResult(message);
         setCodeSent(true);
       })
-      .catch(reason => {
-        console.log(`*** Sign-in failed. ${JSON.stringify(reason)}`);
+      .catch(_reason => {
         Alert.alert('Oops!', 'Something went wrong with this email.');
       });
   }, [email]);
 
   const onVerify = React.useCallback(() => {
-    //
-  }, []);
+    if (!signInResult?.sessionId) {
+      return;
+    }
+    verifySignInCode(signInResult?.sessionId, code)
+      .then(result => {
+        const newContextValue = {...exampleContextValue};
+        newContextValue.persisted = true;
+        newContextValue.accountInfo = {email};
+        newContextValue.sesssionId = result.sessionId;
+        setExampleContextValue(newContextValue);
+        rootNavigation.pop();
+      })
+      .catch(_reason => {
+        Alert.alert('Oops!', 'Something went wrong with code verification.');
+      });
+  }, [
+    code,
+    email,
+    exampleContextValue,
+    rootNavigation,
+    setExampleContextValue,
+    signInResult,
+  ]);
 
   const onSignUp = React.useCallback(() => {
     signInNavigation.navigate('SignUp');
@@ -101,7 +128,7 @@ const SignInScreen = (prop: SignInScreenProp) => {
         onPressLeftItem={onCancel}
       />
       {prop.greeting && <Text style={styles.greeting}>{prop.greeting}</Text>}
-      {!codeSent && (
+      {!sessionPropsed && (
         <View style={styles.emailContainer}>
           <Text style={styles.emailInputLabel}>Email</Text>
           <TextInput
@@ -118,8 +145,10 @@ const SignInScreen = (prop: SignInScreenProp) => {
           />
         </View>
       )}
-      {codeSent && <Text>{signInResult}</Text>}
-      {codeSent && (
+      {sessionPropsed && isValidString(signInResult?.message) && (
+        <Text>{signInResult?.message}</Text>
+      )}
+      {sessionPropsed && (
         <View style={styles.codeContainer}>
           <Text style={styles.codeInputLabel}>Code</Text>
           <TextInput

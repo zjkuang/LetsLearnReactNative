@@ -37,7 +37,7 @@ type ExampleContextValueType = {
   text: string;
   language: Language;
   backgroundColor: ExampleContextBackgroundColor;
-  sesssionToken: string | undefined;
+  sesssionId: string | undefined;
   accountInfo: AccountInfo | undefined;
 };
 
@@ -53,7 +53,7 @@ const defaultExampleContext: ExampleContextType = {
     text: '',
     language: 'English',
     backgroundColor: 'cyan',
-    sesssionToken: undefined,
+    sesssionId: undefined,
     accountInfo: undefined,
   },
   setExampleContextValue: () => {},

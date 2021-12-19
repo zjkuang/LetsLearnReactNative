@@ -10,6 +10,8 @@ import {FlatListItemSeparator} from '../../../../common/components/widgets';
 import {IconClose} from '../../../../common/components/icons';
 import {ListItem} from '../../../../common/components/types';
 import {ExampleContext} from '../../context/example-context';
+import {logOut} from '../../models';
+import {isValidString} from '../../facilities';
 import {RootStackNavigationProp} from '../../root';
 import {MainTabNavigator} from '../main';
 import {styles} from './style';
@@ -18,12 +20,13 @@ type DrawerListItemId = 'login' | 'profile' | 'logout' | 'about';
 type DrawerListItem = ListItem<DrawerListItemId, undefined>;
 const DrawerContent = (props: DrawerContentComponentProps) => {
   const rootNavigation = useNavigation<RootStackNavigationProp>();
-  const {exampleContextValue} = React.useContext(ExampleContext);
+  const {exampleContextValue, setExampleContextValue} =
+    React.useContext(ExampleContext);
 
   const drawerList = React.useMemo(() => {
     const list: DrawerListItem[] = [];
     let index = 0;
-    if ((exampleContextValue.sesssionToken || '') === '') {
+    if ((exampleContextValue.sesssionId || '') === '') {
       list.push({
         index,
         id: 'login',
@@ -50,19 +53,32 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
       title: 'About',
     });
     return list;
-  }, [exampleContextValue.sesssionToken]);
+  }, [exampleContextValue.sesssionId]);
 
   const onPress = React.useCallback(
     (item: DrawerListItem) => {
       if (item.id === 'login') {
         rootNavigation.navigate('SignIn');
       } else if (item.id === 'logout') {
-        //
+        if (!isValidString(exampleContextValue.sesssionId)) {
+          return;
+        }
+        logOut(exampleContextValue.sesssionId)
+          .then(_result => {
+            const newContextValue = {...exampleContextValue};
+            newContextValue.persisted = true;
+            newContextValue.sesssionId = undefined;
+            newContextValue.accountInfo = undefined;
+            setExampleContextValue(newContextValue);
+          })
+          .catch(_reason => {
+            //
+          });
       } else if (item.id === 'about') {
         rootNavigation.navigate('Modal', {context: 'about'});
       }
     },
-    [rootNavigation],
+    [exampleContextValue, rootNavigation, setExampleContextValue],
   );
 
   return (
