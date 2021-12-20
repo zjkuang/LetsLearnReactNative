@@ -9,15 +9,17 @@ import {
   ExampleContext,
   exampleContextGetNextColorForBackground,
 } from '../../../../../context/example-context';
+import {myObserver, useExampleStore} from '../../../../../stores';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const allowSwitchOffSave = false;
 
 type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'UseContextDemo'>;
-export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
+export const DemoUseContextComponent = ({navigation, route}: ScreenProps) => {
   const {exampleContextValue, setExampleContextValue} =
     React.useContext(ExampleContext);
   const [refresh, setRefresh] = React.useState(0);
+  const {exampleModel} = useExampleStore();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -151,6 +153,27 @@ export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
         />
       </View>
 
+      <View style={styles.groupContainter}>
+        <View style={styles.horizontalContainer}>
+          <QuickTestButton
+            title={'Toggle'}
+            onPress={() => {
+              if (
+                exampleModel.title === '' ||
+                exampleModel.title === exampleModel.title.toLowerCase()
+              ) {
+                console.log('*** case 1');
+                exampleModel.title = 'useStore';
+              } else {
+                console.log('*** case 2');
+                exampleModel.title = exampleModel.title.toLowerCase();
+              }
+            }}
+          />
+          <Text>{exampleModel.title}</Text>
+        </View>
+      </View>
+
       {allowSwitchOffSave && (
         <View style={styles.groupContainter}>
           <View style={styles.horizontalContainer}>
@@ -169,3 +192,5 @@ export const DemoUseContextScreen = ({navigation, route}: ScreenProps) => {
     </View>
   );
 };
+
+export const DemoUseContextScreen = myObserver(DemoUseContextComponent);

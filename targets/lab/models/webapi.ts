@@ -2,7 +2,7 @@ enum ORIGIN {
   localhost = 'http://localhost:3000',
   heroku = 'https://jkuang.herokuapp.com',
 }
-export const origin: ORIGIN = ORIGIN.localhost;
+export const origin: ORIGIN = ORIGIN.heroku;
 
 interface Account {
   info: string; // GET, PUT
