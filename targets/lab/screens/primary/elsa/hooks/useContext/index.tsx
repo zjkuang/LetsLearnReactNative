@@ -154,6 +154,7 @@ export const DemoUseContextComponent = ({navigation, route}: ScreenProps) => {
       </View>
 
       <View style={styles.groupContainter}>
+        <Text>useStore() and observer()</Text>
         <View style={styles.horizontalContainer}>
           <QuickTestButton
             title={'Toggle'}
