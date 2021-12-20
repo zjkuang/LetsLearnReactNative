@@ -158,15 +158,10 @@ export const DemoUseContextComponent = ({navigation, route}: ScreenProps) => {
           <QuickTestButton
             title={'Toggle'}
             onPress={() => {
-              if (
-                exampleModel.title === '' ||
-                exampleModel.title === exampleModel.title.toLowerCase()
-              ) {
-                console.log('*** case 1');
-                exampleModel.title = 'useStore';
+              if (exampleModel.title === '' || exampleModel.title === 'Hello') {
+                exampleModel.title = 'Hi';
               } else {
-                console.log('*** case 2');
-                exampleModel.title = exampleModel.title.toLowerCase();
+                exampleModel.title = 'Hello';
               }
             }}
           />

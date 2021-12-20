@@ -1,30 +1,24 @@
 import React from 'react';
+import {EventRegister} from 'react-native-event-listeners';
+import {GlobalEvents} from '../global/global-events';
 
 interface ExampleModel {
   title: string;
 }
 
-let _setExampleModelState: React.Dispatch<React.SetStateAction<ExampleModel>>;
-
 let _exampleModel: ExampleModel = {
-  title: '',
+  title: 'Hi',
 };
 
 const exampleModel: ExampleModel = ((model: ExampleModel) => {
   return {
     get title() {
-      console.log('*** getter');
       return model.title;
     },
     set title(newTitle: string) {
-      console.log('*** setter');
       if (newTitle !== model.title) {
         model.title = newTitle;
-        console.log(
-          '*** _setExampleModelState:',
-          JSON.stringify(_setExampleModelState),
-        );
-        _setExampleModelState(model);
+        EventRegister.emit(GlobalEvents.StoreUpdated);
       }
     },
   };
@@ -57,23 +51,18 @@ export const myObserver = <Props extends object>(
   Component: React.ComponentType<Props>,
 ): React.FC<Props> => {
   return props => {
-    const [, setExampleModelState] = React.useState<ExampleModel>({title: ''});
-    console.log('*** update');
+    const [refresh, setRefresh] = React.useState(0);
     React.useEffect(() => {
-      _setExampleModelState = setExampleModelState;
-      setExampleModelState(exampleModel);
-      console.log(
-        '*** setExampleModelState:',
-        JSON.stringify(setExampleModelState),
+      const listener = EventRegister.addEventListener(
+        GlobalEvents.StoreUpdated,
+        () => {
+          setRefresh(refresh + 1);
+        },
       );
-      console.log(
-        '*** _setExampleModelState:',
-        JSON.stringify(_setExampleModelState),
-      );
-    }, []);
-    React.useEffect(() => {
-      console.log(`*** exampleModel: ${JSON.stringify(exampleModel)}`);
-    });
+      return () => {
+        EventRegister.removeEventListener(listener as string);
+      };
+    }, [refresh]);
     return (
       <ExampleModelContext.Provider value={defaultExamppleModelContext}>
         <Component {...props} />
