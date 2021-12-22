@@ -4,6 +4,13 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+// To fix " WARN  RCTBridge required dispatch_sync to load RCTDevLoadingView. This may lead to deadlocks"
+//   https://stackoverflow.com/a/48903673/7455975
+//   (1/2)
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#endif
+
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -32,6 +39,14 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+
+// To fix " WARN  RCTBridge required dispatch_sync to load RCTDevLoadingView. This may lead to deadlocks"
+//   https://stackoverflow.com/a/48903673/7455975
+//   (2/2)
+#if RCT_DEV
+  [bridge moduleForClass:[RCTDevLoadingView class]];
+#endif
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"LetsLearnReactNative"
                                             initialProperties:nil];
