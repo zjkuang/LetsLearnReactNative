@@ -27,6 +27,7 @@ import {TranslucentOverlayLauncherScreen} from './screens/translucent-overlay';
 import {BannerMaskLauncherScreen} from './screens/banner-mask-demo';
 import {TopTabDemoScreen} from './screens/top-tab-demo';
 import {NativeModuleDemoScreen} from './screens/native-module-demo';
+import {SplitViewDemoScreen} from './screens/split-view-demo';
 
 //
 //  EEEEE  L       SSSS    A
@@ -60,6 +61,7 @@ export type ElsaNavigationParamList = {
   BannerMaskDemo: {};
   TopTabDemo: {};
   NativeModuleDemo: {};
+  SplitViewDemo: {};
   // more navigation children can be added here
 };
 export type ElsaNavigationProp = StackNavigationProp<ElsaNavigationParamList>;
@@ -108,6 +110,8 @@ export const ElsaNavigator = () => {
         name="NativeModuleDemo"
         component={NativeModuleDemoScreen}
       />
+
+      <ElsaStack.Screen name="SplitViewDemo" component={SplitViewDemoScreen} />
     </ElsaStack.Navigator>
   );
 };

@@ -1,26 +1,29 @@
 import React from 'react';
 import {View, Text, SectionList} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
+import DeviceInfo from 'react-native-device-info';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {
   ListItem,
   SectionListSection,
 } from '../../../../../../../common/components/types';
 import {ElsaNavigationScreenName, ElsaNavigationProp} from '../..';
+import {styles} from './style';
 
 export type ScreensDemoScreenName =
   | 'RootStackModalDemo'
   | 'LocalReactNativeModalDemo'
   | 'TranslucentOverlayDemo'
   | 'BannerMaskDemo'
-  | 'TopTabDemo';
+  | 'TopTabDemo'
+  | 'SplitViewDemo';
 type ScreensDemoItem =
   | 'rootStackModal'
   | 'localReactNativeModal'
   | 'translucentOverlay'
   | 'bannerMask'
-  | 'topTab';
+  | 'topTab'
+  | 'splitView';
 type ScreensDemoItemExtra = {
   navigationTargetName: ScreensDemoScreenName;
   ready: boolean;
@@ -30,71 +33,6 @@ export type ScreensDemoScreenParamList = {
   name: ScreensDemoScreenName;
   title: string;
 };
-
-const screensDemoList: SectionListSection<
-  ListItem<ScreensDemoItem, ScreensDemoItemExtra>
->[] = [
-  {
-    title: 'Modal',
-    data: [
-      {
-        index: 0,
-        id: 'rootStackModal', // ScreensDemoItem
-        title: 'RootStack Modal',
-        extra: {
-          navigationTargetName: 'RootStackModalDemo', // ScreensDemoScreenName
-          ready: true,
-        },
-      },
-      {
-        index: 1,
-        id: 'localReactNativeModal', // ScreensDemoItem
-        title: 'React Native Modal',
-        extra: {
-          navigationTargetName: 'LocalReactNativeModalDemo', // ScreensDemoScreenName
-          ready: true,
-        },
-      },
-    ],
-  },
-  {
-    title: 'Overlay',
-    data: [
-      {
-        index: 0,
-        id: 'translucentOverlay', // ScreensDemoItem
-        title: 'Translucent Overlay',
-        extra: {
-          navigationTargetName: 'TranslucentOverlayDemo', // ScreensDemoScreenName
-          ready: true,
-        },
-      },
-      {
-        index: 1,
-        id: 'bannerMask', // ScreensDemoItem
-        title: 'Banner Mask',
-        extra: {
-          navigationTargetName: 'BannerMaskDemo', // ScreensDemoScreenName
-          ready: true,
-        },
-      },
-    ],
-  },
-  {
-    title: 'TopTab',
-    data: [
-      {
-        index: 0,
-        id: 'topTab', // ScreensDemoItem
-        title: 'Top Tab',
-        extra: {
-          navigationTargetName: 'TopTabDemo', // ScreensDemoScreenName
-          ready: true,
-        },
-      },
-    ],
-  },
-];
 
 export const ScreensDemoListScreen = () => {
   const navigation = useNavigation();
@@ -108,6 +46,89 @@ export const ScreensDemoListScreen = () => {
       },
     });
   }, [navigation]);
+
+  const screensDemoList = React.useMemo(() => {
+    const list: SectionListSection<
+      ListItem<ScreensDemoItem, ScreensDemoItemExtra>
+    >[] = [];
+    list.push({
+      title: 'Modal',
+      data: [
+        {
+          index: 0,
+          id: 'rootStackModal', // ScreensDemoItem
+          title: 'RootStack Modal',
+          extra: {
+            navigationTargetName: 'RootStackModalDemo', // ScreensDemoScreenName
+            ready: true,
+          },
+        },
+        {
+          index: 1,
+          id: 'localReactNativeModal', // ScreensDemoItem
+          title: 'React Native Modal',
+          extra: {
+            navigationTargetName: 'LocalReactNativeModalDemo', // ScreensDemoScreenName
+            ready: true,
+          },
+        },
+      ],
+    });
+    list.push({
+      title: 'Overlay',
+      data: [
+        {
+          index: 0,
+          id: 'translucentOverlay', // ScreensDemoItem
+          title: 'Translucent Overlay',
+          extra: {
+            navigationTargetName: 'TranslucentOverlayDemo', // ScreensDemoScreenName
+            ready: true,
+          },
+        },
+        {
+          index: 1,
+          id: 'bannerMask', // ScreensDemoItem
+          title: 'Banner Mask',
+          extra: {
+            navigationTargetName: 'BannerMaskDemo', // ScreensDemoScreenName
+            ready: true,
+          },
+        },
+      ],
+    });
+    list.push({
+      title: 'TopTab',
+      data: [
+        {
+          index: 0,
+          id: 'topTab', // ScreensDemoItem
+          title: 'Top Tab',
+          extra: {
+            navigationTargetName: 'TopTabDemo', // ScreensDemoScreenName
+            ready: true,
+          },
+        },
+      ],
+    });
+    if (DeviceInfo.isTablet()) {
+      list.push({
+        title: 'SplitView',
+        data: [
+          {
+            index: 0,
+            id: 'splitView', // ScreensDemoItem
+            title: 'Split View',
+            extra: {
+              navigationTargetName: 'SplitViewDemo', // ScreensDemoScreenName
+              ready: true,
+            },
+          },
+        ],
+      });
+    }
+    return list;
+  }, []);
 
   return (
     <View style={styles.baseView}>
