@@ -1,5 +1,6 @@
 `npx react-native upgrade`
 `yarn upgrade`
+// `yarn upgrade` doesn't update a major version. It will upgrade from 15 to 15.6 something but not to 16.0 for that you should use `yarn upgrade --latest`
 `rm -rf node_modules`
 `yarn install`
 
