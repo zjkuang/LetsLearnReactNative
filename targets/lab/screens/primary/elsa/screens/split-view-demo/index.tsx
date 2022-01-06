@@ -1,8 +1,9 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {View, Text} from 'react-native';
-import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaNavigationParamList} from '../..';
+import {styles} from './style';
 
 type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'SplitViewDemo'>;
 export const SplitViewDemoScreen = ({navigation}: ScreenProps) => {
