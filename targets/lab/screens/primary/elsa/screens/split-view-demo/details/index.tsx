@@ -1,8 +1,11 @@
 import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import {setDetailsNavigator} from '../../../../../../navigation/details-navigator';
+import {withSystemBackFix} from '../../../../../../navigation/withSystemBackFix';
 import {ProfileScreenParamList, ProfileScreen} from './profile';
 import {AvatarScreenParamList, AvatarScreen} from './avatar';
 
@@ -18,9 +21,17 @@ export type DetailsNavigationProp =
 export const DetailsStackComponent = () => {
   const initialRouteName: DetailsNavigationScreenName = 'Profile';
   return (
-    <DetailsStack.Navigator initialRouteName={initialRouteName}>
-      <DetailsStack.Screen name="Profile" component={ProfileScreen} />
-      <DetailsStack.Screen name="Avatar" component={AvatarScreen} />
-    </DetailsStack.Navigator>
+    <NavigationContainer independent ref={setDetailsNavigator}>
+      <DetailsStack.Navigator initialRouteName={initialRouteName}>
+        <DetailsStack.Screen
+          name="Profile"
+          component={withSystemBackFix(ProfileScreen)}
+        />
+        <DetailsStack.Screen
+          name="Avatar"
+          component={withSystemBackFix(AvatarScreen)}
+        />
+      </DetailsStack.Navigator>
+    </NavigationContainer>
   );
 };

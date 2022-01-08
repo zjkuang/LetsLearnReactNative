@@ -1,9 +1,21 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {View, Text} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
+import {isTablet} from 'react-native-device-info';
+import {useSystemBack} from '../../../../../navigation/useSystemBack';
+import {SplitView} from '../../../../../components/split-view';
 import {ElsaNavigationParamList} from '../..';
+import {MasterStackComponent} from './master';
+import {DetailsStackComponent} from './details';
 import {styles} from './style';
+
+const SplitViewComponent = () => {
+  useSystemBack();
+
+  return (
+    <SplitView master={MasterStackComponent} detail={DetailsStackComponent} />
+  );
+};
 
 type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'SplitViewDemo'>;
 export const SplitViewDemoScreen = ({navigation}: ScreenProps) => {
@@ -16,9 +28,9 @@ export const SplitViewDemoScreen = ({navigation}: ScreenProps) => {
     });
   }, [navigation]);
 
-  return (
-    <View style={styles.baseView}>
-      <Text>Split View</Text>
-    </View>
-  );
+  if (isTablet()) {
+    return <SplitViewComponent />;
+  }
+
+  return <MasterStackComponent />;
 };
