@@ -1,4 +1,4 @@
-import Navigator from './Navigator';
+const Navigator = require('./navigator');
 
 export const {
   isMounted: isDetailsNavigatorMounted,

@@ -1,3 +1,3 @@
-import Navigator from './Navigator';
+const Navigator = require('./navigator');
 
 export const {push, setNavigator: setMasterNavigator} = new Navigator();
