@@ -19,10 +19,7 @@ type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'SplitViewDemo'>;
 export const SplitViewDemoScreen = ({navigation}: ScreenProps) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Split View',
-      headerTitleStyle: {
-        alignSelf: 'center',
-      },
+      headerShown: false,
     });
   }, [navigation]);
 

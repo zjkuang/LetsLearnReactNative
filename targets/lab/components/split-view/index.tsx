@@ -9,6 +9,7 @@ type SplitViewProp = {
 export const SplitView = ({master, detail}: SplitViewProp) => (
   <View style={styles.base}>
     <View style={styles.masterView}>{master}</View>
+    <View style={styles.separatorView} />
     <View style={styles.detailView}>{detail}</View>
   </View>
 );

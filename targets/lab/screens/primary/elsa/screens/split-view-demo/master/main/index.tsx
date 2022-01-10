@@ -3,6 +3,7 @@ import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import {ListItem} from '../../../../../../../../../common/components/types';
+import {FlatListItemSeparator} from '../../../../../../../../../common/components/widgets';
 import {MasterNavigationProp} from '..';
 import {styles} from './style';
 
@@ -72,6 +73,7 @@ export const MainScreen = () => {
             </TouchableOpacity>
           );
         }}
+        ItemSeparatorComponent={FlatListItemSeparator}
         keyExtractor={item => `${item.id}`}
       />
     </View>

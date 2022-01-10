@@ -8,6 +8,7 @@ import {
 const styles = StyleSheet.create({
   baseView: {
     ...commonStyles.fullSize,
+    ...commonStyles.contentAlignmentCenter,
   },
 });
 
