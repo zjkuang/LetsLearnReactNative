@@ -26,6 +26,7 @@ export const DetailsStackComponent = () => {
         <DetailsStack.Screen
           name="Profile"
           component={withSystemBackFix(ProfileScreen)}
+          options={{headerLeft: _props => null}}
         />
         <DetailsStack.Screen
           name="Avatar"
