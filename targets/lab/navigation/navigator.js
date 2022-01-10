@@ -1,16 +1,16 @@
 import {StackActions, CommonActions} from '@react-navigation/native';
 
 class Navigator {
-  navigator = undefined;
+  navigator = null;
 
   setNavigator = navigatorInstance => {
     this.navigator = navigatorInstance;
   };
 
-  isMounted = () => !!this.navigator;
+  isMounted = () => Boolean(this.navigator);
 
   dispatch = action => {
-    this.navigator?.dispatch(action);
+    this.navigator.dispatch(action);
   };
 
   navigate = (screenName, params) =>
