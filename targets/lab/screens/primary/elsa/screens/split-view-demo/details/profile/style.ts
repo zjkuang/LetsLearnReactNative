@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  intro: {
+    margin: 8,
+  },
 });
 
 export {styles, commonStyles, positioning, color};

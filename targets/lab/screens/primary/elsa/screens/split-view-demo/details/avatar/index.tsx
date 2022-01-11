@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {ExampleSplitViewContext} from '../../../../../../../context/example-split-view-context';
 import {DetailsNavigationProp} from '..';
@@ -24,9 +24,23 @@ export const AvatarScreen = () => {
     });
   }, [detailsNavigation, exampleSplitViewContextValue.selectedItemInMain]);
 
+  const asset = React.useMemo(() => {
+    if (exampleSplitViewContextValue.selectedItemInMain === 'Anna') {
+      return require('./Anna.jpg');
+    } else if (exampleSplitViewContextValue.selectedItemInMain === 'Kristoff') {
+      return require('./Kristoff.jpg');
+    } else if (exampleSplitViewContextValue.selectedItemInMain === 'Olaf') {
+      return require('./Olaf.jpg');
+    } else if (exampleSplitViewContextValue.selectedItemInMain === 'Sven') {
+      return require('./Sven.jpg');
+    } else {
+      return require('./No-Image-Placeholder.png');
+    }
+  }, [exampleSplitViewContextValue.selectedItemInMain]);
+
   return (
     <View style={styles.baseView}>
-      <Text>Avatar</Text>
+      <Image source={asset} />
     </View>
   );
 };
