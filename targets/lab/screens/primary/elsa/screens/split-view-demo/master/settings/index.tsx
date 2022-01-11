@@ -22,7 +22,7 @@ export const SettingsScreen = () => {
 
   return (
     <View style={styles.baseView}>
-      <Text>Settings</Text>
+      <Text>Settings (Main)</Text>
     </View>
   );
 };

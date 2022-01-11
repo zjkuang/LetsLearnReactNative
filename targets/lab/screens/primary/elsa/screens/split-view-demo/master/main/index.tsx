@@ -31,8 +31,17 @@ export const MainScreen = () => {
       const newContext = {...exampleSplitViewContextValue};
       newContext.selectedItemInMain = item;
       setExampleSplitViewContextValue(newContext);
+
+      if (item === 'Settings') {
+        masterNavigation.push('Setting', {});
+        return;
+      }
     },
-    [exampleSplitViewContextValue, setExampleSplitViewContextValue],
+    [
+      exampleSplitViewContextValue,
+      masterNavigation,
+      setExampleSplitViewContextValue,
+    ],
   );
 
   React.useEffect(() => {

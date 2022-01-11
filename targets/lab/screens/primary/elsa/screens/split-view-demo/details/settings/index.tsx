@@ -5,11 +5,10 @@ import {ExampleSplitViewContext} from '../../../../../../../context/example-spli
 import {DetailsNavigationProp} from '..';
 import {styles} from './style';
 
-export type AvatarScreenParamList = {
+export type SettingsScreenParamList = {
   //
 };
-
-export const AvatarScreen = () => {
+export const SettingsScreen = () => {
   const detailsNavigation = useNavigation<DetailsNavigationProp>();
   const {exampleSplitViewContextValue} = React.useContext(
     ExampleSplitViewContext,
@@ -26,7 +25,7 @@ export const AvatarScreen = () => {
 
   return (
     <View style={styles.baseView}>
-      <Text>Avatar</Text>
+      <Text>Settings (Details)</Text>
     </View>
   );
 };
