@@ -1,13 +1,13 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {QuickTestButton} from '../../../../../../../../../common/components/widgets';
 import {DetailsNavigationProp} from '..';
 import {styles} from './style';
 
 export type ProfileScreenParamList = {
   //
 };
-
 export const ProfileScreen = () => {
   const detailsNavigation = useNavigation<DetailsNavigationProp>();
 
@@ -23,6 +23,12 @@ export const ProfileScreen = () => {
   return (
     <View style={styles.baseView}>
       <Text>Profile</Text>
+      <QuickTestButton
+        title={'Avatar'}
+        onPress={() => {
+          detailsNavigation.push('Avatar', {});
+        }}
+      />
     </View>
   );
 };

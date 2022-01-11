@@ -13,6 +13,7 @@ export type MainScreenParamList = {
 
 export const MainScreen = () => {
   const masterNavigation = useNavigation<MasterNavigationProp>();
+  const [selectedItem, setSelectedItem] = React.useState<string>();
 
   React.useLayoutEffect(() => {
     masterNavigation.setOptions({
@@ -22,6 +23,16 @@ export const MainScreen = () => {
       },
     });
   }, [masterNavigation]);
+
+  const select = React.useCallback((item: string) => {
+    setSelectedItem(item);
+  }, []);
+
+  React.useEffect(() => {
+    if (selectedItem === undefined) {
+      select('Anna');
+    }
+  }, [select, selectedItem]);
 
   const list = React.useMemo(() => {
     const l: ListItem<number, string>[] = [
@@ -64,12 +75,13 @@ export const MainScreen = () => {
       <FlatList
         data={list}
         renderItem={({item}) => {
+          const itemStyle = item.title === selectedItem ? {color: 'red'} : {};
           return (
             <TouchableOpacity
               onPress={() => {
-                //
+                select(item.title);
               }}>
-              <Text style={styles.flatListItem}>{item.title}</Text>
+              <Text style={[styles.flatListItem, itemStyle]}>{item.title}</Text>
             </TouchableOpacity>
           );
         }}

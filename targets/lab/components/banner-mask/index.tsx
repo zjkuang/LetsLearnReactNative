@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from './style';
 import {EventRegister} from 'react-native-event-listeners';
 import {GlobalEvents} from '../../global/global-events';
+import {styles} from './style';
 
 export type BannerMaskPosition = 'bottom' | 'top';
 export type BannerMaskSpec = {

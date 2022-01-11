@@ -20,6 +20,7 @@ export type DetailsNavigationProp =
   StackNavigationProp<DetailsNavigationParamList>; // for useNavigation
 export const DetailsStackComponent = () => {
   const initialRouteName: DetailsNavigationScreenName = 'Profile';
+
   return (
     <NavigationContainer independent ref={setDetailsNavigator}>
       <DetailsStack.Navigator initialRouteName={initialRouteName}>
