@@ -13,7 +13,10 @@ const SplitViewComponent = () => {
 
   return (
     <ExampleSplitViewContextProvider>
-      <SplitView master={<MasterStackComponent />} detail={<DetailsStackComponent />} />
+      <SplitView
+        master={<MasterStackComponent />}
+        detail={<DetailsStackComponent />}
+      />
     </ExampleSplitViewContextProvider>
   );
 };
