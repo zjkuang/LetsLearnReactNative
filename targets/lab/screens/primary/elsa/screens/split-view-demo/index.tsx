@@ -1,6 +1,7 @@
 import React from 'react';
 import {StackScreenProps} from '@react-navigation/stack';
 import {isTablet} from 'react-native-device-info';
+import {ExampleSplitViewContextProvider} from '../../../../../context/example-split-view-context';
 import {useSystemBack} from '../../../../../navigation/useSystemBack';
 import {SplitView} from '../../../../../components/split-view';
 import {ElsaNavigationParamList} from '../..';
@@ -11,7 +12,9 @@ const SplitViewComponent = () => {
   useSystemBack();
 
   return (
-    <SplitView master={<MasterStackComponent />} detail={<DetailsStackComponent />} />
+    <ExampleSplitViewContextProvider>
+      <SplitView master={<MasterStackComponent />} detail={<DetailsStackComponent />} />
+    </ExampleSplitViewContextProvider>
   );
 };
 

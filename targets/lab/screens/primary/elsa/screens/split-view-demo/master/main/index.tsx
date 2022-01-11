@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import {ExampleSplitViewContext} from '../../../../../../../context/example-split-view-context';
 import {ListItem} from '../../../../../../../../../common/components/types';
 import {FlatListItemSeparator} from '../../../../../../../../../common/components/widgets';
 import {MasterNavigationProp} from '..';
@@ -13,7 +14,8 @@ export type MainScreenParamList = {
 
 export const MainScreen = () => {
   const masterNavigation = useNavigation<MasterNavigationProp>();
-  const [selectedItem, setSelectedItem] = React.useState<string>();
+  const {exampleSplitViewContextValue, setExampleSplitViewContextValue} =
+    React.useContext(ExampleSplitViewContext);
 
   React.useLayoutEffect(() => {
     masterNavigation.setOptions({
@@ -24,15 +26,20 @@ export const MainScreen = () => {
     });
   }, [masterNavigation]);
 
-  const select = React.useCallback((item: string) => {
-    setSelectedItem(item);
-  }, []);
+  const select = React.useCallback(
+    (item: string) => {
+      const newContext = {...exampleSplitViewContextValue};
+      newContext.selectedItemInMain = item;
+      setExampleSplitViewContextValue(newContext);
+    },
+    [exampleSplitViewContextValue, setExampleSplitViewContextValue],
+  );
 
   React.useEffect(() => {
-    if (selectedItem === undefined) {
+    if (exampleSplitViewContextValue.selectedItemInMain === undefined) {
       select('Anna');
     }
-  }, [select, selectedItem]);
+  }, [exampleSplitViewContextValue.selectedItemInMain, select]);
 
   const list = React.useMemo(() => {
     const l: ListItem<number, string>[] = [
@@ -75,7 +82,10 @@ export const MainScreen = () => {
       <FlatList
         data={list}
         renderItem={({item}) => {
-          const itemStyle = item.title === selectedItem ? {color: 'red'} : {};
+          const itemStyle =
+            item.title === exampleSplitViewContextValue.selectedItemInMain
+              ? {color: 'red'}
+              : {};
           return (
             <TouchableOpacity
               onPress={() => {
