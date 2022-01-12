@@ -8,6 +8,8 @@ import {ElsaNavigationParamList} from '../..';
 import {MasterStackComponent} from './master';
 import {DetailsStackComponent} from './details';
 
+// JavaScript example: https://github.com/zjkuang/react-native-split-view-demo
+
 const SplitViewComponent = () => {
   useSystemBack();
 
