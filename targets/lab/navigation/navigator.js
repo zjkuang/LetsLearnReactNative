@@ -1,5 +1,7 @@
 import {StackActions, CommonActions} from '@react-navigation/native';
 
+// JavaScript example: https://github.com/zjkuang/react-native-split-view-demo
+
 class Navigator {
   navigator = null;
 
