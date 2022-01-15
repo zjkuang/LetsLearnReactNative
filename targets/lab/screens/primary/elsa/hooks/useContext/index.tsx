@@ -166,7 +166,7 @@ export const DemoUseContextComponent = ({navigation, route}: ScreenProps) => {
               }
             }}
           />
-          <Text>{exampleModel.title}</Text>
+          <Text style={styles.toggleText}>{exampleModel.title}</Text>
         </View>
       </View>
 

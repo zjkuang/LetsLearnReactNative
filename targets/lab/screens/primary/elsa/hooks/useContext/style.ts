@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
   horizontalChild: {
     marginHorizontal: 4,
   },
+  toggleText: {
+    width: 60,
+    marginHorizontal: 8,
+  },
 });
 
 export {styles, commonStyles, positioning, color};
