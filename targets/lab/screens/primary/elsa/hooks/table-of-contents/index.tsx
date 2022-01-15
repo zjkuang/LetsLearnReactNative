@@ -15,12 +15,14 @@ export type HooksDemoScreenName =
   | 'UseStateDemo'
   | 'UseEffectDemo'
   | 'UseContextDemo'
-  | 'UseLayoutEffectDemo';
+  | 'UseLayoutEffectDemo'
+  | 'UseImperativeHandleDemo';
 type HooksDemoItem =
   | 'useState'
   | 'useEffect'
   | 'useContext'
-  | 'useLayoutEffect';
+  | 'useLayoutEffect'
+  | 'useImperativeHandle';
 type HooksDemoItemExtra = {
   navigationTargetName: HooksDemoScreenName;
   ready: boolean;
@@ -89,35 +91,17 @@ const hooksDemoList: SectionListSection<
           ready: true,
         },
       },
-      // {
-      //   index: 1,
-      //   id: 'useCallback', // HooksDemoItem
-      //   title: 'useCallback',
-      //   extra: {
-      //     navigationTargetName: 'UseCallbackDemo', // HooksDemoScreenName
-      //     ready: false,
-      //   },
-      // },
-      // {
-      //   index: 2,
-      //   id: 'useRef', // HooksDemoItem
-      //   title: 'useRef',
-      //   extra: {
-      //     navigationTargetName: 'UseRefDemo', // HooksDemoScreenName
-      //     ready: false,
-      //   },
-      // },
+      {
+        index: 1,
+        id: 'useImperativeHandle', // HooksDemoItem
+        title: 'useImperativeHandle',
+        extra: {
+          navigationTargetName: 'UseImperativeHandleDemo', // HooksDemoScreenName
+          ready: true,
+        },
+      },
       // {
       //   index: 3,
-      //   id: 'useMemo', // HooksDemoItem
-      //   title: 'useMemo',
-      //   extra: {
-      //     navigationTargetName: 'UseMemoDemo', // HooksDemoScreenName
-      //     ready: true,
-      //   },
-      // },
-      // {
-      //   index: 4,
       //   id: 'useReducer', // HooksDemoItem
       //   title: 'useReducer',
       //   extra: {
@@ -126,16 +110,7 @@ const hooksDemoList: SectionListSection<
       //   },
       // },
       // {
-      //   index: 5,
-      //   id: 'useImperativeHandle', // HooksDemoItem
-      //   title: 'useImperativeHandle',
-      //   extra: {
-      //     navigationTargetName: 'UseImperativeHandleDemo', // HooksDemoScreenName
-      //     ready: false,
-      //   },
-      // },
-      // {
-      //   index: 6,
+      //   index: 4,
       //   id: 'useDebugValue', // HooksDemoItem
       //   title: 'useDebugValue',
       //   extra: {
@@ -173,6 +148,7 @@ export const HooksDemoListScreen = () => {
                 let navigationTargetName = item.extra
                   ?.navigationTargetName as ElsaNavigationScreenName;
                 if (!navigationTargetName || !item.extra?.ready) {
+                  console.log('*** push blocked');
                   return;
                 }
                 elsaNavigation.push(navigationTargetName, {
