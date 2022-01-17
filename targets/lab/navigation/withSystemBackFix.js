@@ -4,12 +4,12 @@ import {useSystemBack} from './useSystemBack';
 
 // JavaScript example: https://github.com/zjkuang/react-native-split-view-demo
 
-export function withSystemBackFix(Comp: React.ElementType) {
-  if (Platform.OS === 'android') {
-    return React.forwardRef((props, ref) => {
+export const withSystemBackFix = Comp =>
+  Platform.select({
+    android: React.forwardRef((props, ref) => {
       useSystemBack();
+
       return <Comp ref={ref} {...props} />;
-    });
-  }
-  return Comp;
-}
+    }),
+    default: Comp,
+  });

@@ -26,15 +26,15 @@ export const AvatarScreen = () => {
 
   const asset = React.useMemo(() => {
     if (exampleSplitViewContextValue.selectedItemInMain === 'Anna') {
-      return require('./Anna.jpg');
+      return require('./images/Anna.jpg');
     } else if (exampleSplitViewContextValue.selectedItemInMain === 'Kristoff') {
-      return require('./Kristoff.jpg');
+      return require('./images/Kristoff.jpg');
     } else if (exampleSplitViewContextValue.selectedItemInMain === 'Olaf') {
-      return require('./Olaf.jpg');
+      return require('./images/Olaf.jpg');
     } else if (exampleSplitViewContextValue.selectedItemInMain === 'Sven') {
-      return require('./Sven.jpg');
+      return require('./images/Sven.jpg');
     } else {
-      return require('./No-Image-Placeholder.png');
+      return require('./images/No-Image-Placeholder.png');
     }
   }, [exampleSplitViewContextValue.selectedItemInMain]);
 
