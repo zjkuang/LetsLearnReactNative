@@ -1,0 +1,13 @@
+(1) react-native can't build ios: (error xcode Flipper) Typedef redefinition with different types ('uint8_t' (aka 'unsigned char') vs 'enum clockid_t')
+
+https://stackoverflow.com/a/70151794/7455975
+
+Change Podfile like below:
+
+  post_install do |installer|
+    react_native_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    `sed -i -e  $'s/__IPHONE_10_0/__IPHONE_12_0/' Pods/RCT-Folly/folly/portability/Time.h`
+  end
+
+//////
