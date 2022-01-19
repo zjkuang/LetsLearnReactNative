@@ -7,6 +7,7 @@ import {ReactNativeModalView} from './modal';
 
 export const LocalReactNativeModalLauncherScreen = () => {
   const navigation = useNavigation();
+  const [inModalNavigation, setInModalNavigation] = React.useState(false);
   const [localModalVisible, setLocalModalVisible] = React.useState(false);
 
   React.useLayoutEffect(() => {
@@ -27,6 +28,14 @@ export const LocalReactNativeModalLauncherScreen = () => {
       <QuickTestButton
         title={'Show React Native Modal'}
         onPress={() => {
+          setInModalNavigation(false);
+          setLocalModalVisible(true);
+        }}
+      />
+      <QuickTestButton
+        title={'Show In-modal Navitation'}
+        onPress={() => {
+          setInModalNavigation(true);
           setLocalModalVisible(true);
         }}
       />
@@ -35,6 +44,7 @@ export const LocalReactNativeModalLauncherScreen = () => {
         <ReactNativeModalView
           visible={localModalVisible}
           onClose={onLocalModalClose}
+          testInModalNavigation={inModalNavigation}
         />
       )}
     </View>
