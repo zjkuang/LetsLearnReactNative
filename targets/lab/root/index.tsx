@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {SafeAreaView, View, Text} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {SafeAreaView} from 'react-native';
 import {initializeFirebase} from '../../../services/firebase';
 import {requestUserPermission} from '../../../services/permissions';
 import {DrawerScreen} from '../screens/drawer';
@@ -15,6 +15,7 @@ import {ModalScreen, ModalScreenParamList} from '../screens/modal';
 import {ExampleContextProvider} from '../context/example-context';
 import {BannerMask} from '../components/banner-mask';
 import {modalControl} from './style';
+import {styles} from '../screens/primary/anna/anna-details/style';
 
 export type RootStackParamList = {
   Drawer?: {};
@@ -33,15 +34,20 @@ const RootStackView = () => {
   const headerMode: 'float' | 'screen' | 'none' = 'none';
   const {mode, screenOptions} = modalControl();
 
+  const [firebaseInitialized, setFirebaseInitialized] = React.useState(false);
+
   React.useEffect(() => {
-    initializeFirebase().then(() => {
-      requestUserPermission();
-    });
-  }, []);
+    if (!firebaseInitialized) {
+      initializeFirebase().then(() => {
+        setFirebaseInitialized(true);
+        requestUserPermission();
+      });
+    }
+  }, [firebaseInitialized]);
 
   return (
-    <>
-      <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
+      {firebaseInitialized ? (
         <NavigationContainer>
           <RootStack.Navigator
             headerMode={headerMode}
@@ -55,8 +61,12 @@ const RootStackView = () => {
             <RootStack.Screen name="Modal" component={ModalScreen} />
           </RootStack.Navigator>
         </NavigationContainer>
-      </SafeAreaView>
-    </>
+      ) : (
+        <View style={styles.baseView}>
+          <Text>Initializing Firebase...</Text>
+        </View>
+      )}
+    </SafeAreaView>
   );
 };
 
