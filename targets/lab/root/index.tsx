@@ -7,8 +7,11 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {initializeFirebase} from '../../../services/firebase';
-import {requestUserPermission} from '../../../services/permissions';
+import {
+  initializeFirebase,
+  getCloudMessagingToken,
+} from '../../../services/Firebase';
+import {requestUserPermission} from '../../../services/Firebase/messaging';
 import {DrawerScreen} from '../screens/drawer';
 import {SignInNavigator} from '../screens/login/sign-in';
 import {ModalScreen, ModalScreenParamList} from '../screens/modal';
@@ -40,7 +43,13 @@ const RootStackView = () => {
     if (!firebaseInitialized) {
       initializeFirebase().then(() => {
         setFirebaseInitialized(true);
-        requestUserPermission();
+        requestUserPermission()
+          .catch(_reason => {})
+          .finally(() => {
+            getCloudMessagingToken().then(token => {
+              console.log('getCloudMessagingToken():', token);
+            });
+          });
       });
     }
   }, [firebaseInitialized]);
