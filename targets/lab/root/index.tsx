@@ -7,6 +7,8 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {SafeAreaView} from 'react-native';
+import {initializeFirebase} from '../../../services/firebase';
+import {requestUserPermission} from '../../../services/permissions';
 import {DrawerScreen} from '../screens/drawer';
 import {SignInNavigator} from '../screens/login/sign-in';
 import {ModalScreen, ModalScreenParamList} from '../screens/modal';
@@ -30,6 +32,13 @@ const RootStackView = () => {
   //
   const headerMode: 'float' | 'screen' | 'none' = 'none';
   const {mode, screenOptions} = modalControl();
+
+  React.useEffect(() => {
+    initializeFirebase().then(() => {
+      requestUserPermission();
+    });
+  }, []);
+
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
