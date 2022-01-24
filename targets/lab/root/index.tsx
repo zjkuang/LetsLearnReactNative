@@ -1,18 +1,25 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {SafeAreaView, View, Text, Alert} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {SafeAreaView} from 'react-native';
+import messaging from '@react-native-firebase/messaging';
+import {
+  initializeFirebase,
+  getCloudMessagingToken,
+} from '../../../services/Firebase';
+import {requestUserPermission} from '../../../services/Firebase/messaging';
 import {DrawerScreen} from '../screens/drawer';
 import {SignInNavigator} from '../screens/login/sign-in';
 import {ModalScreen, ModalScreenParamList} from '../screens/modal';
 import {ExampleContextProvider} from '../context/example-context';
 import {BannerMask} from '../components/banner-mask';
 import {modalControl} from './style';
+import {styles} from '../screens/primary/anna/anna-details/style';
 
 export type RootStackParamList = {
   Drawer?: {};
@@ -30,9 +37,34 @@ const RootStackView = () => {
   //
   const headerMode: 'float' | 'screen' | 'none' = 'none';
   const {mode, screenOptions} = modalControl();
+
+  const [firebaseInitialized, setFirebaseInitialized] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!firebaseInitialized) {
+      initializeFirebase().then(() => {
+        setFirebaseInitialized(true);
+        requestUserPermission()
+          .catch(_reason => {})
+          .finally(() => {
+            getCloudMessagingToken().then(token => {
+              console.log('getCloudMessagingToken():', token);
+            });
+          });
+      });
+    }
+  }, [firebaseInitialized]);
+
+  React.useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('Firebase Cloud Message', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
+  }, []);
+
   return (
-    <>
-      <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
+      {firebaseInitialized ? (
         <NavigationContainer>
           <RootStack.Navigator
             headerMode={headerMode}
@@ -46,8 +78,12 @@ const RootStackView = () => {
             <RootStack.Screen name="Modal" component={ModalScreen} />
           </RootStack.Navigator>
         </NavigationContainer>
-      </SafeAreaView>
-    </>
+      ) : (
+        <View style={styles.baseView}>
+          <Text>Initializing Firebase...</Text>
+        </View>
+      )}
+    </SafeAreaView>
   );
 };
 
