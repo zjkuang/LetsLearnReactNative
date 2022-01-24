@@ -1,12 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView, View, Text, Alert} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import messaging from '@react-native-firebase/messaging';
 import {
   initializeFirebase,
   getCloudMessagingToken,
@@ -53,6 +54,13 @@ const RootStackView = () => {
       });
     }
   }, [firebaseInitialized]);
+
+  React.useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('Firebase Cloud Message', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <SafeAreaView style={{flex: 1}}>
