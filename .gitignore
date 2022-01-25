@@ -71,5 +71,5 @@ buck-out/
 secrets.json
 
 # Google service
-android/app/GoogleService-Info.plist
-ios/LetsLearnReactNative/google-services.json
+android/app/google-services.json
+ios/LetsLearnReactNative/GoogleService-Info.plist
