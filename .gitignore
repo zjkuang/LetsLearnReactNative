@@ -66,3 +66,10 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# API_KEYs, Secrets, ...
+secrets.json
+
+# Google service
+android/app/GoogleService-Info.plist
+ios/LetsLearnReactNative/google-services.json
