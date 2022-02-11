@@ -38,6 +38,8 @@ export function getCloudMessagingToken(): Promise<string> {
         resolve(token);
       })
       .catch(reason => {
+        // Error: [messaging/unknown] java.io.IOException: java.util.concurrent.ExecutionException: java.io.IOException: FIS_AUTH_ERROR
+        //  - Solution: https://stackoverflow.com/a/68237809/7455975
         console.log(
           'messaging().getToken() failed. reason:',
           JSON.stringify(reason),

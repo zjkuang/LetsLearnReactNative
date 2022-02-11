@@ -47,9 +47,16 @@ const RootStackView = () => {
         requestUserPermission()
           .catch(_reason => {})
           .finally(() => {
-            getCloudMessagingToken().then(token => {
-              console.log('getCloudMessagingToken():', token);
-            });
+            getCloudMessagingToken()
+              .then(token => {
+                console.log('getCloudMessagingToken():', token);
+              })
+              .catch(reason => {
+                console.log(
+                  'getCloudMessagingToken() failed.',
+                  JSON.stringify(reason),
+                );
+              });
           });
       });
     }
