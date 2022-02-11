@@ -1,5 +1,0 @@
-(1) Add project (LetsLearnReactNative)
-(2) Add iOS app
-(2.1) Bundle id
-(2.2) Download config file (GoogleService-Info.plist)
-(3) Add Android app

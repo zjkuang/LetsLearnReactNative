@@ -5,7 +5,7 @@ export const initializeFirebase = async () => {
   const config = require('../../secrets.json').Firebase;
   // secrets.json is located in the root folder of this app and is added to .gitignore
   // When the repo is cloned to a new machine, create secrets.json locally and, to resume the Firebase configuration:
-  // (Go to Firebase console, open project LetsLearnReactNative, click on the android/ios app and then the gear icon for settings,)
+  // (Go to Firebase console, open project MyServerNodeTS (SHOULD be the Node server's project, NOT the app's project), click on the android/ios app and then the gear icon for settings,)
   //  - apiKey:
   //      https://firebase.google.com/docs/projects/api-keys
   //      for ios, GoogleService-Info.plist, API_KEY field
@@ -17,7 +17,7 @@ export const initializeFirebase = async () => {
   //  - messagingSenderId:
   //      Firebase console, Project number, a 12-digit number
   //  - projectId:
-  //      irebase console, Project ID, "letslearnreactnative"
+  //      Firebase console, Project ID, ""
   // In secret.json,
   // {
   //   "Firebase": {
@@ -30,7 +30,7 @@ export const initializeFirebase = async () => {
   //       "ios": "<ios-app-id>"
   //     },
   //     "messagingSenderId": "<messagingSenderId>",
-  //     "projectId": "letslearnreactnative"
+  //     "projectId": "myservernodets"
   //   }
   // }
   //

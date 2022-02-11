@@ -1,0 +1,15 @@
+Ref (PDF)
+  React Native Push Notifications with Firebase & Hooks 2020 | by Alameda Dev. | Alameda Dev. | Medium
+
+(1) Add iOS app
+IMPORTANT! Don't create a mobile app project in FCM console, but add the mobile/web apps into the server's project (in this case MyServerNodeTS), otherwise sending push notifications from the node server to FCM will fail with "The credential used to authenticate this SDK does not have permission to send messages to the device corresponding to the provided registration token. Make sure the credential and registration token both belong to the same Firebase project."
+
+(Pods had already been added by `yarn add @react-native-firebase/app @react-native-firebase/messaging` followed by `pod install`.)
+
+(2) Add Android app
+IMPORTANT! Don't create a mobile app project in FCM console, but add the mobile/web apps into the server's project (in this case MyServerNodeTS), otherwise sending push notifications from the node server to FCM will fail with "The credential used to authenticate this SDK does not have permission to send messages to the device corresponding to the provided registration token. Make sure the credential and registration token both belong to the same Firebase project."
+
+(No need to add the optional Debug signing certificate SHA-1, which is used for Google Sign-in)
+
+To get the SHA certificate fingerprints, first `cd android` then
+`./gradlew signingReport`
