@@ -13,3 +13,5 @@ IMPORTANT! Don't create a mobile app project in FCM console, but add the mobile/
 
 To get the SHA certificate fingerprints, first `cd android` then
 `./gradlew signingReport`
+
+For Push Notifications, no SHA certificate fingerprints needed here. They are used if the app uses Google Sign-in for authentication.
