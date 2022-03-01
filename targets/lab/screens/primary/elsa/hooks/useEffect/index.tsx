@@ -2,9 +2,10 @@
 import React from 'react';
 import {Alert, Text, View} from 'react-native';
 import {QuickTestButton} from '../../../../../../../common/components/widgets';
-import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {ElsaNavigationParamList} from '../..';
+import {useMyHook, useMountedState} from './custom-hook';
+import {styles} from './style';
 
 // https://daveceddia.com/useeffect-vs-uselayouteffect/
 // https://kentcdodds.com/blog/useeffect-vs-uselayouteffect
@@ -18,6 +19,9 @@ type ScreenProps = StackScreenProps<ElsaNavigationParamList, 'UseEffectDemo'>;
 export const DemoUseEffectScreen = ({navigation, route}: ScreenProps) => {
   type State = 'Welcome' | 'Order Placed' | 'Food Consumed' | 'Bill Paid';
   const [state, setState] = React.useState<State>('Welcome');
+
+  const isMounted = useMountedState();
+  useMyHook();
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -54,6 +58,15 @@ export const DemoUseEffectScreen = ({navigation, route}: ScreenProps) => {
       ]);
     });
   }, [navigation, state]);
+
+  React.useEffect(() => {
+    if (isMounted()) {
+      console.log('Is mounted.');
+    } else {
+      // This can never be run into.
+      console.log('Is not mounted.');
+    }
+  }, []);
 
   return (
     <View style={styles.baseView}>
