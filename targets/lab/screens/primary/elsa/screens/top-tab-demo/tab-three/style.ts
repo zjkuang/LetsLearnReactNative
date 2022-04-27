@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
     ...commonStyles.fullSize,
     ...commonStyles.contentAlignmentCenter,
   },
+  nativeModuleTestView: {
+    flexDirection: 'row',
+    ...commonStyles.contentAlignmentCenter,
+  },
 });
 
 export {styles, commonStyles, positioning, color};

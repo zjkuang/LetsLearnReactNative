@@ -36,19 +36,32 @@ fileprivate enum NativeDemoError: Error {
 
 @objc(NativeDemo)
 class NativeDemo: RCTEventEmitter {
+  private var localValue: Int = 0 // to test if the native module is a singleton or an individual instance
+  
   override func supportedEvents() -> [String]! {
-    return NativeDemoEvent.allCases.map { $0.rawValue };
+    return NativeDemoEvent.allCases.map { $0.rawValue }
   }
   
   @objc(test:justReject:resolve:reject:)
   func test(input: String, justReject: Bool, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     if (justReject) {
       let error: NativeDemoError = .testReject
-      reject(error.code, error.message, error);
+      reject(error.code, error.message, error)
       return
     }
     
-    resolve("Response from native iOS to JavaScript app's input '\(input)'");
+    resolve("Response from native iOS to JavaScript app's input '\(input)'")
+  }
+  
+  @objc(fetchLocalValue:reject:)
+  func fetchLocalValue(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    resolve(self.localValue)
+  }
+  
+  @objc(putLocalValue:resolve:reject:)
+  func putLocalValue(newValue: Int, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    self.localValue = newValue
+    resolve(self.localValue)
   }
   
   @objc(setTimer:async:resolve:reject:)
@@ -60,11 +73,11 @@ class NativeDemo: RCTEventEmitter {
     }
     
     let result = NSMutableDictionary()
-    result["timeOut"] = "\(milliSeconds)";
+    result["timeOut"] = "\(milliSeconds)"
     
     if (async) {
       DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(milliSeconds)) {
-        resolve(result);
+        resolve(result)
       }
       return
     }
