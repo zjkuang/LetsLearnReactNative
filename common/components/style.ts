@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentAlignmentCenter: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // along primary axis
+    alignItems: 'center', // along secondary axis
   },
   leftContainer: {
     flex: 1,
