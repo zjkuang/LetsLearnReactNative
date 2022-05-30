@@ -29,6 +29,7 @@ import {BannerMaskLauncherScreen} from './screens/banner-mask-demo';
 import {TopTabDemoScreen} from './screens/top-tab-demo';
 import {NativeModuleDemoScreen} from './screens/native-module-demo';
 import {SplitViewDemoScreen} from './screens/split-view-demo';
+import {ExperimentsScreen} from './experiments';
 
 //
 //  EEEEE  L       SSSS    A
@@ -63,6 +64,7 @@ export type ElsaNavigationParamList = {
   TopTabDemo: {};
   NativeModuleDemo: {};
   SplitViewDemo: {};
+  Experiments: {};
   // more navigation children can be added here
 };
 export type ElsaNavigationProp = StackNavigationProp<ElsaNavigationParamList>;
@@ -117,17 +119,20 @@ export const ElsaNavigator = () => {
       />
 
       <ElsaStack.Screen name="SplitViewDemo" component={SplitViewDemoScreen} />
+
+      <ElsaStack.Screen name="Experiments" component={ExperimentsScreen} />
     </ElsaStack.Navigator>
   );
 };
 
 type ElsaListItem = {
   index: number;
-  id: 'HooksDemo' | 'ScreensDemo' | 'NativeModuleDemo';
+  id: 'HooksDemo' | 'ScreensDemo' | 'NativeModuleDemo' | 'Experiments';
   navigationTargetName?:
     | 'HooksDemoList'
     | 'ScreensDemoList'
-    | 'NativeModuleDemo'; // subset of ElsaStackScreenName
+    | 'NativeModuleDemo'
+    | 'Experiments'; // subset of ElsaStackScreenName
   title: string;
   subtitle?: string;
 };
@@ -150,6 +155,12 @@ const elsaList: ElsaListItem[] = [
     id: 'NativeModuleDemo',
     navigationTargetName: 'NativeModuleDemo',
     title: 'Native Module',
+  },
+  {
+    index: 3,
+    id: 'Experiments',
+    navigationTargetName: 'Experiments',
+    title: 'Experiments',
   },
 ];
 
@@ -175,18 +186,14 @@ const ElsaScreen = () => {
           return (
             <TouchableOpacity
               onPress={() => {
+                const validItems: string[] = [
+                  'HooksDemo',
+                  'ScreensDemo',
+                  'NativeModuleDemo',
+                  'Experiments',
+                ];
                 if (
-                  item.id === 'HooksDemo' &&
-                  item.navigationTargetName !== undefined
-                ) {
-                  navigation.navigate(item.navigationTargetName);
-                } else if (
-                  item.id === 'ScreensDemo' &&
-                  item.navigationTargetName !== undefined
-                ) {
-                  navigation.navigate(item.navigationTargetName);
-                } else if (
-                  item.id === 'NativeModuleDemo' &&
+                  validItems.includes(item.id) &&
                   item.navigationTargetName !== undefined
                 ) {
                   navigation.navigate(item.navigationTargetName);
