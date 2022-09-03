@@ -14,7 +14,7 @@ type AnnaDetailsScreenProps = StackScreenProps<
   'AnnaDetails'
 >; // import {StackScreenProps} from '@react-navigation/stack';
 export const AnnaDetailsScreen = ({
-  navigation,
+  _navigation,
   route,
 }: AnnaDetailsScreenProps) => {
   const navigationGeneral = useNavigation();
@@ -23,6 +23,32 @@ export const AnnaDetailsScreen = ({
   if (route.params.generation !== undefined) {
     title = `Details(${route.params.generation})`;
   }
+
+  // onMount and onDismount
+  React.useEffect(() => {
+    console.log('[This component] is loaded.'); // R/N equivalent to iOS viewDidLoad
+
+    return () => {
+      // iOS does not have a viewDidUnload but R/N does.
+      console.log('[This component] is removed from view hierarchy.');
+    };
+  }, []);
+
+  // onFocus and onBlur
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    const unsubscribeFocus = navigation.addListener('focus', () => {
+      console.log('[This navigation screen] did receive focus.'); // R/N equivalent to iOS viewDidAppear
+    });
+    const unsubscribeBlur = navigation.addListener('blur', () => {
+      console.log('[This navigation screen] did lose focus.'); // R/N equivalent to iOS viewDidDisappear
+    });
+
+    return () => {
+      unsubscribeFocus();
+      unsubscribeBlur();
+    };
+  }, [navigation]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({

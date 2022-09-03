@@ -9,6 +9,7 @@ import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {SvenDetailsScreen} from './sven-details';
 import {ExampleContext} from '../../../context/example-context';
+import {useFocusCount} from '../test-hook';
 
 type SvenNavigationParamList = {
   Sven?: {}; // navigation root
@@ -47,6 +48,8 @@ const SvenScreen = (props: SvenScreenProp) => {
 
   const title = 'Sven';
 
+  const focusCount = useFocusCount();
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: title,
@@ -62,7 +65,7 @@ const SvenScreen = (props: SvenScreenProp) => {
 
   React.useEffect(() => {
     const unsubscribeFocus = generalNavigation.addListener('focus', () => {
-      console.log('Sven focus');
+      console.log('Sven focus:', focusCount);
     });
     const unsubscribeBlur = generalNavigation.addListener('blur', () => {
       console.log('Sven blur');
@@ -72,7 +75,7 @@ const SvenScreen = (props: SvenScreenProp) => {
       unsubscribeFocus();
       unsubscribeBlur();
     };
-  }, [generalNavigation]);
+  }, [focusCount, generalNavigation]);
 
   return (
     <View
