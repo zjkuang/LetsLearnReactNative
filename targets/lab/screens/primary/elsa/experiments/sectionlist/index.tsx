@@ -54,13 +54,16 @@ export const ExperimentalSectionList = () => {
       }}
       onViewableItemsChanged={({viewableItems}) => {
         // console.log('*** *** viewableItems.length:', viewableItems.length);
-        // console.log('*** viewableItems', JSON.stringify(viewableItems));
+        console.log('*** viewableItems', JSON.stringify(viewableItems));
+        // Section headers also appear in viewableItems with index=null
         // filter out those (viewableItem.index === null)
-        viewableItems.map(viewableItem => {
-          if (viewableItem.index !== null && !!viewableItem.item) {
-            console.log('*** viewableItem:', JSON.stringify(viewableItem));
-          }
-        });
+        // const filteredViewableItems = viewableItems.filter(
+        //   item => item.index !== null,
+        // );
+        // console.log(
+        //   '*** filteredViewableItems:',
+        //   JSON.stringify(filteredViewableItems),
+        // );
       }}
       viewabilityConfig={{
         itemVisiblePercentThreshold: 95,

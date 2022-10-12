@@ -9,6 +9,7 @@ import {styles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import {OlafDetailsScreen} from './olaf-details';
 import {ExampleContext} from '../../../context/example-context';
+import {useFocusCount} from '../test-hook';
 
 type OlafNavigationParamList = {
   Olaf?: {}; // navigation root
@@ -47,6 +48,8 @@ const OlafScreen = (props: OlafScreenProp) => {
 
   const title = 'Olaf';
 
+  const focusCount = useFocusCount();
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: title,
@@ -62,7 +65,7 @@ const OlafScreen = (props: OlafScreenProp) => {
 
   React.useEffect(() => {
     const unsubscribeFocus = generalNavigation.addListener('focus', () => {
-      console.log('Olaf focus');
+      console.log('Olaf focus:', focusCount);
     });
     const unsubscribeBlur = generalNavigation.addListener('blur', () => {
       console.log('Olaf blur');
@@ -72,7 +75,7 @@ const OlafScreen = (props: OlafScreenProp) => {
       unsubscribeFocus();
       unsubscribeBlur();
     };
-  }, [generalNavigation]);
+  }, [focusCount, generalNavigation]);
 
   return (
     <View

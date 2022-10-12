@@ -11,3 +11,6 @@ Change Podfile like below:
   end
 
 //////
+
+(2) On Android device: "Unable to load script. Make sure you're either running Metro (run 'react-native start') or that your bundle 'index.android.bundle' is packaged correctly for release."
+`adb reverse tcp:8081 tcp:8081`

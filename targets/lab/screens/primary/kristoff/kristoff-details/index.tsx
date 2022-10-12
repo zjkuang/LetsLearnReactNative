@@ -42,6 +42,16 @@ export const KristoffDetailsScreen = (props: KristoffDetailsScreenProp) => {
           navigation.navigate('Sven');
         }}
       />
+
+      {/* https://reactnavigation.org/docs/nesting-navigators/#navigating-to-a-screen-in-a-nested-navigator */}
+      <QuickTestButton
+        title={"Go To Sven's Details"}
+        onPress={() => {
+          navigation.navigate('Sven', {
+            screen: 'SvenDetails',
+          });
+        }}
+      />
     </View>
   );
 };
