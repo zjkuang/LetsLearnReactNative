@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {QuickTestButton} from '../../../../../../common/components/widgets';
 import {styles} from './style';
-import {useNavigation} from '@react-navigation/native';
 
 export type KristoffDetailsScreenProp = {
   test?: string;
@@ -49,6 +49,18 @@ export const KristoffDetailsScreen = (props: KristoffDetailsScreenProp) => {
         onPress={() => {
           navigation.navigate('Sven', {
             screen: 'SvenDetails',
+          });
+        }}
+      />
+      {/* Deeper nested */}
+      <QuickTestButton
+        title={"Go To Elsa/Screens/'Top Tab/THREE'"}
+        onPress={() => {
+          navigation.navigate('Elsa', {
+            screen: 'TopTabDemo',
+            params: {
+              screen: 'Three',
+            },
           });
         }}
       />
