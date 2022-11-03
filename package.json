@@ -7,6 +7,8 @@
     "pod-repo-update": "pod install --project-directory=ios --repo-update",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios:devices": "xcrun simctl list",
+    "android:devices": "emulator -list-avds",
     "sim-iphone-13": "react-native run-ios --simulator \"iPhone 13\"",
     "sim-iphone-14": "react-native run-ios --simulator \"iPhone 14\"",
     "sim-ipad-9th": "react-native run-ios --simulator \"iPad (9th generation)\"",
