@@ -14,7 +14,7 @@ type AnnaDetailsScreenProps = StackScreenProps<
   'AnnaDetails'
 >; // import {StackScreenProps} from '@react-navigation/stack';
 export const AnnaDetailsScreen = ({
-  _navigation,
+  navigation,
   route,
 }: AnnaDetailsScreenProps) => {
   const navigationGeneral = useNavigation();
@@ -35,7 +35,6 @@ export const AnnaDetailsScreen = ({
   }, []);
 
   // onFocus and onBlur
-  const navigation = useNavigation();
   React.useEffect(() => {
     const unsubscribeFocus = navigation.addListener('focus', () => {
       console.log('[This navigation screen] did receive focus.'); // R/N equivalent to iOS viewDidAppear
