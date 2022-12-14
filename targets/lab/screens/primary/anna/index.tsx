@@ -4,7 +4,7 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {Text, View} from 'react-native';
-import {useNavigation, DrawerActions} from '@react-navigation/native';
+import {useNavigation, DrawerActions, useIsFocused} from '@react-navigation/native';
 import {AnnaDetailsScreen, AnnaDetailsScreenParamList} from './anna-details';
 import {ExampleContext} from '../../../context/example-context';
 import {QuickTestButton} from '../../../../../common/components/widgets';
@@ -67,6 +67,11 @@ const AnnaScreen = (props: AnnaScreenProp) => {
       unsubscribeBlur();
     };
   }, [generalNavigation]);
+
+  const isFocused = useIsFocused();
+  React.useEffect(() => {
+    console.log(`useIsFocused() returns ${isFocused}`);
+  }, [isFocused]);
 
   const onOpenDrawer = React.useCallback(() => {
     navigation.dispatch(DrawerActions.toggleDrawer());
